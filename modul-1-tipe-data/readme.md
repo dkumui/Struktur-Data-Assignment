@@ -2,6 +2,14 @@
 
 <p align="center">Muhammad Azka</p>
 
+## Features
+
+- [Dasar Teori](#dasar-teori)
+- [Guided](#guided)
+- [Unguided](#unguided)
+- [Kesimpulan](#kesimpulan)
+- [Referensi](#referensi)
+
 ## Dasar Teori
 
 Tipe data merupakan cara untuk mengelompokkan dan mengklasifikasikan data dalam pemrograman. Ada tiga jenis tipe data utama yang umumnya digunakan:
@@ -29,7 +37,7 @@ Tipe data koleksi digunakan untuk mengelompokkan dan menyimpan beberapa nilai at
 
 Tipe data koleksi memungkinkan pengelolaan dan akses data yang lebih terstruktur, sementara tipe data abstrak memberikan fleksibilitas dalam membentuk jenis data sesuai kebutuhan programer. Tipe data primitif, di sisi lain, sudah ditentukan oleh sistem dengan perbedaan tergantung pada bahasa pemrograman dan sistem operasional yang digunakan.
 
-## Guided
+## [Guided](#guided)
 
 ### 1. Tipe Data Primitif
 
@@ -75,7 +83,7 @@ main()
 
 #### Output:
 
-![image](https://github.com/dkumui/Struktur-Data-Assignment/assets/91511212/0dd7fcc3-e270-43f4-8467-b3790ab512c8)
+![image](https://github.com/dkumui/Struktur-Data-Assignment/assets/91511212/74239668-6cf1-4186-a460-4772d8d4e5e4)
 
 Kode di atas adalah program yang meminta pengguna untuk memasukkan operator matematika (+, -, \*, /) dan dua bilangan floating-point. Setelah menerima input, program menggunakan switch statement untuk melakukan operasi sesuai dengan operator yang dimasukkan. Hasil operasi tersebut kemudian dicetak ke layar. Jika operator yang dimasukkan tidak sesuai dengan yang sudah disediakan, maka program akan mencetak pesan error. Program berakhir setelah operasi selesai dan hasilnya ditampilkan.
 
@@ -119,7 +127,7 @@ int main()
 
 #### Output:
 
-![image](https://github.com/dkumui/Struktur-Data-Assignment/assets/91511212/d0f6b4ed-9fd5-4897-83eb-a5c07beb660b)
+![image](https://github.com/dkumui/Struktur-Data-Assignment/assets/91511212/f4e3cbff-384c-4f7f-8eac-0b3bfb562120)
 
 Kode di atas merupakan program yang menggunakan struktur data atau struct untuk merepresentasikan informasi mahasiswa. Dalam struct `Mahasiswa`, terdapat tiga anggota yaitu `name` (nama), `address` (alamat), dan `age` (umur). Program kemudian membuat dua variabel bertipe struct Mahasiswa, yaitu `mhs1` dan `mhs2`, dan mengisi nilai untuk masing-masing variabel.
 
@@ -152,7 +160,7 @@ int main()
 
 #### Output:
 
-![image](https://github.com/dkumui/Struktur-Data-Assignment/assets/91511212/41f30c2a-3178-4f66-8c9e-0e5c3a318f22)
+![image](https://github.com/dkumui/Struktur-Data-Assignment/assets/91511212/f40ce47d-b5dd-4686-8c0e-2273dffdb7e1)
 
 Kode di atas adalah program yang menggunakan array untuk menyimpan beberapa nilai integer. Array tersebut bernama `nilai` dan memiliki panjang 5. Nilai-nilai tersebut diinisialisasi secara terpisah untuk setiap elemen array menggunakan indeks 0 hingga 4.
 
@@ -205,7 +213,7 @@ int main() {
 
 #### Output:
 
-![image](https://github.com/dkumui/Struktur-Data-Assignment/assets/91511212/a0c498d7-882d-426e-b939-4153ba6c33a5)
+![image](https://github.com/dkumui/Struktur-Data-Assignment/assets/91511212/59ac87ae-20c2-4fc7-a75f-dc78a4ad97d9)
 
 Kode di atas adalah program yang memungkinkan pengguna memilih antara menghitung luas persegi atau volume kubus. Program meminta pengguna untuk memasukkan pilihan menu (1 untuk menghitung luas persegi, 2 untuk menghitung volume kubus).
 
@@ -285,7 +293,7 @@ int main() {
 
 #### Output:
 
-![image](https://github.com/dkumui/Struktur-Data-Assignment/assets/91511212/c6bf3b54-5590-4236-bfad-d480429d6fbc)
+![image](https://github.com/dkumui/Struktur-Data-Assignment/assets/91511212/3d7a3b71-293d-4898-a6d6-4825c20f8c61)
 
 #### Class Employee:
 
@@ -333,7 +341,7 @@ int main() {
 
 #### Output:
 
-![image](https://github.com/dkumui/Struktur-Data-Assignment/assets/91511212/fed4ae49-a0b5-4222-90c4-09c826892435)
+![image](https://github.com/dkumui/Struktur-Data-Assignment/assets/91511212/24307abf-a8fe-4fec-8c2c-19f3373554f0)
 
 Kode di atas menggunakan struktur data map untuk menyimpan pasangan nilai (key-value). Key dalam hal ini adalah indeks, dan value adalah nilai yang terkait. Setelah map diinisialisasi dan diisi dengan beberapa pasangan nilai, program menggunakan loop for untuk mencetak nilai dari setiap pasangan. Hasilnya adalah mencetak nilai-nilai tersebut ke layar tanpa nomor indeks array tertentu.
 
