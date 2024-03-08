@@ -4,11 +4,11 @@
 
 ## Features
 
-- [**Dasar Teori**](#dasar-teori)
-- [**Guided**](#guided)
-- [**Unguided**](#unguided)
-- [**Kesimpulan**](#kesimpulan)
-- [**Referensi**](#referensi)
+- [Dasar Teori](#dasar-teori)
+- [Guided](#guided)
+- [Unguided](#unguided)
+- [Kesimpulan](#kesimpulan)
+- [Referensi](#referensi)
 
 ## Dasar Teori
 
@@ -18,10 +18,10 @@ Tipe data merupakan cara untuk mengelompokkan dan mengklasifikasikan data dalam 
 
 Tipe data primitif adalah jenis data yang sudah ditentukan oleh sistem dan disediakan oleh banyak bahasa pemrograman. Contohnya:
 
-- **Int:** Digunakan untuk menyimpan bilangan bulat seperti 12, 1, atau 4.
-- **Float:** Menggunakan bilangan desimal seperti 1.5, 2.1, atau 3.14.
-- **Char:** Berfungsi untuk menyimpan huruf atau simbol seperti A, B, C.
-- **Boolean:** Digunakan untuk menyimpan nilai boolean, yaitu true atau false.
+- Int: Digunakan untuk menyimpan bilangan bulat seperti 12, 1, atau 4.
+- Float: Menggunakan bilangan desimal seperti 1.5, 2.1, atau 3.14.
+- Char: Berfungsi untuk menyimpan huruf atau simbol seperti A, B, C.
+- Boolean: Digunakan untuk menyimpan nilai boolean, yaitu true atau false.
 
 ### 2. Tipe Data Abstrak:
 
@@ -31,13 +31,13 @@ Tipe data abstrak, atau Abstrak Data Type (ADT), dibentuk oleh programer dan bis
 
 Tipe data koleksi digunakan untuk mengelompokkan dan menyimpan beberapa nilai atau objek secara bersamaan. Beberapa contoh tipe data koleksi meliputi:
 
-- **Array:** Struktur data statis dengan elemen-elemen tipe data yang sama dan ukuran tetap.
-- **Vector:** Mirip dengan array, tetapi dinamis dengan alokasi memorinya otomatis.
-- **Map:** Mirip dengan array, tetapi indeksnya bisa berupa tipe data selain integer, disebut "key", dan menggunakan struktur pohon self-balancing seperti Red-Black Tree pada std::map.
+- Array: Struktur data statis dengan elemen-elemen tipe data yang sama dan ukuran tetap.
+- Vector: Mirip dengan array, tetapi dinamis dengan alokasi memorinya otomatis.
+- Map: Mirip dengan array, tetapi indeksnya bisa berupa tipe data selain integer, disebut "key", dan menggunakan struktur pohon self-balancing seperti Red-Black Tree pada std::map.
 
 Tipe data koleksi memungkinkan pengelolaan dan akses data yang lebih terstruktur, sementara tipe data abstrak memberikan fleksibilitas dalam membentuk jenis data sesuai kebutuhan programer. Tipe data primitif, di sisi lain, sudah ditentukan oleh sistem dengan perbedaan tergantung pada bahasa pemrograman dan sistem operasional yang digunakan.
 
-## Guided
+## [Guided](#guided)
 
 ### 1. Tipe Data Primitif
 
@@ -359,5 +359,5 @@ Pemahaman tipe data, struktur data, dan konsep class/struct merupakan dasar yang
 
 ## Referensi
 
-[1] Paul J. Deitel and Harvey M. Deitel, C++20 Programming - Fundamentals to Advanced Features, 1st ed. Boston, MA, USA: Pearson, 2020.
+[1] I. Holm, Narrator, and J. Fullerton-Smith, Producer, How to Build a Human [DVD]. London: BBC; 2002.
 [2] "cppreference", [Online]. Available: https://en.cppreference.com/w/. [Accessed: March 7, 2024].
