@@ -37,7 +37,7 @@ Tipe data koleksi digunakan untuk mengelompokkan dan menyimpan beberapa nilai at
 
 Tipe data koleksi memungkinkan pengelolaan dan akses data yang lebih terstruktur, sementara tipe data abstrak memberikan fleksibilitas dalam membentuk jenis data sesuai kebutuhan programer. Tipe data primitif, di sisi lain, sudah ditentukan oleh sistem dengan perbedaan tergantung pada bahasa pemrograman dan sistem operasional yang digunakan.
 
-## [Guided](#guided)
+## Guided
 
 ### 1. Tipe Data Primitif
 
