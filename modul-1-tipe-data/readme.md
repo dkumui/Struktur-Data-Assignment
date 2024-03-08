@@ -357,9 +357,6 @@ Singkatnya, array cocok untuk situasi dengan data yang memiliki ukuran tetap dan
 
 Pemahaman tipe data, struktur data, dan konsep class/struct merupakan dasar yang penting dalam pemrograman. Tipe data primitif menyediakan dasar untuk menyimpan informasi, tipe data abstrak memberikan fleksibilitas, dan tipe data koleksi memungkinkan pengelolaan data yang terstruktur. Class dan struct memberikan kemampuan untuk membuat struktur data yang kompleks, sementara array dan map menyediakan cara penyimpanan yang berbeda untuk data yang beragam. Program-program contoh memberikan implementasi praktis dari konsep-konsep ini.
 
---
-Dibuat oleh [Muhammad Azka]
-
 ## Referensi
 
 [1] Paul J. Deitel and Harvey M. Deitel, C++20 Programming - Fundamentals to Advanced Features, 1st ed. Boston, MA, USA: Pearson, 2020.
