@@ -83,8 +83,7 @@ main()
 ```
 
 #### Output:
-
-![image](https://github.com/dkumui/Struktur-Data-Assignment/assets/91511212/74239668-6cf1-4186-a460-4772d8d4e5e4)
+![image](https://github.com/dkumui/Struktur-Data-Assignment/assets/91511212/e440a49d-865f-48e7-b9c4-979d7b12ea9a)
 
 Kode di atas adalah program yang meminta pengguna untuk memasukkan operator matematika (+, -, \*, /) dan dua bilangan floating-point. Setelah menerima input, program menggunakan switch statement untuk melakukan operasi sesuai dengan operator yang dimasukkan. Hasil operasi tersebut kemudian dicetak ke layar. Jika operator yang dimasukkan tidak sesuai dengan yang sudah disediakan, maka program akan mencetak pesan error. Program berakhir setelah operasi selesai dan hasilnya ditampilkan.
 
@@ -127,8 +126,7 @@ int main()
 ```
 
 #### Output:
-
-![image](https://github.com/dkumui/Struktur-Data-Assignment/assets/91511212/f4e3cbff-384c-4f7f-8eac-0b3bfb562120)
+![image](https://github.com/dkumui/Struktur-Data-Assignment/assets/91511212/c98c67ca-4158-40ec-a911-6ca9d8430a70)
 
 Kode di atas merupakan program yang menggunakan struktur data atau struct untuk merepresentasikan informasi mahasiswa. Dalam struct `Mahasiswa`, terdapat tiga anggota yaitu `name` (nama), `address` (alamat), dan `age` (umur). Program kemudian membuat dua variabel bertipe struct Mahasiswa, yaitu `mhs1` dan `mhs2`, dan mengisi nilai untuk masing-masing variabel.
 
@@ -160,8 +158,7 @@ int main()
 ```
 
 #### Output:
-
-![image](https://github.com/dkumui/Struktur-Data-Assignment/assets/91511212/f40ce47d-b5dd-4686-8c0e-2273dffdb7e1)
+![image](https://github.com/dkumui/Struktur-Data-Assignment/assets/91511212/ee3dff4d-694e-4047-be4c-bb2b5ee6debe)
 
 Kode di atas adalah program yang menggunakan array untuk menyimpan beberapa nilai integer. Array tersebut bernama `nilai` dan memiliki panjang 5. Nilai-nilai tersebut diinisialisasi secara terpisah untuk setiap elemen array menggunakan indeks 0 hingga 4.
 
@@ -213,8 +210,7 @@ int main() {
 ```
 
 #### Output:
-
-![image](https://github.com/dkumui/Struktur-Data-Assignment/assets/91511212/59ac87ae-20c2-4fc7-a75f-dc78a4ad97d9)
+![image](https://github.com/dkumui/Struktur-Data-Assignment/assets/91511212/fba131a6-4220-454b-95eb-86d3509187f3)
 
 Kode di atas adalah program yang memungkinkan pengguna memilih antara menghitung luas persegi atau volume kubus. Program meminta pengguna untuk memasukkan pilihan menu (1 untuk menghitung luas persegi, 2 untuk menghitung volume kubus).
 
@@ -293,8 +289,7 @@ int main() {
 ```
 
 #### Output:
-
-![image](https://github.com/dkumui/Struktur-Data-Assignment/assets/91511212/3d7a3b71-293d-4898-a6d6-4825c20f8c61)
+![image](https://github.com/dkumui/Struktur-Data-Assignment/assets/91511212/4c478871-0264-4cd0-bca2-5f15770306b4)
 
 #### Class Employee:
 
@@ -341,8 +336,7 @@ int main() {
 ```
 
 #### Output:
-
-![image](https://github.com/dkumui/Struktur-Data-Assignment/assets/91511212/24307abf-a8fe-4fec-8c2c-19f3373554f0)
+![image](https://github.com/dkumui/Struktur-Data-Assignment/assets/91511212/003b2158-1afc-4032-9341-63196154a7db)
 
 Kode di atas menggunakan struktur data map untuk menyimpan pasangan nilai (key-value). Key dalam hal ini adalah indeks, dan value adalah nilai yang terkait. Setelah map diinisialisasi dan diisi dengan beberapa pasangan nilai, program menggunakan loop for untuk mencetak nilai dari setiap pasangan. Hasilnya adalah mencetak nilai-nilai tersebut ke layar tanpa nomor indeks array tertentu.
 
