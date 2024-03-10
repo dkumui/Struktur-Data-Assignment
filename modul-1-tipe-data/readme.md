@@ -2,7 +2,6 @@
 
 <p align="center">Muhammad Azka</p>
 
-
 ## Features
 
 - [Dasar Teori](#dasar-teori)
@@ -23,7 +22,7 @@ Tipe data primitif adalah jenis data yang sudah ditentukan oleh sistem dan dised
 - Float: Menggunakan bilangan desimal seperti 1.5, 2.1, atau 3.14.
 - Char: Berfungsi untuk menyimpan huruf atau simbol seperti A, B, C.
 - Boolean: Digunakan untuk menyimpan nilai boolean, yaitu true atau false.
-  
+
 Karakteristik:
 
 - Ukuran memori tetap.
@@ -58,12 +57,11 @@ Tipe data koleksi memungkinkan pengelolaan dan akses data yang lebih terstruktur
 
 ### Perbandingan Tipe Data:
 
-|   Tipe Data   |           Definisi           |                         Karakteristik                         |         Contoh         |
-| :-----------: | :--------------------------: | :-----------------------------------------------------------: | :--------------------: |
-| Primitif      | Dasar, disediakan bahasa C++ | Ukuran memori tetap, operasi aritmatika/logika, nilai default | int, float, char, bool |
-| Abstrak       | Dibuat programer, fleksibel  | Struktur data statis, akses default berbeda                   | struct, class          |
-| Koleksi       | Mengelompokkan nilai/objek   | Pengelolaan/akses terstruktur, statis/dinamis                 | array, vector, map     |
-
+| Tipe Data |           Definisi           |                         Karakteristik                         |         Contoh         |
+| :-------: | :--------------------------: | :-----------------------------------------------------------: | :--------------------: |
+| Primitif  | Dasar, disediakan bahasa C++ | Ukuran memori tetap, operasi aritmatika/logika, nilai default | int, float, char, bool |
+|  Abstrak  | Dibuat programer, fleksibel  |          Struktur data statis, akses default berbeda          |     struct, class      |
+|  Koleksi  |  Mengelompokkan nilai/objek  |         Pengelolaan/akses terstruktur, statis/dinamis         |   array, vector, map   |
 
 ## [Guided](#guided)
 
@@ -110,6 +108,7 @@ main()
 ```
 
 #### Output:
+
 ![image](https://github.com/dkumui/Struktur-Data-Assignment/assets/91511212/e440a49d-865f-48e7-b9c4-979d7b12ea9a)
 
 Kode di atas adalah program yang meminta pengguna untuk memasukkan operator matematika (+, -, \*, /) dan dua bilangan floating-point. Setelah menerima input, program menggunakan switch statement untuk melakukan operasi sesuai dengan operator yang dimasukkan. Hasil operasi tersebut kemudian dicetak ke layar. Jika operator yang dimasukkan tidak sesuai dengan yang sudah disediakan, maka program akan mencetak pesan error. Program berakhir setelah operasi selesai dan hasilnya ditampilkan.
@@ -153,6 +152,7 @@ int main()
 ```
 
 #### Output:
+
 ![image](https://github.com/dkumui/Struktur-Data-Assignment/assets/91511212/c98c67ca-4158-40ec-a911-6ca9d8430a70)
 
 Kode di atas merupakan program yang menggunakan struktur data atau struct untuk merepresentasikan informasi mahasiswa. Dalam struct `Mahasiswa`, terdapat tiga anggota yaitu `name` (nama), `address` (alamat), dan `age` (umur). Program kemudian membuat dua variabel bertipe struct Mahasiswa, yaitu `mhs1` dan `mhs2`, dan mengisi nilai untuk masing-masing variabel.
@@ -185,6 +185,7 @@ int main()
 ```
 
 #### Output:
+
 ![image](https://github.com/dkumui/Struktur-Data-Assignment/assets/91511212/ee3dff4d-694e-4047-be4c-bb2b5ee6debe)
 
 Kode di atas adalah program yang menggunakan array untuk menyimpan beberapa nilai integer. Array tersebut bernama `nilai` dan memiliki panjang 5. Nilai-nilai tersebut diinisialisasi secara terpisah untuk setiap elemen array menggunakan indeks 0 hingga 4.
@@ -237,6 +238,7 @@ int main() {
 ```
 
 #### Output:
+
 ![image](https://github.com/dkumui/Struktur-Data-Assignment/assets/91511212/fba131a6-4220-454b-95eb-86d3509187f3)
 
 Kode di atas adalah program yang memungkinkan pengguna memilih antara menghitung luas persegi atau volume kubus. Program meminta pengguna untuk memasukkan pilihan menu (1 untuk menghitung luas persegi, 2 untuk menghitung volume kubus).
@@ -316,6 +318,7 @@ int main() {
 ```
 
 #### Output:
+
 ![image](https://github.com/dkumui/Struktur-Data-Assignment/assets/91511212/4c478871-0264-4cd0-bca2-5f15770306b4)
 
 #### Class Employee:
@@ -363,6 +366,7 @@ int main() {
 ```
 
 #### Output:
+
 ![image](https://github.com/dkumui/Struktur-Data-Assignment/assets/91511212/003b2158-1afc-4032-9341-63196154a7db)
 
 Kode di atas menggunakan struktur data map untuk menyimpan pasangan nilai (key-value). Key dalam hal ini adalah indeks, dan value adalah nilai yang terkait. Setelah map diinisialisasi dan diisi dengan beberapa pasangan nilai, program menggunakan loop for untuk mencetak nilai dari setiap pasangan. Hasilnya adalah mencetak nilai-nilai tersebut ke layar tanpa nomor indeks array tertentu.
@@ -384,3 +388,5 @@ Pemahaman tipe data, struktur data, dan konsep class/struct merupakan dasar yang
 [1] Paul J. Deitel and Harvey M. Deitel, C++20 Programming - Fundamentals to Advanced Features, 1st ed. Boston, MA, USA: Pearson, 2020.
 
 [2] "cppreference", [Online]. Available: https://en.cppreference.com/w/. [Accessed: March 7, 2024].
+
+asasadswfdwa
