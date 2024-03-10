@@ -18,10 +18,10 @@ Tipe data merupakan cara untuk mengelompokkan dan mengklasifikasikan data dalam 
 
 Tipe data primitif adalah jenis data yang sudah ditentukan oleh sistem dan disediakan oleh banyak bahasa pemrograman. Contohnya:
 
-- Int: Digunakan untuk menyimpan bilangan bulat seperti 12, 1, atau 4.
-- Float: Menggunakan bilangan desimal seperti 1.5, 2.1, atau 3.14.
-- Char: Berfungsi untuk menyimpan huruf atau simbol seperti A, B, C.
-- Boolean: Digunakan untuk menyimpan nilai boolean, yaitu true atau false.
+- **Int**: Digunakan untuk menyimpan bilangan bulat seperti 12, 1, atau 4.
+- **Float**: Menggunakan bilangan desimal seperti 1.5, 2.1, atau 3.14.
+- **Char**: Berfungsi untuk menyimpan huruf atau simbol seperti A, B, C.
+- **Boolean**: Digunakan untuk menyimpan nilai boolean, yaitu true atau false.
 
 Karakteristik:
 
@@ -43,9 +43,9 @@ Karakteristik:
 
 Tipe data koleksi digunakan untuk mengelompokkan dan menyimpan beberapa nilai atau objek secara bersamaan. Beberapa contoh tipe data koleksi meliputi:
 
-- Array: Struktur data statis dengan elemen-elemen tipe data yang sama dan ukuran tetap.
-- Vector: Mirip dengan array, tetapi dinamis dengan alokasi memorinya otomatis.
-- Map: Mirip dengan array, tetapi indeksnya bisa berupa tipe data selain integer, disebut "key", dan menggunakan struktur pohon self-balancing seperti Red-Black Tree pada std::map.
+- **Array**: Struktur data statis dengan elemen-elemen tipe data yang sama dan ukuran tetap.
+- **Vector**: Mirip dengan array, tetapi dinamis dengan alokasi memorinya otomatis.
+- **Map**: Mirip dengan array, tetapi indeksnya bisa berupa tipe data selain integer, disebut "key", dan menggunakan struktur pohon self-balancing seperti Red-Black Tree pada std::map.
 
 Karakteristik:
 
