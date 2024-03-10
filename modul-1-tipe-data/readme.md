@@ -354,5 +354,6 @@ Pemahaman tipe data, struktur data, dan konsep class/struct merupakan dasar yang
 
 ## Referensi
 
-[1] I. Holm, Narrator, and J. Fullerton-Smith, Producer, How to Build a Human [DVD]. London: BBC; 2002.
+[1] Paul J. Deitel and Harvey M. Deitel, C++20 Programming - Fundamentals to Advanced Features, 1st ed. Boston, MA, USA: Pearson, 2020.
+
 [2] "cppreference", [Online]. Available: https://en.cppreference.com/w/. [Accessed: March 7, 2024].
