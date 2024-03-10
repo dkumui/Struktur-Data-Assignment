@@ -23,10 +23,22 @@ Tipe data primitif adalah jenis data yang sudah ditentukan oleh sistem dan dised
 - Float: Menggunakan bilangan desimal seperti 1.5, 2.1, atau 3.14.
 - Char: Berfungsi untuk menyimpan huruf atau simbol seperti A, B, C.
 - Boolean: Digunakan untuk menyimpan nilai boolean, yaitu true atau false.
+  
+Karakteristik:
+
+- Ukuran memori tetap.
+- Dapat dioperasikan dengan operator aritmatika dan logika.
+- Memiliki nilai default[1].
 
 ### 2. Tipe Data Abstrak:
 
 Tipe data abstrak, atau Abstrak Data Type (ADT), dibentuk oleh programer dan bisa berisi berbagai jenis data. Fitur class dalam Object Oriented Programming (OOP) mirip dengan struktur data struct pada bahasa C++, dengan perbedaan akses default (public untuk struct, private untuk class).
+
+Karakteristik:
+
+- Fleksibilitas dalam membentuk jenis data sesuai kebutuhan.
+- Struktur data statis.
+- Akses default berbeda (public untuk struct, private untuk class)[1].
 
 ### 3. Tipe Data Koleksi:
 
@@ -36,7 +48,22 @@ Tipe data koleksi digunakan untuk mengelompokkan dan menyimpan beberapa nilai at
 - Vector: Mirip dengan array, tetapi dinamis dengan alokasi memorinya otomatis.
 - Map: Mirip dengan array, tetapi indeksnya bisa berupa tipe data selain integer, disebut "key", dan menggunakan struktur pohon self-balancing seperti Red-Black Tree pada std::map.
 
+Karakteristik:
+
+- Pengelolaan dan akses data yang terstruktur.
+- Ukuran statis (array) atau dinamis (vector, map).
+- Struktur data dinamis (vector, map) menggunakan Red-Black Tree[1].
+
 Tipe data koleksi memungkinkan pengelolaan dan akses data yang lebih terstruktur, sementara tipe data abstrak memberikan fleksibilitas dalam membentuk jenis data sesuai kebutuhan programer. Tipe data primitif, di sisi lain, sudah ditentukan oleh sistem dengan perbedaan tergantung pada bahasa pemrograman dan sistem operasional yang digunakan.
+
+### Perbandingan Tipe Data:
+
+|   Tipe Data   |           Definisi           |                         Karakteristik                         |         Contoh         |
+| :-----------: | :--------------------------: | :-----------------------------------------------------------: | :--------------------: |
+| Primitif      | Dasar, disediakan bahasa C++ | Ukuran memori tetap, operasi aritmatika/logika, nilai default | int, float, char, bool |
+| Abstrak       | Dibuat programer, fleksibel  | Struktur data statis, akses default berbeda                   | struct, class          |
+| Koleksi       | Mengelompokkan nilai/objek   | Pengelolaan/akses terstruktur, statis/dinamis                 | array, vector, map     |
+
 
 ## [Guided](#guided)
 
