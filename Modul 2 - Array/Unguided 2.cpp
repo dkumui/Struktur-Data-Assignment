@@ -5,13 +5,13 @@ using namespace std;
 int main() {
   int m, n, o;
 
-  cout << "Masukkan jumlah baris array: ";
+  cout << "Masukkan jumlah matriks array: ";
   cin >> m;
 
-  cout << "Masukkan jumlah kolom array: ";
+  cout << "Masukkan jumlah baris array: ";
   cin >> n;
 
-  cout << "Masukkan jumlah layer array: ";
+  cout << "Masukkan jumlah kolom array: ";
   cin >> o;
 
   int arr[m][n][o];

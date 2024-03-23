@@ -4,11 +4,11 @@ using namespace std;
 
 int main() {
   int n;
-  cout << "Masukkan jumlah elemen array: ";
+  cout << "Masukkan jumlah nilai: ";
   cin >> n;
 
   int arr[n];
-  cout << "Masukkan data array: ";
+  cout << "Masukkan data nilai: ";
   for (int i = 0; i < n; i++) {
     cin >> arr[i];
   }
