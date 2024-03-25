@@ -12,33 +12,17 @@
 
 ## Dasar Teori
 
-Array (larik) ialah penampung sejumlah data sejenis
-(homogen) yang menggunakan satu identifier (pengenal).
-Masing-masing elemen larik diakses menggunakan indeks
-(subscript) dari nol sampai n-1 (n menyatakan jumlah elemen
-larik).
-Pengolahan data larik harus per elemen. Elemen larik
-dapat diakses langsung (acak). Tujuannya adalah untuk
-memanipulasi elemen keempat tidak harus melalui elemen
-pertama, kedua, dan ketiga. Berdasarkan banyaknya indeks,
-larik dibagi menjadi larik satu dimensi dan multidimensi (dua
-dimensi dan tiga dimensi)[1].
+Array (larik) ialah penampung sejumlah data sejenis (homogen) yang menggunakan satu identifier (pengenal). Masing-masing elemen larik diakses menggunakan indeks (subscript) dari nol sampai n-1 (n menyatakan jumlah elemen
+larik). Pengolahan data larik harus per elemen. Elemen larik dapat diakses langsung (acak). Tujuannya adalah untuk memanipulasi elemen keempat tidak harus melalui elemen
+pertama, kedua, dan ketiga. Berdasarkan banyaknya indeks, larik dibagi menjadi larik satu dimensi dan multidimensi (dua dimensi dan tiga dimensi)[1].
 
 ### 1. Array Satu Dimensi:
 
-Array satu dimensi adalah kumpulan elemen yang bersebelahan di mana
-individu elemen diidentifikasi oleh subskrip integer unik yang dimulai dengan
-nol. Sekali array dibuat, ukurannya tidak dapat diubah[2]. Dapat
-disebut juga dengan istilah vektor yang
-menggambarkan data dalam suatu urutan
+Array satu dimensi adalah kumpulan elemen yang bersebelahan di mana individu elemen diidentifikasi oleh subskrip integer unik yang dimulai dengan nol. Sekali array dibuat, ukurannya tidak dapat diubah[2]. Dapat disebut juga dengan istilah vektor yang menggambarkan data dalam suatu urutan
 
 ### 2. Array Dua Dimensi
 
-Array dua demensi yakni suatu kumpulan elemen yang dapat dilakukan
-penyimpanan secara terurut di suatu tempat yang terbagi menjadi dua 2 unsur
-yakni baris dan kolom[2]. Sering digambarkan sebagai sebuah matriks yaitu sekumpulan informasi yang setiap individu
-elemennya diacu dengan menggunakan dua buah indeks
-(biasanya dikonotasikan dengan baris dan kolom)[1].
+Array dua demensi yakni suatu kumpulan elemen yang dapat dilakukan penyimpanan secara terurut di suatu tempat yang terbagi menjadi dua 2 unsur yakni baris dan kolom[2]. Sering digambarkan sebagai sebuah matriks yaitu sekumpulan informasi yang setiap individu elemennya diacu dengan menggunakan dua buah indeks (biasanya dikonotasikan dengan baris dan kolom)[1].
 
 ### 3. Array Multi Dimensi
 
@@ -46,51 +30,16 @@ Array multidimensi adalah larik yang berisi satu atau lebih larik. Array Multidi
 
 ### Keunggulan dan Kelemahan Array:
 #### Keunggulan: 
-- Array sangat cocok
-untuk pengaksesan acak.
-Sembarang elemen di array
-dapat diacu secara
-langsung tanpa melalui
-elemen-elemen lain[4].
-- Jika berada di suatu
-lokasi elemen, maka sangat
-mudah menelusuri ke
-elemen-elemen tetangga,
-baik elemen pendahulu atau
-elemen penerus 3[4].
-- Jika elemen-elemen
-array adalah nilai-nilai
-independen dan seluruhnya harus terjaga, maka
-penggunaan
-penyimpanannya sangat
-efisien[4].
+- Array sangat cocok untuk pengaksesan acak. Sembarang elemen di array dapat diacu secara langsung tanpa melalui elemen-elemen lain[4].
+- Jika berada di suatu lokasi elemen, maka sangat mudah menelusuri ke elemen-elemen tetangga, baik elemen pendahulu atau elemen penerus 3[4].
+- Jika elemen-elemen array adalah nilai-nilai independen dan seluruhnya harus terjaga, maka penggunaan penyimpanannya sangat efisien[4].
 
 #### Kelemahan:
-Array mempunyai fleksibilitas
-rendah, sehingga tidak cocok untuk
-berbagai aplikasi karena array
-mempunyai batasan sebagai
-berikut:
-- Array harus bertipe
-homogen. Kita tidak dapat
-mempunyai array dimana
-satu elemen adalah karakter,
-elemen lain bilangan, dan
-elemen lain adalah tipe-tipe
-lain[4].
-- Kebanyakan bahasa
-pemrograman
-mengimplementasikan array
-statik yang sulit diubah
-ukurannya di waktu
-eksekusi. Bila penambahan
-dan pengurangan
-terjadi terus-menerus, maka
-representasi statis[4].
-- Tidak efisien dalam
-penggunaan memori[4].
-- Menyiakan banyak waktu
-komputasi[4].
+Array mempunyai fleksibilitas rendah, sehingga tidak cocok untuk berbagai aplikasi karena array mempunyai batasan sebagai berikut:
+- Array harus bertipe homogen. Kita tidak dapat mempunyai array dimana satu elemen adalah karakter, elemen lain bilangan, dan elemen lain adalah tipe-tipe lain[4].
+- Kebanyakan bahasa pemrograman mengimplementasikan array statik yang sulit diubah ukurannya di waktu eksekusi. Bila penambahan dan pengurangan terjadi terus-menerus, maka representasi statis[4].
+- Tidak efisien dalam penggunaan memori[4].
+- Menyiakan banyak waktu komputasi[4].
 
 ## Guided
 
@@ -102,46 +51,46 @@ using namespace std;
 // PROGRAM INPUT ARRAY 3 DIMENSI
 int main()
 {
-    // Deklarasi array
-    int arr[2][3][3];
-    // Input elemen
-    for (int x = 0; x < 2; x++)
+  // Deklarasi array
+  int arr[2][3][3];
+  // Input elemen
+  for (int x = 0; x < 2; x++)
+  {
+    for (int y = 0; y < 3; y++)
     {
-        for (int y = 0; y < 3; y++)
-        {
-            for (int z = 0; z < 3; z++)
-            {
-                cout << "Input Array[" << x << "][" << y << "][" << z << "] = ";
-                cin >> arr[x][y][z];
-            }
-        }
-        cout << endl;
-    }
-    // Output Array
-    for (int x = 0; x < 2; x++)
-    {
-        for (int y = 0; y < 3; y++)
-        {
-            for (int z = 0; z < 3; z++)
-            {
-                cout << "Data Array[" << x << "][" << y << "][" << z << "] = " << arr[x][y][z] << endl;
-            }
-        }
+      for (int z = 0; z < 3; z++)
+      {
+        cout << "Input Array[" << x << "][" << y << "][" << z << "] = ";
+        cin >> arr[x][y][z];
+      }
     }
     cout << endl;
-    // Tampilan array
-    for (int x = 0; x < 2; x++)
+  }
+  // Output Array
+  for (int x = 0; x < 2; x++)
+  {
+    for (int y = 0; y < 3; y++)
     {
-        for (int y = 0; y < 3; y++)
-        {
-            for (int z = 0; z < 3; z++)
-            {
-                cout << arr[x][y][z] << ends;
-            }
-            cout << endl;
-        }
-        cout << endl;
+      for (int z = 0; z < 3; z++)
+      {
+        cout << "Data Array[" << x << "][" << y << "][" << z << "] = " << arr[x][y][z] << endl;
+      }
     }
+  }
+  cout << endl;
+  // Tampilan array
+  for (int x = 0; x < 2; x++)
+  {
+    for (int y = 0; y < 3; y++)
+    {
+      for (int z = 0; z < 3; z++)
+      {
+        cout << arr[x][y][z] << ends;
+      }
+      cout << endl;
+    }
+    cout << endl;
+  }
 }
 ```
 
@@ -153,49 +102,31 @@ Selanjutnya, program akan menampilkan kembali nilai-nilai array dalam format yan
 
 ```C++
 #include <iostream>
-
 using namespace std;
 
 int main()
 {
-    // Deklarasi variabel
     int maks, a, i = 1, lokasi;
-
-    // Input panjang array
-    cout << "Masukkan panjang array : ";
+    cout << "Masukkan panjang array: ";
     cin >> a;
-
-    // Deklarasi array dengan panjang `a`
     int array[a];
-
-    // Input nilai elemen array
     cout << "Masukkan " << a << " angka\n";
     for (i = 0; i < a; i++)
     {
         cout << "Array ke-" << (i) << ": ";
         cin >> array[i];
     }
-
-    // Inisialisasi variabel `maks` dengan nilai elemen array pertama
     maks = array[0];
-
-    // Perulangan untuk mencari nilai maksimum
-    for (i = 0; i < a; i++)
+    for (i = 0; i < a ; i++)
     {
-        // Jika nilai elemen array lebih besar dari `maks`
         if (array[i] > maks)
         {
-            // Update nilai `maks` dengan nilai elemen array
             maks = array[i];
-            // Simpan lokasi elemen array dengan nilai maksimum
             lokasi = i;
         }
     }
-
-    // Output nilai maksimum dan lokasinya
-    cout << "Nilai maksimum adalah " << maks << " berada di Array ke " << lokasi << endl;
+    cout << "Nilai maksimum adalah " << maks << " berada di array ke-" << lokasi << endl;
 }
-
 ```
 
 Program meminta untuk memasukkan panjang array yang diinginkan. Setelah panjang array dimasukkan, program mendeklarasikan array dengan panjang tersebut. Kemudian, program meminta user untuk memasukkan nilai-nilai elemen array satu per satu.
@@ -207,7 +138,8 @@ Setelah proses selesai, program mengeluarkan hasil berupa nilai maksimum yang di
 ## Unguided
 
 ### 1. Buatlah program untuk menampilkan Output seperti berikut dengan data yang diinputkan oleh user!
-![image](https://github.com/dkumui/Struktur-Data-Assignment/assets/91511212/887a9b1e-a3bc-4131-8fcb-7837a9d9e779)
+
+<img src="https://github.com/dkumui/Struktur-Data-Assignment/assets/91511212/887a9b1e-a3bc-4131-8fcb-7837a9d9e779" width="500">
 
 ```C++
 #include <iostream>
@@ -252,9 +184,9 @@ int main() {
 
 #### Output:
 
-![image](https://github.com/dkumui/Struktur-Data-Assignment/assets/91511212/35242d31-2271-45b8-938a-fc6309b99017)
+<img src="https://github.com/dkumui/Struktur-Data-Assignment/assets/91511212/35242d31-2271-45b8-938a-fc6309b99017" width="750">
 
-Program di atas adalah sebuah program C++ yang meminta pengguna untuk memasukkan jumlah elemen array, kemudian meminta pengguna untuk memasukkan data untuk setiap elemen array. Setelah itu, program menampilkan data array tersebut, kemudian memisahkan antara angka genap dan angka ganjil, dan menampilkan angka-angka tersebut secara terpisah.
+Kodingan di atas adalah sebuah program yang meminta pengguna untuk memasukkan jumlah elemen array, kemudian meminta pengguna untuk memasukkan data untuk setiap elemen array. Setelah itu, program menampilkan data array tersebut, kemudian memisahkan antara angka genap dan angka ganjil, dan menampilkan angka-angka tersebut secara terpisah.
 
 #### Full Code Screenshot:
 
@@ -266,164 +198,39 @@ Program di atas adalah sebuah program C++ yang meminta pengguna untuk memasukkan
 #include <iostream>
 using namespace std;
 
-int main()
-{
-    // Deklarasi variabel untuk menyimpan jumlah baris, kolom, dan lapisan
-    int x, y, z;
-    // Meminta pengguna untuk memasukkan jumlah baris, kolom, dan lapisan
-    cout << "Masukkan jumlah baris : ";
-    cin >> x;
-    cout << "Masukkan jumlah kolom : ";
-    cin >> y;
-    cout << "Masukkan jumlah lapisan : ";
-    cin >> z;
+int main() {
+    // Deklarasi variabel untuk menyimpan ukuran array
+    int size_x, size_y, size_z;
 
-    cout << endl;
-    // Deklarasi array tiga dimensi dengan ukuran sesuai input pengguna
-    int arr[x][y][z];
+    // Meminta pengguna untuk memasukkan ukuran array
+    cout << "Masukkan ukuran array (x y z): ";
+    cin >> size_x >> size_y >> size_z;
 
-    // Perulangan untuk input elemen array
-    for (int i = 0; i < x; i++)
-    {
-        for (int j = 0; j < y; j++)
-        {
-            for (int k = 0; k < z; k++)
-            {
-                // Meminta pengguna untuk memasukkan nilai untuk setiap elemen array
-                cout << "Input Array[" << i << "][" << j << "][" << k << "] = ";
-                cin >> arr[i][j][k];
+    // Deklarasi array sesuai dengan ukuran yang dimasukkan pengguna
+    int arr[size_x][size_y][size_z];
+
+    // Input elemen array
+    for (int x = 0; x < size_x; x++) {
+        for (int y = 0; y < size_y; y++) {
+            for (int z = 0; z < size_z; z++) {
+                cout << "Input Array[" << x << "][" << y << "][" << z << "] = ";
+                cin >> arr[x][y][z];
             }
         }
         cout << endl;
     }
 
-    // Perulangan untuk output Array
-    for (int i = 0; i < x; i++)
-    {
-        for (int j = 0; j < y; j++)
-        {
-            for (int k = 0; k < z; k++)
-            {
-                // Cetak elemen data array
-                cout << "Data Array[" << i << "][" << j << "][" << k << "] = " << arr[i][j][k] << endl;
-            }
-        }
-    }
-    cout << endl;
-
-    // Perulangan untuk tampilan array
-    for (int i = 0; i < x; i++)
-    {
-        for (int j = 0; j < y; j++)
-        {
-            for (int k = 0; k < z; k++)
-            {
-                // Cetak elemen array
-                cout << arr[i][j][k] << " ";
+    // Tampilan array
+    cout << "Array:\n";
+    for (int x = 0; x < size_x; x++) {
+        for (int y = 0; y < size_y; y++) {
+            for (int z = 0; z < size_z; z++) {
+                cout << arr[x][y][z] << " ";
             }
             cout << endl;
         }
         cout << endl;
     }
-}
-```
-
-#### Output:
-
-![image](https://github.com/kepin7/Struktur-Data-Assignment/assets/91455626/1910c84b-678e-4d20-976a-9391d73cb263)
-
-Program ini meminta user untuk memasukkan jumlah baris, kolom, dan lapisan, dan kemudian membuat array tiga dimensi sesuai dengan input tersebut. Setelah itu, program meminta user untuk mengisi nilai-nilai array tersebut dan mencetak nilai-nilai tersebut lalu program mencetak array dalam format yang rapi.
-
-Program mendeklarasikan variabel `x`, `y`, dan `z` untuk menyimpan jumlah baris, kolom, dan lapisan.
-User diminta untuk memasukkan jumlah baris, kolom, dan lapisan menggunakan `cin`.
-Array tiga dimensi `arr` dideklarasikan dengan ukuran yang sesuai dengan input user.
-Program menggunakan tiga perulangan bersarang untuk meminta user memasukkan nilai untuk setiap elemen array.
-Setelah semua nilai dimasukkan, program mencetak nilai-nilai array tersebut dengan menggunakan perulangan bersarang lagi.
-Kemudian, program mencetak nilai array dalam format yang lebih rapi dengan cara mencetak elemen-elemen array satu per satu dalam baris yang sama sebelum berpindah ke baris berikutnya. Program selesai dijalankan setelah mencetak array dalam format yang rapi.
-
-### 3. Buatlah program menu untuk mencari nilai Maksimum, Minimum dan Nilai rata – rata dari suatu array dengan input yang dimasukan oleh user!
-
-```C++
-#include <iostream>
-using namespace std;
-
-int main()
-{
-    // Deklarasi variabel
-    int a, i, maks, min, lokasi_maks, lokasi_min, total = 0, op;
-
-    // Input panjang array
-    cout << "Masukkan panjang array: ";
-    cin >> a;
-
-    // Deklarasi array dengan panjang `a`
-    int array[a];
-
-    // Input nilai elemen array
-    cout << "Masukkan " << a << " angka\n";
-    for (i = 0; i < a; i++)
-    {
-        cout << "Array ke-" << i << ": ";
-        cin >> array[i];
-        total += array[i];
-    }
-
-    // Inisialisasi variabel `maks` dan `min` dengan nilai elemen array pertama
-    maks = min = array[0];
-    lokasi_maks = lokasi_min = 0;
-
-    // perulangan untuk mencari nilai maksimum dan minimum
-    for (i = 0; i < a; i++)
-    {
-        if (array[i] > maks)
-        {
-            maks = array[i];
-            lokasi_maks = i;
-        }
-        else if (array[i] < min)
-        {
-            min = array[i];
-            lokasi_min = i;
-        }
-    }
-
-    // menghitung nilai rata-rata
-    float rata_rata = (float)total / a;
-
-    // Menampilkan menu
-    do
-    {
-        cout << "\n===== Menu =====\n";
-        cout << "1. Mencari Nilai Maksimum\n";
-        cout << "2. Mencari Nilai Minimum\n";
-        cout << "3. Mencari Nilai Rata-rata\n";
-        cout << "4. Keluar\n";
-        cout << "Masukkan pilihan : ";
-        cin >> op;
-
-        switch (op)
-        {
-        case 1:
-            // Output nilai maksimum dan lokasinya
-            cout << "Nilai maksimum adalah " << maks << " berada di Array ke " << lokasi_maks << endl;
-            break;
-        case 2:
-            // Output nilai minimum dan lokasinya
-            cout << "Nilai minimum adalah " << min << " berada di Array ke " << lokasi_min << endl;
-            break;
-        case 3:
-            // Output nilai rata-rata
-            cout << "Nilai rata-rata adalah " << rata_rata << endl;
-            break;
-        case 4:
-            // Keluar dari program
-            cout << "Thank you!, Code By Kevin" << endl;
-            break;
-        default:
-            // pilihan tidak valid
-            cout << "Pilihan tidak valid!" << endl;
-        }
-    } while (op != 4);
 
     return 0;
 }
@@ -431,18 +238,87 @@ int main()
 
 #### Output:
 
-![image](https://github.com/kepin7/Struktur-Data-Assignment/assets/91455626/f75af208-4731-476e-96fb-35164d4549ef)
+![image](https://github.com/dkumui/Struktur-Data-Assignment/assets/91511212/52e308e3-739b-4824-a32a-b041250ee2b8)
 
-Program dimulai dengan mendeklarasikan beberapa variabel, termasuk variabel untuk menyimpan panjang array `a`, iterasi `i`, nilai maksimum `maks` dan minimum `min`, lokasi nilai maksimum `lokasi_maks` dan minimum `lokasi_min`, total elemen array `total`, serta opsi menu `op`.
+Kodingan di atas adalah sebuah program yang memungkinkan pengguna untuk memasukkan ukuran array tiga dimensi (x, y, dan z) dan kemudian memasukkan nilai-nilai untuk setiap elemen array. Setelah itu, program menampilkan array tersebut dalam bentuk tiga dimensi.
 
-User diminta untuk memasukkan panjang array melalui input dari keyboard. Sebuah array dengan panjang yang ditentukan oleh pengguna kemudian dideklarasikan `int array[a]` untuk menyimpan elemen-elemen array. User diminta untuk memasukkan nilai-nilai elemen array satu per satu melalui input dari keyboard. Selama pengguna memasukkan nilai, total elemen array juga dihitung. Nilai maksimum `maks` dan minimum `min` diinisialisasi dengan nilai dari elemen array pertama. Lokasi maksimum `lokasi_maks` dan minimum `lokasi_min` juga diinisialisasi dengan indeks 0. Dilakukan perulangan untuk memeriksa setiap elemen array. Jika nilai elemen array saat ini lebih besar dari nilai maksimum yang ditemukan sebelumnya, maka nilai maksimum dan lokasinya diperbarui. Begitu juga untuk nilai minimum. Setelah selesai mencari nilai maksimum dan minimum, nilai rata-rata dari semua elemen array dihitung. Program memasuki loop `do-while` untuk menampilkan menu kepada user dan meminta input opsi menu. menampilkan sebuah menu yang memungkinkan pengguna untuk memilih opsi, antara lain:
+#### Full Code Screenshot:
 
-1. menu no `1` Mencari Nilai Maksimum: Menampilkan nilai maksimum beserta lokasinya dalam array.
-2. menu no `2` Mencari Nilai Minimum: Menampilkan nilai minimum beserta lokasinya dalam array.
-3. menu no `3` Mencari Nilai Rata-rata: Menampilkan nilai rata-rata dari elemen-elemen array.
-4. menu no `4` Keluar: Mengakhiri program.
+![image](https://github.com/dkumui/Struktur-Data-Assignment/assets/91511212/64235661-ac13-42c9-ad46-606555b63500)
 
-Perulangan akan terus berlanjut sampai pengguna memilih opsi `4` untuk keluar (`op == 4`), di mana program akan menampilkan pesan terima kasih dan keluar dari program.
+### 3. Buatlah program menu untuk mencari nilai Maksimum, Minimum dan Nilai rata – rata dari suatu array dengan input yang dimasukan oleh user!
+
+```C++
+#include <iostream>
+
+using namespace std;
+
+int main() {
+  int n;
+  cout << "Masukkan jumlah nilai: ";
+  cin >> n;
+
+  int arr[n];
+  cout << "Masukkan data nilai: ";
+  for (int i = 0; i < n; i++) {
+    cin >> arr[i];
+  }
+
+  int max = arr[0], min = arr[0], sum = 0;
+  for (int i = 1; i < n; i++) {
+    if (arr[i] > max) {
+      max = arr[i];
+    }
+    if (arr[i] < min) {
+      min = arr[i];
+    }
+    sum += arr[i];
+  }
+
+  float avg = (float)sum / n;
+
+  int choice;
+  do {
+    cout << "\nMenu:" << endl;
+    cout << "1. Tampilkan nilai maksimum" << endl;
+    cout << "2. Tampilkan nilai minimum" << endl;
+    cout << "3. Tampilkan nilai rata-rata" << endl;
+    cout << "0. Keluar" << endl;
+
+    cout << "Masukkan pilihan: ";
+    cin >> choice;
+
+    switch (choice) {
+      case 1:
+        cout << "Nilai maksimum: " << max << endl;
+        break;
+      case 2:
+        cout << "Nilai minimum: " << min << endl;
+        break;
+      case 3:
+        cout << "Nilai rata-rata: " << avg << endl;
+        break;
+      case 0:
+        cout << "Terima kasih!" << endl;
+        break;
+      default:
+        cout << "Pilihan tidak valid!" << endl;
+    }
+  } while (choice != 0);
+
+  return 0;
+}
+```
+
+#### Output:
+
+![image](https://github.com/dkumui/Struktur-Data-Assignment/assets/91511212/f409502f-7918-45f4-9288-67fc39aa8568)
+
+Kodingan di atas merupakan sebuah program sederhana yang meminta pengguna untuk memasukkan sejumlah nilai, kemudian program tersebut akan menampilkan beberapa pilihan statistik dasar dari nilai-nilai tersebut seperti nilai maksimum, nilai minimum, dan rata-rata.
+
+#### Full Code Screenshot:
+
+![image](https://github.com/dkumui/Struktur-Data-Assignment/assets/91511212/77e05fed-44a0-41fb-aa5b-cec20be1b9e2)
 
 ## Kesimpulan
 
