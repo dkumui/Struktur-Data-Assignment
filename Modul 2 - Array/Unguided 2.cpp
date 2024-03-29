@@ -1,40 +1,39 @@
 #include <iostream>
-
 using namespace std;
 
 int main() {
-  int m, n, o;
+    // Deklarasi variabel untuk menyimpan ukuran array
+    int size_x, size_y, size_z;
 
-  cout << "Masukkan jumlah matriks array: ";
-  cin >> m;
+    // Meminta pengguna untuk memasukkan ukuran array
+    cout << "\nMasukkan ukuran array (x y z): ";
+    cin >> size_x >> size_y >> size_z;
 
-  cout << "Masukkan jumlah baris array: ";
-  cin >> n;
+    // Deklarasi array sesuai dengan ukuran yang dimasukkan pengguna
+    int arr[size_x][size_y][size_z];
 
-  cout << "Masukkan jumlah kolom array: ";
-  cin >> o;
-
-  int arr[m][n][o];
-
-  for (int i = 0; i < m; i++) {
-    for (int j = 0; j < n; j++) {
-      for (int k = 0; k < o; k++) {
-        cout << "Masukkan data array [" << i << "][" << j << "][" << k << "]: ";
-        cin >> arr[i][j][k];
-      }
+    // Input elemen array
+    for (int x = 0; x < size_x; x++) {
+        for (int y = 0; y < size_y; y++) {
+            for (int z = 0; z < size_z; z++) {
+                cout << "Input Array[" << x << "][" << y << "][" << z << "] = ";
+                cin >> arr[x][y][z];
+            }
+        }
+        cout << endl;
     }
-  }
 
-  cout << "\nData Array:" << endl;
-  for (int i = 0; i < m; i++) {
-    for (int j = 0; j < n; j++) {
-      for (int k = 0; k < o; k++) {
-        cout << arr[i][j][k] << " ";
-      }
-      cout << endl;
+    // Tampilan array
+    cout << "Array:\n";
+    for (int x = 0; x < size_x; x++) {
+        for (int y = 0; y < size_y; y++) {
+            for (int z = 0; z < size_z; z++) {
+                cout << arr[x][y][z] << " ";
+            }
+            cout << endl;
+        }
+        cout << endl;
     }
-    cout << endl;
-  }
 
-  return 0;
+    return 0;
 }

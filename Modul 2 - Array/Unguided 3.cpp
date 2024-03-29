@@ -4,7 +4,7 @@ using namespace std;
 
 int main() {
   int n;
-  cout << "Masukkan jumlah nilai: ";
+  cout << "\nMasukkan jumlah nilai: ";
   cin >> n;
 
   int arr[n];
@@ -57,3 +57,4 @@ int main() {
 
   return 0;
 }
+
