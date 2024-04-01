@@ -1,41 +1,67 @@
 #include <iostream>
-#include <algorithm>
 
 using namespace std;
 
+void ascendingSort(char arr[], int n) {
+  for (int i = 0; i < n - 1; ++i) {
+    for (int j = i + 1; j < n; ++j) {
+      if (arr[i] > arr[j]) {
+        char temp = arr[i];
+        arr[i] = arr[j];
+        arr[j] = temp;
+      }
+    }
+  }
+}
+
+void descendingSort(char arr[], int n) {
+  for (int i = 0; i < n - 1; ++i) {
+    for (int j = i + 1; j < n; ++j) {
+      if (arr[i] < arr[j]) {
+        char temp = arr[i];
+        arr[i] = arr[j];
+        arr[j] = temp;
+      }
+    }
+  }
+}
+
 int main() {
   int n;
-
-  // Meminta user untuk menginputkan jumlah karakter
-  cout << "Masukkan jumlah karakter: ";
+  cout << "\nMasukkan jumlah karakter (n): ";
   cin >> n;
 
-  // Deklarasi array untuk menyimpan karakter
-  char karakter[n];
+  char characters[n];
 
-  // Meminta user untuk menginputkan karakter
-  cout << "Masukkan " << n << " karakter: ";
-  for (int i = 0; i < n; i++) {
-    cin >> karakter[i];
+  for (int i = 0; i < n; ++i) {
+    cout << "Masukkan karakter ke-" << i + 1 << ": ";
+    cin >> characters[i];
   }
 
-  // Sorting karakter secara ascending
-  sort(karakter, karakter + n);
-
-  // Menampilkan hasil sorting ascending
-  cout << "Karakter setelah sorting ascending: ";
-  for (int i = 0; i < n; i++) {
-    cout << karakter[i];
+  // Menampilkan urutan karakter sebelum sorting
+  cout << "Urutan karakter sebelum sorting: ";
+  for (int i = 0; i < n; ++i) {
+    cout << characters[i] << " ";
   }
   cout << endl;
 
-  // Sorting karakter secara descending
-  sort(karakter, karakter + n, greater<char>());
+  // Sorting secara menaik (ascending)
+  ascendingSort(characters, n);
 
-  // Menampilkan hasil sorting descending
-  cout << "Karakter setelah sorting descending: ";
-  for (int i = 0; i < n; i++) {
-    cout << karakter[i];
+  // Menampilkan urutan karakter setelah sorting ascending
+  cout << "Urutan karakter setelah ascending sort: ";
+  for (int i = 0; i < n; ++i) {
+    cout << characters[i] << " ";
+  }
+  cout << endl;
+
+  // Sorting secara menurun (descending)
+  descendingSort(characters, n);
+
+  // Menampilkan urutan karakter setelah sorting descending
+  cout << "Urutan karakter setelah descending sort: ";
+  for (int i = 0; i < n; ++i) {
+    cout << characters[i] << " ";
   }
   cout << endl;
 
