@@ -20,9 +20,9 @@ int main() {
   }
 
   // Menampilkan hasil pengurutan
-  cout << "IPS mahasiswa setelah diurutkan dari terbesar ke terkecil:" << endl;
+  cout << "\nIPS mahasiswa setelah diurutkan dari terbesar ke terkecil:" << endl;
   for (int i = 0; i < 5; i++) {
-    cout << ips[i] << " ";
+    cout << ips[i] << ", ";
   }
   cout << endl;
 
