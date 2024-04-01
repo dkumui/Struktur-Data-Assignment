@@ -19,9 +19,9 @@ int main() {
   }
 
   // Menampilkan hasil pengurutan
-  cout << "Daftar nama warga setelah diurutkan:" << endl;
+  cout << "\nDaftar nama warga setelah diurutkan:" << endl;
   for (int i = 0; i < 10; i++) {
-    cout << nama[i] << " ";
+    cout << nama[i] << ", ";
   }
   cout << endl;
 
