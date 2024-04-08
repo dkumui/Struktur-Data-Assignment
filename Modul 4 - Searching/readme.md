@@ -12,8 +12,6 @@
 
 ## Dasar Teori
 
-## Dasar Teori Algoritma Searching dengan 5 Referensi IEEE (2020-2024)
-
 **A. Pendahuluan**
 
 Pencarian (searching) merupakan operasi fundamental dalam ilmu komputer yang digunakan untuk menemukan suatu elemen tertentu dalam sekumpulan data. Algoritma searching berperan penting dalam berbagai aplikasi, seperti mesin pencari, sistem basis data, algoritma pengurutan, dan permainan.
