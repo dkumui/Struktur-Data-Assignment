@@ -1,4 +1,4 @@
-![image](https://github.com/dkumui/Struktur-Data-Assignment/assets/91511212/d182314d-d66c-475c-839a-4969d3cf5d8e)# <h1 align="center">Laporan Praktikum Modul Algoritma Searching</h1>
+# <h1 align="center">Laporan Praktikum Modul Algoritma Searching</h1>
 
 <p align="center">Muhammad Azka</p>
 
@@ -30,29 +30,29 @@ Algoritma searching dapat diklasifikasikan berdasarkan beberapa kriteria, antara
 
 1. **Pencarian Sequential (Sequential Search)**
 
-Pencarian sequential adalah algoritma searching paling sederhana yang bekerja dengan cara memeriksa setiap elemen dalam data secara berurutan hingga elemen yang dicari ditemukan. Algoritma ini memiliki kompleksitas waktu rata-rata dan terburuk O(n), di mana n adalah jumlah elemen dalam data [1].
+    Pencarian sequential adalah algoritma searching paling sederhana yang bekerja dengan cara memeriksa setiap elemen dalam data secara berurutan hingga elemen yang dicari      ditemukan. Algoritma ini memiliki kompleksitas waktu rata-rata dan terburuk O(n), di mana n adalah jumlah elemen dalam data [1].
 
 2. **Pencarian Biner (Binary Search)**
 
-Pencarian biner adalah algoritma searching yang lebih efisien daripada pencarian sequential. Algoritma ini hanya bekerja pada data yang terurut dan menggunakan teknik divide-and-conquer untuk mempersempit ruang pencarian. Pencarian biner memiliki kompleksitas waktu rata-rata dan terbaik O(log n) [2].
+    Pencarian biner adalah algoritma searching yang lebih efisien daripada pencarian sequential. Algoritma ini hanya bekerja pada data yang terurut dan menggunakan teknik       divide-and-conquer untuk mempersempit ruang pencarian. Pencarian biner memiliki kompleksitas waktu rata-rata dan terbaik O(log n) [2].
 
 3. **Pencarian Interpolasi (Interpolation Search)**
 
-Pencarian interpolasi adalah variasi dari pencarian biner yang memanfaatkan distribusi data untuk memperkirakan lokasi data yang dicari. Algoritma ini lebih efisien daripada pencarian biner untuk data yang tersebar secara merata. Pencarian interpolasi memiliki kompleksitas waktu rata-rata O(log log n) [3].
+    Pencarian interpolasi adalah variasi dari pencarian biner yang memanfaatkan distribusi data untuk memperkirakan lokasi data yang dicari. Algoritma ini lebih efisien         daripada pencarian biner untuk data yang tersebar secara merata. Pencarian interpolasi memiliki kompleksitas waktu rata-rata O(log log n) [3].
 
 4. **Pencarian Lompat (Jump Search)**
 
-Pencarian lompat adalah variasi lain dari pencarian biner yang membagi data menjadi beberapa blok dan kemudian melakukan pencarian biner pada blok-blok tersebut. Algoritma ini lebih efisien daripada pencarian biner untuk data yang sangat besar. Pencarian lompat memiliki kompleksitas waktu rata-rata O(√n) [4].
+    Pencarian lompat adalah variasi lain dari pencarian biner yang membagi data menjadi beberapa blok dan kemudian melakukan pencarian biner pada blok-blok tersebut.            Algoritma ini lebih efisien daripada pencarian biner untuk data yang sangat besar. Pencarian lompat memiliki kompleksitas waktu rata-rata O(√n) [4].
 
 **D. Algoritma Searching untuk Struktur Data Non-Linear**
 
 1. **Pencarian Kedalaman Pertama (Depth-First Search - DFS)**
 
-Pencarian kedalaman pertama adalah algoritma searching yang menjelajahi struktur data dengan cara mengunjungi semua node pada satu level sebelum beralih ke level berikutnya. Algoritma ini memiliki kompleksitas waktu O(V + E), di mana V adalah jumlah node dan E adalah jumlah edge dalam struktur data [5].
+    Pencarian kedalaman pertama adalah algoritma searching yang menjelajahi struktur data dengan cara mengunjungi semua node pada satu level sebelum beralih ke level            berikutnya. Algoritma ini memiliki kompleksitas waktu O(V + E), di mana V adalah jumlah node dan E adalah jumlah edge dalam struktur data [5].
 
 2. **Pencarian Lebar Pertama (Breadth-First Search - BFS)**
 
-Pencarian lebar pertama adalah algoritma searching yang menjelajahi struktur data dengan cara mengunjungi semua node pada satu level secara berurutan sebelum beralih ke level berikutnya. Algoritma ini memiliki kompleksitas waktu O(V + E), di mana V adalah jumlah node dan E adalah jumlah edge dalam struktur data [5].
+    Pencarian lebar pertama adalah algoritma searching yang menjelajahi struktur data dengan cara mengunjungi semua node pada satu level secara berurutan sebelum beralih ke     level berikutnya. Algoritma ini memiliki kompleksitas waktu O(V + E), di mana V adalah jumlah node dan E adalah jumlah edge dalam struktur data [5].
 
 **E. Faktor yang Mempengaruhi Pemilihan Algoritma Searching**
 
@@ -352,6 +352,7 @@ int main() {
 
 #### Output:
 
+![image](https://github.com/dkumui/Struktur-Data-Assignment/assets/91511212/533b67d3-02db-4a7e-a571-52f3b54508c5)
 
 ## Interpretasi dan Langkah-langkah Kode Algoritma Menghitung Huruf Vokal
 
@@ -460,7 +461,6 @@ Fungsi `countFours()` ini memungkinkan penghitungan jumlah angka 4 dalam array d
 
 #### Full Code Screenshot:
 
-![image](https://github.com/dkumui/Struktur-Data-Assignment/assets/91511212/8488700d-fef4-4f21-b9e3-eee232a19ccf)
 
 ## Kesimpulan
 
