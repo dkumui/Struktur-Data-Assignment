@@ -15,7 +15,7 @@ int main(){
             break;
         }
     }
-    cout << "\t\n Program Sequential Search Sederhana\n" << endl;
+    cout << "\n\t Program Sequential Search Sederhana\n" << endl;
     cout << " data: {9, 4, 1, 7, 5, 12, 4, 13, 4, 10}" << endl;
 
     if (ketemu){
