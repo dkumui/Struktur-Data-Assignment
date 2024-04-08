@@ -428,7 +428,7 @@ int main() {
 
 #### Output:
 
-<img src="https://github.com/dkumui/Struktur-Data-Assignment/assets/91511212/3d35ea35-8db9-4a7e-a021-c9fb4e32e934" width="750">
+![image](https://github.com/dkumui/Struktur-Data-Assignment/assets/91511212/f122af22-58a9-4270-8aac-dfc8ae3f1da3)
 
 ## Interpretasi dan Langkah-langkah Kode Algoritma Menghitung Angka 4
 
@@ -461,6 +461,7 @@ Fungsi `countFours()` ini memungkinkan penghitungan jumlah angka 4 dalam array d
 
 #### Full Code Screenshot:
 
+<img width="960" alt="Screenshot_408" src="https://github.com/dkumui/Struktur-Data-Assignment/assets/91511212/1a45b8a5-8073-4175-9bf9-a5459c2c05da">
 
 ## Kesimpulan
 
