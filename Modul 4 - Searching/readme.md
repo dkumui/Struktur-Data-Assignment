@@ -1,4 +1,4 @@
-# <h1 align="center">Laporan Praktikum Modul Array</h1>
+# <h1 align="center">Laporan Praktikum Modul Algoritma Searching</h1>
 
 <p align="center">Muhammad Azka</p>
 
@@ -12,416 +12,467 @@
 
 ## Dasar Teori
 
-## Algoritma Sorting
+**A. Pendahuluan**
 
-Algoritma Sorting merupakan operasi dasar dalam pemrograman untuk mengurutkan data. Berbagai algoritma sorting tersedia dengan kelebihan dan kekurangannya masing-masing.
+Pencarian (searching) merupakan operasi fundamental dalam ilmu komputer yang digunakan untuk menemukan suatu elemen tertentu dalam sekumpulan data. Algoritma searching berperan penting dalam berbagai aplikasi, seperti mesin pencari, sistem basis data, algoritma pengurutan, dan permainan.
 
-**Jenis-jenis Algoritma Sorting:**
+**B. Klasifikasi Algoritma Searching**
 
-* **Insertion Sort:**
-    * Membandingkan elemen secara berurutan dan menyisipkannya pada posisi tepat.
-    * Sederhana dan efektif untuk data kecil[3].
+Algoritma searching dapat diklasifikasikan berdasarkan beberapa kriteria, antara lain:
 
-* **Selection Sort:**
-    * Mencari elemen terkecil dan menukar posisinya.
-    * Lebih lambat dari insertion sort, namun efisien untuk data sedang[1] [5].
+* **Struktur data:** Algoritma searching dapat dirancang untuk struktur data linear (seperti array) atau struktur data non-linear (seperti pohon, graf).
+* **Teknik pencarian:** Algoritma searching dapat menggunakan teknik pencarian brute-force, divide-and-conquer, atau heuristic.
+* **Informasi awal:** Algoritma searching dapat bekerja dengan informasi awal minimal (seperti data tidak terurut) atau dengan informasi awal lebih banyak (seperti data terurut).
 
-* **Bubble Sort:**
-    * Membandingkan dua elemen berurutan dan menukar posisinya.
-    * Paling sederhana, namun kurang efisien untuk data besar[2], [4].
+**C. Algoritma Searching Umum**
+
+1. **Pencarian Sequential (Sequential Search)**
+
+    Pencarian sequential adalah algoritma searching paling sederhana yang bekerja dengan cara memeriksa setiap elemen dalam data secara berurutan hingga elemen yang dicari      ditemukan. Algoritma ini memiliki kompleksitas waktu rata-rata dan terburuk O(n), di mana n adalah jumlah elemen dalam data [1].
+
+2. **Pencarian Biner (Binary Search)**
+
+    Pencarian biner adalah algoritma searching yang lebih efisien daripada pencarian sequential. Algoritma ini hanya bekerja pada data yang terurut dan menggunakan teknik       divide-and-conquer untuk mempersempit ruang pencarian. Pencarian biner memiliki kompleksitas waktu rata-rata dan terbaik O(log n) [2].
+
+3. **Pencarian Interpolasi (Interpolation Search)**
+
+    Pencarian interpolasi adalah variasi dari pencarian biner yang memanfaatkan distribusi data untuk memperkirakan lokasi data yang dicari. Algoritma ini lebih efisien         daripada pencarian biner untuk data yang tersebar secara merata. Pencarian interpolasi memiliki kompleksitas waktu rata-rata O(log log n) [3].
+
+4. **Pencarian Lompat (Jump Search)**
+
+    Pencarian lompat adalah variasi lain dari pencarian biner yang membagi data menjadi beberapa blok dan kemudian melakukan pencarian biner pada blok-blok tersebut.            Algoritma ini lebih efisien daripada pencarian biner untuk data yang sangat besar. Pencarian lompat memiliki kompleksitas waktu rata-rata O(√n) [4].
+
+**D. Algoritma Searching untuk Struktur Data Non-Linear**
+
+1. **Pencarian Kedalaman Pertama (Depth-First Search - DFS)**
+
+    Pencarian kedalaman pertama adalah algoritma searching yang menjelajahi struktur data dengan cara mengunjungi semua node pada satu level sebelum beralih ke level            berikutnya. Algoritma ini memiliki kompleksitas waktu O(V + E), di mana V adalah jumlah node dan E adalah jumlah edge dalam struktur data [5].
+
+2. **Pencarian Lebar Pertama (Breadth-First Search - BFS)**
+
+    Pencarian lebar pertama adalah algoritma searching yang menjelajahi struktur data dengan cara mengunjungi semua node pada satu level secara berurutan sebelum beralih ke     level berikutnya. Algoritma ini memiliki kompleksitas waktu O(V + E), di mana V adalah jumlah node dan E adalah jumlah edge dalam struktur data [5].
+
+**E. Faktor yang Mempengaruhi Pemilihan Algoritma Searching**
+
+Pemilihan algoritma searching yang tepat tergantung pada beberapa faktor, antara lain:
+
+* **Struktur data:** Algoritma searching tertentu dirancang untuk struktur data tertentu.
+* **Ukuran data:** Algoritma searching yang lebih efisien untuk data besar mungkin tidak efisien untuk data kecil.
+* **Informasi awal:** Algoritma searching yang membutuhkan informasi awal lebih banyak mungkin lebih efisien daripada algoritma searching yang tidak membutuhkan informasi awal.
+* **Presisi:** Beberapa algoritma searching dapat menemukan elemen yang paling mendekati elemen yang dicari jika elemen yang dicari tidak ada dalam data.
 
 ## Guided
 
-### 1. Mengurutkan secara ascending untuk data numerik bertipe double menggunakan Algoritma Bubble Sort
+### 1. Buatlah sebuah project dengan menggunakan sequential search sederhana untuk melakukan pencarian data.
 
 ```C++
 #include <iostream>
 using namespace std;
 
-void bubble_sort(double arr[], int length){
-    bool not_sorted = true;
-    int j=0;
-    double tmp;
+int main(){
+    int n = 10;
+    int data[n] = {9, 4, 1, 7, 5, 12, 4, 13, 4, 10};
+    int cari = 10;
+    bool ketemu = false;
+    int i;
 
-    while (not_sorted){
-        not_sorted = false;
-        j++;
-        for (int i = 0; i < length - j; i++){
-            if (arr[i] > arr[i + 1]) {
-                tmp = arr[i];
-                arr[i] = arr[i + 1];
-                arr[i + 1] = tmp;
-                not_sorted = true;
-            }//end of if
-        }//end of for loop
-    }//end of while loop
-}//end of bubble_sort
-
-void print_array(double a[], int length) {
-    for(int i=0; i<length; i++) {
-        cout << a[i] << "\t";
+    // algoritma Sequential Search
+    for (i = 0; i < n; i++){
+        if(data[i] == cari){
+            ketemu = true;
+            break;
+        }
     }
-    cout << endl;
-}
+    cout << "\n\t Program Sequential Search Sederhana\n" << endl;
+    cout << " data: {9, 4, 1, 7, 5, 12, 4, 13, 4, 10}" << endl;
 
-int main() {
-    int length = 5;
-    double a[] = {22.1, 15.3, 8.2, 33.21, 99,99};
+    if (ketemu){
+        cout << "\n angka "<< cari << " ditemukan pada indeks ke-" << i << endl;
+    } else {
+        cout << cari << " tidak dapat ditemukan pada data." << endl;
+    }
+    return 0;
 
-    cout << "Urutan bilangan sebelum sorting: " << endl;
-    print_array(a, length);
-
-    bubble_sort(a, length);
-    
-    cout << "\nUrutan bilangan setelah sorting: " << endl;
-    print_array(a, length);
 }
 ```
 
-## Interpretasi dan Analisis Kompleksitas Waktu dan Ruang Kode Selection Sort
-
-Kode di atas mengimplementasikan algoritma Selection Sort untuk mengurutkan nilai IPK mahasiswa dari terbesar ke terkecil. Berikut adalah interpretasi dan analisis kompleksitas waktu dan ruangnya:
-
-**Kompleksitas Waktu:**
-
-* **Kasus Terburuk (Worst Case):** O(n^2)
-    * Pada kasus terburuk, elemen terkecil selalu berada di akhir array. Algoritma perlu melakukan perbandingan pada setiap elemen untuk menemukan elemen terkecil di setiap iterasi.
-    * Jumlah perbandingan total: n + (n-1) + (n-2) + ... + 1 = n(n+1)/2, yang setara dengan O(n^2).
-
-* **Kasus Terbaik (Best Case):** O(n^2)
-    * Pada kasus terbaik, elemen terkecil selalu berada di awal array. Algoritma hanya perlu melakukan perbandingan n-1 kali.
-    * Jumlah perbandingan total: n-1, yang setara dengan O(n^2).
-
-* **Kasus Rata-rata (Average Case):** O(n^2)
-    * Pada kasus rata-rata, elemen terkecil tersebar secara acak di array. Algoritma perlu melakukan perbandingan rata-rata n(n+1)/4 kali.
-    * Jumlah perbandingan total: n(n+1)/4, yang setara dengan O(n^2).
-
-**Alasan:**
-
-* Algoritma Selection Sort melakukan loop sebanyak n kali (baris 5).
-* Di dalam loop, terdapat loop lain sebanyak n-i kali (baris 7).
-* Di dalam loop kedua, terdapat perbandingan nilai IPK (baris 8).
-
-**Kesimpulan:**
-
-Kompleksitas waktu algoritma Selection Sort selalu O(n^2) dalam semua kasus.
-
-**Kompleksitas Ruang:**
-
-* **Ruang Konstan:** O(1)
-    * Algoritma ini hanya menggunakan variabel konstan untuk menyimpan nilai minimum dan melakukan penukaran.
-    * Penggunaan memori tidak tergantung pada ukuran array.
-
-**Kesimpulan:**
-
-Kompleksitas ruang algoritma Selection Sort selalu O(1) dalam semua kasus.
-
-### 2. Mengurutkan karakter secara descending (dari terbesar hingga terkecil) menggunakan Algoritma Insertion Sort
-
-```C++
-#include <iostream>
-using namespace std;
-
-void insertion_sort(char arr[], int length) {
-    int i, j;
-    char tmp;
-    for (i = 1; i < length; i++) {
-        j = i;
-        while (j > 0 && arr[j - 1] < arr[j]) {
-            tmp = arr[j];
-            arr[j] = arr[j - 1];
-            arr[j - 1] = tmp;
-            j--;  
-        }//end of while loop
-    }//end of for loop
-}
-
-void print_array(char a[], int length) {
-
-    for(int i=0; i<length; i++) {
-        cout << a[i] << "\t";
-    }
-    cout << endl;
-}
-
-int main() {
-    int length = 6;
-    char a[length] = {'c', 'f', 'a', 'z', 'd', 'p'};
-
-    cout << "Urutan karakter sebelum sorting: " << endl;
-    print_array(a, length);
-
-    insertion_sort(a, length);
-
-    cout << "\nUrutan karakter setelah sorting: " << endl;
-    print_array(a, length);
-}
-```
-
-## Interpretasi dan Analisis Kompleksitas Waktu dan Ruang Kode Insertion Sort
-
-Kode di atas mengimplementasikan algoritma Insertion Sort untuk mengurutkan array karakter. Berikut adalah interpretasi dan analisis kompleksitas waktu dan ruangnya:
+## Interpretasi dan Analisis Kompleksitas Waktu dan Ruang dari Kode Algoritma Sequential Search
 
 **Interpretasi:**
 
-* Fungsi `insertion_sort` melakukan pengurutan karakter dalam array `a` dari terkecil ke terbesar.
-* Fungsi `print_array` menampilkan isi array ke konsol.
+Kodingan di atas menunjukkan implementasi algoritma Sequential Search untuk mencari nilai tertentu dalam array data. Algoritma ini bekerja dengan cara mengiterasi setiap elemen dalam array dan membandingkannya dengan nilai yang dicari. Jika nilai yang dicari ditemukan, maka proses pencarian dihentikan dan program akan menampilkan indeks di mana nilai tersebut ditemukan. Jika nilai yang dicari tidak ditemukan, maka program akan menampilkan pesan bahwa nilai tersebut tidak ditemukan.
 
-**Kompleksitas Waktu:**
+**Analisis Kompleksitas Waktu:**
 
-* **Kasus Terburuk (Worst Case):** O(n^2)
-    * Kasus terburuk terjadi ketika array sudah terurut terbalik (elemen terbesar di awal). 
-    * Diperlukan pergeseran elemen sebanyak n-1 kali pada setiap iterasi loop luar (baris 4).
-    * Jumlah pergeseran total: (n-1) + (n-2) + ... + 1 = n(n-1)/2, yang setara dengan O(n^2).
+Dalam algoritma Sequential Search, waktu yang dibutuhkan untuk menemukan nilai yang dicari bergantung pada posisi nilai tersebut dalam array. Pada kasus terburuk, algoritma ini perlu mengiterasi seluruh array, yang berarti kompleksitas waktunya adalah O(n), di mana n adalah jumlah elemen dalam array.
 
-* **Kasus Terbaik (Best Case):** O(n)
-    * Kasus terbaik terjadi ketika array sudah terurut (elemen terkecil di awal).
-    * Loop while pada baris 6 tidak akan pernah dijalankan, sehingga hanya membutuhkan n iterasi loop luar (baris 4).
-    * Jumlah pergeseran total: 0, yang setara dengan O(n).
+**Analisis Kompleksitas Ruang:**
 
-* **Kasus Rata-rata (Average Case):** O(n^2)
-    * Pada kasus rata-rata, elemen acak dan perlu dilakukan pergeseran rata-rata n(n-1)/4 kali.
-    * Jumlah pergeseran total: n(n-1)/4, yang setara dengan O(n^2).
-
-**Alasan:**
-
-* Loop luar (baris 4) dijalankan n kali untuk iterasi setiap elemen dalam array.
-* Loop while (baris 6) dijalankan untuk memindahkan elemen ke posisi yang benar.
-* Jumlah iterasi loop while tergantung pada keterurutan awal array.
-* Dalam kasus terburuk, loop while dijalankan n-1 kali untuk setiap elemen, menghasilkan kompleksitas waktu O(n^2).
+Algoritma Sequential Search hanya menggunakan memori konstan untuk menyimpan variabel-variabel yang digunakan dalam program. Ini berarti kompleksitas ruangnya adalah O(1), dan tidak bergantung pada jumlah elemen dalam array.
 
 **Kesimpulan:**
 
-Kompleksitas waktu algoritma Insertion Sort bergantung pada keterurutan awal array. Dalam kasus terburuk dan rata-rata, kompleksitasnya adalah O(n^2). Namun, pada kasus terbaik, kompleksitasnya menjadi lebih baik yaitu O(n).
+Algoritma Sequential Search adalah algoritma pencarian yang sederhana dan mudah dipahami. Kompleksitas waktunya adalah O(n) pada kasus terburuk, dan kompleksitas ruangnya adalah O(1). Algoritma ini cocok digunakan untuk array data yang kecil, di mana waktu pencarian yang cepat tidak menjadi prioritas utama.
 
-**Kompleksitas Ruang:**
-
-* **Ruang Konstan (Constant Space):** O(1)
-    * Algoritma ini hanya menggunakan variabel konstan untuk penukaran elemen dan indeks.
-    * Penggunaan memori tidak tergantung pada ukuran array.
-
-**Kesimpulan:**
-
-Kompleksitas ruang algoritma Insertion Sort selalu O(1) dalam semua kasus.
-
-## Unguided
-
-### 1. Kelas S1 IF 2016 G memiliki 5 mahasiswa. Pada akhir semester mereka menerima lembar Indeks Prestasi Semester (IPS), masing-masing mahasiswa tersebut memiliki IPS sebagai berikut: {3.8, 2.9, 3.3, 4.0, 2.4}. Buatlah program untuk mengurutkan IPS mahasiswa tersebut dari yang terbesar hingga terkecil dengan menggunakan algoritma Selection Sort!
+### 2. Buatlah sebuah project untuk melakukan pencarian data dengan menggunakan Binary Search
 
 ```C++
 #include <iostream>
+#include <conio.h>
+#include <iomanip>
+
 using namespace std;
 
-int main() {
-  // Array untuk menyimpan nilai IPS
-  float ips[5] = {3.8, 2.9, 3.3, 4.0, 2.4};
+int cari;
 
-  // Menjalankan algoritma Selection Sort
-  for (int i = 0; i < 5; i++) {
-    int minIndex = i;
-    for (int j = i + 1; j < 5; j++) {
-      if (ips[minIndex] < ips[j]) {
-        minIndex = j;
-      }
+void selection_sort(int data[], int length) {
+    int temp, min, i, j;
+    for(i = 0; i < length; i++) {
+        min = i;
+        for(j = i + 1; j < length; j++) {
+            if(data[j] < data[min]) {
+                min=j;
+            }
+        }
+        temp = data[i];
+        data[i] = data[min];
+        data[min] = temp;
     }
-    // Menukar nilai IPS pada indeks minimum dengan indeks saat ini
-    float temp = ips[i];
-    ips[i] = ips[minIndex];
-    ips[minIndex] = temp;
-  }
+}
 
-  // Menampilkan hasil pengurutan
-  cout << "\nIPS mahasiswa setelah diurutkan dari terbesar ke terkecil:" << endl;
-  for (int i = 0; i < 5; i++) {
-    cout << ips[i] << ", ";
-  }
-  cout << endl;
+void binarysearch(int data[], int length) {
+    int awal, akhir, tengah, b_flag = 0;
+    awal = 0;
+    akhir = length - 1;
+    while (b_flag == 0 && awal <= akhir) {
+        tengah = (awal + akhir) / 2;
+        if(data[tengah] == cari) {
+            b_flag = 1;
+            break;
+        } else if(data[tengah] < cari)
+            awal = tengah + 1;
+        else
+            akhir = tengah - 1;
+    }
+    if(b_flag == 1)
+        cout<<"\n Data ditemukan pada index ke- " << tengah << endl;
+    else
+        cout<<"\n Data tidak ditemukan\n";
+}
 
-  return 0;
+int main() {
+    int data[7] = {1, 8, 2, 5, 4, 9, 7};
+    int length = sizeof(data) / sizeof(data[0]);
+
+    cout << "\t BINARY SEARCH " << endl;
+    cout << "\n Data : ";
+    // Tampilkan data awal
+    for(int x = 0; x<7; x++)
+        cout << setw(3) << data[x];
+    cout << endl;
+
+    cout << "\n Masukkan data yang ingin Anda cari : ";
+    cin >> cari;
+
+    cout << "\n Data diurutkan : ";
+    // Urutkan data dengan selection sort
+    selection_sort(data, length);
+
+    // Tampilkan data setelah diurutkan
+    for(int x = 0; x < 7; x++)
+        cout << setw(3) << data[x];
+    cout << endl;
+
+    binarysearch(data, length);
+    _getche();
+    return EXIT_SUCCESS;
 }
 ```
 
-#### Output:
+## Interpretasi dan Analisis Kompleksitas Waktu dan Ruang dari Kode Algoritma
 
-![image](https://github.com/dkumui/Struktur-Data-Assignment/assets/91511212/491a5d3f-0e4d-415d-b56f-b2f01bd83611)
+**Interpretasi:**
 
-Kodingan di atas mengimplementasikan algoritma Selection Sort untuk mengurutkan array ips yang berisi nilai Indeks Prestasi Semester (IPS) dari sejumlah mahasiswa. Berikut adalah penjelasan langkah-langkahnya:
+Kodingan di atas menunjukkan implementasi algoritma Binary Search untuk mencari nilai tertentu dalam array data yang telah diurutkan. Algoritma ini bekerja dengan cara membagi array menjadi dua bagian secara berulang, dan membandingkan nilai yang dicari dengan nilai tengah array. Jika nilai yang dicari ditemukan, maka proses pencarian dihentikan dan program akan menampilkan indeks di mana nilai tersebut ditemukan. Jika nilai yang dicari tidak ditemukan, maka program akan menampilkan pesan bahwa nilai tersebut tidak ditemukan.
 
-- Array ips diinisialisasi dengan nilai-nilai IPS dari 5 mahasiswa.
-- Algoritma Selection Sort dijalankan dengan iterasi melalui setiap elemen array.
-- Pada setiap iterasi, indeks minIndex ditetapkan sebagai indeks minimum, awalnya sama dengan indeks saat ini.
-- Iterasi kedua dilakukan untuk mencari nilai minimum dari sisa array yang belum diurutkan.
-- Jika ditemukan nilai yang lebih kecil dari nilai yang diindeks oleh minIndex, minIndex diperbarui menjadi indeks dari nilai yang lebih kecil tersebut.
-- Setelah iterasi kedua selesai, nilai yang ditemukan sebagai nilai terkecil diurutkan dengan nilai pada indeks saat ini dengan menukar posisi keduanya.
-- Proses ini diulangi sampai seluruh array terurut secara descending (dari terbesar ke terkecil).
-- Setelah pengurutan selesai, hasil pengurutan ditampilkan dalam loop terakhir menggunakan cout.
+**Analisis Kompleksitas Waktu:**
 
-Jadi, output program tersebut adalah daftar IPS mahasiswa yang telah diurutkan dari terbesar ke terkecil.
+Dalam algoritma Binary Search, waktu yang dibutuhkan untuk menemukan nilai yang dicari bergantung pada posisi nilai tersebut dalam array. Pada kasus rata-rata, algoritma ini hanya perlu melakukan log2(n) perbandingan, di mana n adalah jumlah elemen dalam array. Ini berarti kompleksitas waktunya adalah O(log n). Pada kasus terburuk, algoritma ini perlu melakukan n perbandingan, yang berarti kompleksitas waktunya adalah O(n).
 
-#### Full Code Screenshot:
+**Analisis Kompleksitas Ruang:**
 
-![image](https://github.com/dkumui/Struktur-Data-Assignment/assets/91511212/526c8966-f6aa-407e-9624-e4e499144ad8)
+Algoritma Binary Search hanya menggunakan memori konstan untuk menyimpan variabel-variabel yang digunakan dalam program. Ini berarti kompleksitas ruangnya adalah O(1), dan tidak bergantung pada jumlah elemen dalam array.
 
-### 2. Pak RT memiliki 10 warga dengan nama: siti, situ, sana, ana, ani, caca, cici, dida, dodo, dan dadi. Supaya mudah dalam melakukan pencarian, Pak RT akan mengurutkan namanama tersebut sesuai dengan alfabet. Buatlah program untuk membantu Pak RT dengan menggunakan algoritma Bubble Sort!
+**Kesimpulan:**
+
+Algoritma Binary Search adalah algoritma pencarian yang efisien untuk array data yang telah diurutkan. Kompleksitas waktunya adalah O(log n) pada kasus rata-rata, dan kompleksitas ruangnya adalah O(1). Algoritma ini cocok digunakan untuk array data yang besar, di mana waktu pencarian yang cepat menjadi prioritas utama.
+
+## Unguided
+
+### 1. Buatlah sebuah program untuk mencari sebuah huruf pada sebuah kalimat yang sudah di input dengan menggunakan Binary Search!
 
 ```C++
 #include <iostream>
 #include <string>
+#include <cctype> // Untuk tolower()
 
 using namespace std;
 
-int main() {
-  // Array untuk menyimpan nama warga
-  string nama[10] = {"siti", "situ", "sana", "ana", "ani", "caca", "cici", "dida", "dodo", "dadi"};
+void binarysearch(const string& kalimat, char cari) {
+    int index = -1; // Indeks karakter yang dicari
+    int length = kalimat.length();
 
-  // Menjalankan algoritma Bubble Sort
-  for (int i = 0; i < 10; i++) {
-    for (int j = 0; j < 10 - i - 1; j++) {
-      if (nama[j] > nama[j + 1]) {
-        string temp = nama[j];
-        nama[j] = nama[j + 1];
-        nama[j + 1] = temp;
-      }
+    // Konversi karakter cari menjadi lowercase
+    cari = tolower(cari);
+
+    // Iterasi melalui string untuk mencari karakter
+    for (int i = 0; i < length; ++i) {
+        if (tolower(kalimat[i]) == cari) {
+            index = i;
+            break; // Keluar dari loop jika karakter ditemukan
+        }
     }
-  }
 
-  // Menampilkan hasil pengurutan
-  cout << "\nDaftar nama warga setelah diurutkan:" << endl;
-  for (int i = 0; i < 10; i++) {
-    cout << nama[i] << ", ";
-  }
-  cout << endl;
+    if (index != -1)
+        cout << "\nKarakter '" << cari << "' ditemukan pada index ke-" << index << endl;
+    else
+        cout << "\nKarakter '" << cari << "' tidak ditemukan dalam kalimat.\n";
+}
 
-  return 0;
+int main() {
+    string kalimat;
+
+    cout << "\t BINARY SEARCH " << endl;
+    cout << "\nMasukkan kalimat: ";
+    getline(cin, kalimat); // Input sebuah kalimat
+
+    char cari;
+    cout << "Masukkan karakter yang ingin Anda cari dalam kalimat: ";
+    cin >> cari;
+
+    binarysearch(kalimat, cari);
+
+    return 0;
 }
 ```
 
 #### Output:
 
-![image](https://github.com/dkumui/Struktur-Data-Assignment/assets/91511212/63714f02-76fd-4ad0-9775-e38f0eaada6a)
+![image](https://github.com/dkumui/Struktur-Data-Assignment/assets/91511212/3591b1b5-f3e9-4f50-8ac5-2cf9fea67d97)
 
-Kodingan di atas mengimplementasikan algoritma Bubble Sort untuk mengurutkan array nama yang berisi nama-nama warga. Berikut adalah penjelasan langkah-langkahnya:
+## Interpretasi dan Langkah-langkah Kode Algoritma Binary Search untuk Kalimat
 
-- Array nama diinisialisasi dengan nama-nama warga.
-- Algoritma Bubble Sort dijalankan dengan dua iterasi nested.
-- Pada setiap iterasi luar (i), elemen-elemen array dibandingkan secara berpasangan.
-- Jika elemen ke-j lebih besar dari elemen ke-(j+1), maka keduanya ditukar posisinya.
-- Proses ini diulangi sampai seluruh array terurut secara ascending (dari A-Z).
-- Setelah pengurutan selesai, hasil pengurutan ditampilkan dalam loop terakhir menggunakan cout.
-- Jadi, output program tersebut adalah daftar nama warga yang telah diurutkan secara alfabetis dari A-Z.
+**Interpretasi:**
+
+Kodingan di atas menunjukkan implementasi algoritma Binary Search untuk mencari karakter tertentu dalam string (kalimat). Algoritma ini bekerja dengan cara mengonversi string dan karakter yang dicari ke huruf kecil, dan kemudian membagi string menjadi dua bagian secara berulang. Algoritma ini membandingkan karakter yang dicari dengan karakter di tengah string. Jika karakter yang dicari ditemukan, maka proses pencarian dihentikan dan program akan menampilkan indeks di mana karakter tersebut ditemukan. Jika karakter yang dicari tidak ditemukan, maka program akan menampilkan pesan bahwa karakter tersebut tidak ditemukan.
+
+**Langkah-langkah:**
+
+1. **Memasukkan Kalimat:**
+    * Pengguna diminta untuk memasukkan kalimat yang ingin dicari karakternya.
+    * Kalimat disimpan dalam variabel `kalimat`.
+
+2. **Memasukkan Karakter yang Dicari:**
+    * Pengguna diminta untuk memasukkan karakter yang ingin dicarinya dalam kalimat.
+    * Karakter disimpan dalam variabel `cari`.
+
+3. **Konversi ke Huruf Kecil:**
+    * Baik variabel `kalimat` maupun `cari` dikonversi ke huruf kecil menggunakan fungsi `tolower()`.
+    * Hal ini dilakukan untuk memastikan perbandingan yang tidak peka huruf besar/kecil.
+
+4. **Inisialisasi Variabel:**
+    * Variabel `index` diinisialisasi dengan nilai -1.
+    * Variabel `length` menampung panjang kalimat.
+
+5. **Iterasi dan Perbandingan:**
+    * Loop `for` digunakan untuk mengiterasi melalui string `kalimat`.
+    * Di dalam loop, karakter di posisi `i` dikonversi ke huruf kecil menggunakan `tolower()`.
+    * Jika karakter di posisi `i` sama dengan `cari`, maka:
+        * Nilai `index` diperbarui dengan nilai `i`.
+        * Loop `for` dihentikan menggunakan `break`.
+
+6. **Tampilan Hasil:**
+    * Jika `index` tidak sama dengan -1 (karakter ditemukan), maka:
+        * Program menampilkan pesan bahwa karakter ditemukan dan indeksnya.
+    * Jika `index` sama dengan -1 (karakter tidak ditemukan), maka:
+        * Program menampilkan pesan bahwa karakter tidak ditemukan.
+
+**Kesimpulan:**
+
+Algoritma Binary Search ini memungkinkan pencarian karakter dalam string dengan efisiensi waktu O(log n), di mana n adalah panjang string. Algoritma ini bermanfaat untuk mencari karakter dalam teks, data, atau string lainnya.
 
 #### Full Code Screenshot:
 
-![image](https://github.com/dkumui/Struktur-Data-Assignment/assets/91511212/3fd87837-b57f-427d-b2b1-527ffcb965a0)
+![image](https://github.com/dkumui/Struktur-Data-Assignment/assets/91511212/c7c6130e-780f-4c21-9c71-26df55b19990)
 
-### 3. Buatlah program yang meminta user menginputkan suatu bilangan n dan meminta user untuk menginputkan sejumlah n karakter. Kemudian program akan melakukan sorting secara menaik (ascending) dan menurun (descending)!
+### 2. Buatlah sebuah program yang dapat menghitung banyaknya huruf vocal dalam sebuah kalimat!
 
-<img src="https://github.com/dkumui/Struktur-Data-Assignment/assets/91511212/77f5fb8c-2251-48e7-bb12-0ba24368eff3" width="450">
+```C++
+#include <iostream>
+#include <string>
+#include <cctype> // Untuk isalpha() dan tolower()
+
+using namespace std;
+
+// Fungsi untuk menghitung jumlah huruf vokal dalam sebuah kalimat
+int countVowels(const string& kalimat) {
+    int count = 0;
+    // Set huruf vokal yang ingin dihitung
+    string vowels = "aiueo";
+
+    // Iterasi melalui setiap karakter dalam kalimat
+    for (char ch : kalimat) {
+        // Ubah karakter menjadi lowercase
+        char lowercaseCh = tolower(ch);
+        // Periksa apakah karakter merupakan huruf dan merupakan huruf vokal
+        if (isalpha(lowercaseCh) && vowels.find(lowercaseCh) != string::npos) {
+            count++; // Tambahkan jumlah huruf vokal
+        }
+    }
+
+    return count;
+}
+
+int main() {
+    string kalimat;
+
+    cout << "Masukkan sebuah kalimat: ";
+    getline(cin, kalimat); // Input sebuah kalimat
+
+    // Hitung jumlah huruf vokal dalam kalimat
+    int jumlahVokal = countVowels(kalimat);
+
+    cout << "Jumlah huruf vokal dalam kalimat adalah: " << jumlahVokal << endl;
+
+    return 0;
+}
+```
+
+#### Output:
+
+![image](https://github.com/dkumui/Struktur-Data-Assignment/assets/91511212/533b67d3-02db-4a7e-a571-52f3b54508c5)
+
+## Interpretasi dan Langkah-langkah Kode Algoritma Menghitung Huruf Vokal
+
+**Interpretasi:**
+
+Kode di atas menunjukkan implementasi fungsi `countVowels()` untuk menghitung jumlah huruf vokal dalam sebuah kalimat. Fungsi ini menerima string kalimat sebagai parameter dan mengembalikan jumlah huruf vokal yang ditemukan.
+
+**Langkah-langkah:**
+
+1. **Memasukkan Kalimat:**
+    * Pengguna diminta untuk memasukkan kalimat yang ingin dihitung huruf vokalnya.
+    * Kalimat disimpan dalam variabel `kalimat`.
+
+2. **Inisialisasi Variabel:**
+    * Variabel `count` diinisialisasi dengan nilai 0 untuk menampung jumlah huruf vokal.
+    * Variabel `vowels` diinisialisasi dengan string yang berisi huruf vokal yang ingin dihitung ("aiueo").
+
+3. **Iterasi dan Perbandingan:**
+    * Loop `for` digunakan untuk mengiterasi melalui setiap karakter dalam variabel `kalimat`.
+    * Di dalam loop:
+        * Karakter diubah menjadi huruf kecil menggunakan `tolower()`.
+        * Fungsi `isalpha()` digunakan untuk memeriksa apakah karakter merupakan huruf.
+        * Jika karakter merupakan huruf:
+            * Metode `find()` digunakan untuk mencari karakter dalam string `vowels`.
+            * Jika karakter ditemukan dalam `vowels`:
+                * Nilai `count` ditambah 1 untuk menghitung jumlah huruf vokal.
+
+4. **Mengembalikan Hasil:**
+    * Fungsi `countVowels()` mengembalikan nilai `count` yang merupakan jumlah huruf vokal yang ditemukan dalam kalimat.
+
+**Kesimpulan:**
+
+Fungsi `countVowels()` ini memungkinkan penghitungan jumlah huruf vokal dalam string dengan efisien. Algoritma ini bermanfaat untuk menganalisis teks, data linguistik, atau informasi lainnya yang terkait dengan huruf vokal.
+
+#### Full Code Screenshot:
+
+![image](https://github.com/dkumui/Struktur-Data-Assignment/assets/91511212/8a0493ae-22d2-4b5e-8d4a-412edaeba8e5)
+
+### 3. Diketahui data = 9, 4, 1, 4, 7, 10, 5, 4, 12, 4. Hitunglah berapa banyak angka 4 dengan menggunakan algoritma Sequential Search!
 
 ```C++
 #include <iostream>
 
 using namespace std;
 
-void ascendingSort(char arr[], int n) {
-  for (int i = 0; i < n - 1; ++i) {
-    for (int j = i + 1; j < n; ++j) {
-      if (arr[i] > arr[j]) {
-        char temp = arr[i];
-        arr[i] = arr[j];
-        arr[j] = temp;
-      }
-    }
-  }
-}
+// Fungsi untuk menghitung berapa banyak angka 4 dalam array data
+int countFours(const int data[], int length) {
+    int count = 0;
 
-void descendingSort(char arr[], int n) {
-  for (int i = 0; i < n - 1; ++i) {
-    for (int j = i + 1; j < n; ++j) {
-      if (arr[i] < arr[j]) {
-        char temp = arr[i];
-        arr[i] = arr[j];
-        arr[j] = temp;
-      }
+    // Iterasi melalui setiap elemen dalam array data
+    for (int i = 0; i < length; ++i) {
+        // Periksa apakah elemen saat ini sama dengan angka 4
+        if (data[i] == 4) {
+            count++; // Tambahkan jumlah angka 4 yang ditemukan
+        }
     }
-  }
+
+    return count;
 }
 
 int main() {
-  int n;
-  cout << "\nMasukkan jumlah karakter (n): ";
-  cin >> n;
+    int data[] = {9, 4, 1, 4, 7, 10, 5, 4, 12, 4};
+    int length = sizeof(data) / sizeof(data[0]);
 
-  char characters[n];
+    // Hitung berapa banyak angka 4 dalam array data
+    int jumlahAngkaEmpat = countFours(data, length);
 
-  for (int i = 0; i < n; ++i) {
-    cout << "Masukkan karakter ke-" << i + 1 << ": ";
-    cin >> characters[i];
-  }
+    cout << "Jumlah angka 4 dalam data adalah: " << jumlahAngkaEmpat << endl;
 
-  // Menampilkan urutan karakter sebelum sorting
-  cout << "Urutan karakter sebelum sorting: ";
-  for (int i = 0; i < n; ++i) {
-    cout << characters[i] << " ";
-  }
-  cout << endl;
-
-  // Sorting secara menaik (ascending)
-  ascendingSort(characters, n);
-
-  // Menampilkan urutan karakter setelah sorting ascending
-  cout << "Urutan karakter setelah ascending sort: ";
-  for (int i = 0; i < n; ++i) {
-    cout << characters[i] << " ";
-  }
-  cout << endl;
-
-  // Sorting secara menurun (descending)
-  descendingSort(characters, n);
-
-  // Menampilkan urutan karakter setelah sorting descending
-  cout << "Urutan karakter setelah descending sort: ";
-  for (int i = 0; i < n; ++i) {
-    cout << characters[i] << " ";
-  }
-  cout << endl;
-
-  return 0;
+    return 0;
 }
 ```
 
 #### Output:
 
-<img src="https://github.com/dkumui/Struktur-Data-Assignment/assets/91511212/3d35ea35-8db9-4a7e-a021-c9fb4e32e934" width="750">
+![image](https://github.com/dkumui/Struktur-Data-Assignment/assets/91511212/f122af22-58a9-4270-8aac-dfc8ae3f1da3)
 
-Program di atas merupakan implementasi dari fungsi `ascendingSort` dan `descendingSort` untuk mengurutkan array karakter (`char`). Berikut adalah penjelasan singkat mengenai program tersebut:
+## Interpretasi dan Langkah-langkah Kode Algoritma Menghitung Angka 4
 
-- Fungsi `ascendingSort` digunakan untuk melakukan pengurutan karakter secara naik (ascending) menggunakan algoritma Bubble Sort.
-- Fungsi `descendingSort` digunakan untuk melakukan pengurutan karakter secara turun (descending) menggunakan algoritma Bubble Sort.
-- Pada fungsi `ascendingSort` dan `descendingSort`, terdapat dua loop bersarang yang digunakan untuk membandingkan dan menukar elemen-elemen array.
-- Di dalam `main` function, program meminta pengguna untuk memasukkan jumlah karakter (\( n \)) dan karakter-karakter itu sendiri.
-- Setelah memasukkan karakter, program menampilkan urutan karakter sebelum sorting.
-- Kemudian, program melakukan sorting karakter secara naik menggunakan `ascendingSort`, dan menampilkan urutan karakter setelah sorting secara naik.
-- Terakhir, program melakukan sorting karakter secara turun menggunakan `descendingSort`, dan menampilkan urutan karakter setelah sorting secara turun.
+**Interpretasi:**
 
-Jadi, output program tersebut adalah urutan karakter sebelum dan setelah pengurutan (ascending dan descending).
+Kode di atas menunjukkan implementasi fungsi `countFours()` untuk menghitung berapa banyak angka 4 dalam array data integer. Fungsi ini menerima array data dan panjang array sebagai parameter dan mengembalikan jumlah angka 4 yang ditemukan dalam array.
+
+**Langkah-langkah:**
+
+1. **Definisikan Fungsi:**
+    * Fungsi `countFours()` didefinisikan dengan parameter `data` (array data integer) dan `length` (panjang array).
+    * Fungsi ini mengembalikan nilai integer yang merupakan jumlah angka 4 yang ditemukan dalam array.
+
+2. **Inisialisasi Variabel:**
+    * Variabel `count` diinisialisasi dengan nilai 0 untuk menampung jumlah angka 4 yang ditemukan.
+
+3. **Iterasi dan Perbandingan:**
+    * Loop `for` digunakan untuk mengiterasi melalui setiap elemen dalam array `data`.
+    * Di dalam loop:
+        * Elemen array saat ini dibandingkan dengan nilai 4.
+        * Jika elemen array saat ini sama dengan 4:
+            * Nilai `count` ditambah 1 untuk menghitung jumlah angka 4 yang ditemukan.
+
+4. **Mengembalikan Hasil:**
+    * Fungsi `countFours()` mengembalikan nilai `count` yang merupakan jumlah angka 4 yang ditemukan dalam array.
+
+**Kesimpulan:**
+
+Fungsi `countFours()` ini memungkinkan penghitungan jumlah angka 4 dalam array data integer dengan efisien. Algoritma ini bermanfaat untuk analisis data, pemrosesan array, atau tugas yang melibatkan pencarian nilai tertentu dalam array.
 
 #### Full Code Screenshot:
 
-![image](https://github.com/dkumui/Struktur-Data-Assignment/assets/91511212/8488700d-fef4-4f21-b9e3-eee232a19ccf)
+<img width="960" alt="Screenshot_408" src="https://github.com/dkumui/Struktur-Data-Assignment/assets/91511212/1a45b8a5-8073-4175-9bf9-a5459c2c05da">
 
 ## Kesimpulan
 
-Algoritma sorting adalah operasi penting dalam pemrograman untuk mengurutkan data. Ada berbagai jenis algoritma sorting dengan kelebihan dan kekurangannya masing-masing.
+Algoritma searching merupakan alat penting dalam ilmu komputer yang digunakan untuk menemukan elemen tertentu dalam sekumpulan data. Berbagai algoritma searching tersedia dengan kompleksitas waktu dan karakteristik yang berbeda. Pemilihan algoritma searching yang tepat tergantung pada beberapa faktor, seperti struktur data, ukuran data, informasi awal, dan presisi.
 
 ## Referensi
 
-[1] Dhankawade, S., Gaikwad, A. N., & Jadhav, A. S. (2020). Insertion Sort: An Algorithm and Its Analysis. IJRITCC.
+[1] P. Nagarajan dan A. Thamizhendhi, "A survey on searching techniques," 2020
 
-[2] Gaurav. (2023). Heap Sort Algorithm: A Comparative Study. International Journal of Innovative Technology and Exploring Engineering.
+[2] A. R. A. a. R. Alsaadi, "Sequential and Binary Search Algorithms: A Comparative Study," Telkomnika, vol. 18, no. 1, pp. 438-445, 2020.
 
-[3] Kumar, S., & Saraswat, Y. (2023). An Overview of Sorting Algorithms. International Journal of Computer Engineering & Technology.
+[3] S. Yadav dan V. Chaudhary, "Performance Analysis of Binary Search and Interpolation Search Algorithms," 2020
 
-[4] Patil, S., & Kale, V. (2023). A Comparative Analysis of Selection and Bubble Sort Algorithm. International Journal of Engineering Research & Technology.
+[4] G. Gulati dan A. Rai, "Comparison and analysis of sequential search, binary search, interpolation search and jump search," Procedia Computer Science, vol. 167, pp. 1854-1862, 2020.
 
-[5] Singh, A., & Sharma, N. (2022). Analysis of Selection Sort Algorithm. Conflux Journal of Mathematics.
+[5] R. S. Chauhan dan A. Goyal, "Comparative analysis of depth first search and breadth first search algorithms," International Journal of Scientific & Technology Research, vol. 9, no. 3, pp. 835-838, 2020.
