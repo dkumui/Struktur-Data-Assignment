@@ -795,261 +795,447 @@ Kodingan ini merupakan implementasi Single Linked List Circular yang lengkap dan
 
 ## Unguided
 
-### 1. Buatlah sebuah program untuk mencari sebuah huruf pada sebuah kalimat yang sudah di input dengan menggunakan Binary Search!
+### 1. Buatlah program menu Linked List Non Circular untuk menyimpan Nama dan NIM mahasiswa, dengan menggunakan input dari user.
+
+### 2.  Setelah membuat menu tersebut, masukkan data sesuai urutan berikut, lalu tampilkan data yang telah dimasukkan. (Gunakan insert depan, belakang atau tengah).
+
+<img width="500" alt="image" src="https://github.com/dkumui/Struktur-Data-Assignment/assets/91511212/56129c69-686e-4b48-b902-41f597cfad10">
 
 ```C++
 #include <iostream>
 #include <string>
-#include <cctype> // Untuk tolower()
+#include <iomanip>
 
 using namespace std;
 
-void binarysearch(const string& kalimat, char cari) {
-    int index = -1; // Indeks karakter yang dicari
-    int length = kalimat.length();
+// Define Node structure
+struct Node {
+  string nama;
+  string nim;
+  Node *next;
+};
 
-    // Konversi karakter cari menjadi lowercase
-    cari = tolower(cari);
+Node *head;
+Node *tail;
 
-    // Iterasi melalui string untuk mencari karakter
-    for (int i = 0; i < length; ++i) {
-        if (tolower(kalimat[i]) == cari) {
-            index = i;
-            break; // Keluar dari loop jika karakter ditemukan
-        }
-    }
-
-    if (index != -1)
-        cout << "\nKarakter '" << cari << "' ditemukan pada index ke-" << index << endl;
-    else
-        cout << "\nKarakter '" << cari << "' tidak ditemukan dalam kalimat.\n";
+// Initialize the linked list
+void init() {
+  head = NULL;
+  tail = NULL;
 }
 
+// Check if the linked list is empty
+bool isEmpty() {
+  return (head == NULL);
+}
+
+// Insert node at the front
+void insertDepan(string nama, string nim) {
+  Node *baru = new Node;
+  baru->nama = nama;
+  baru->nim = nim;
+  baru->next = NULL;
+
+  if (isEmpty()) {
+    head = tail = baru;
+  } else {
+    baru->next = head;
+    head = baru;
+  }
+}
+
+// Insert node at the back
+void insertBelakang(string nama, string nim) {
+  Node *baru = new Node;
+  baru->nama = nama;
+  baru->nim = nim;
+  baru->next = NULL;
+
+  if (isEmpty()) {
+    head = tail = baru;
+  } else {
+    tail->next = baru;
+    tail = baru;
+  }
+}
+
+// Count the number of nodes in the linked list
+int hitungList() {
+  Node *hitung = head;
+  int jumlah = 0;
+  while (hitung != NULL) {
+    jumlah++;
+    hitung = hitung->next;
+  }
+  return jumlah;
+}
+
+// Insert node in the middle
+void insertTengah(string nama, string nim, int posisi) {
+  if (posisi < 1 || posisi > hitungList()) {
+    cout << "Posisi tidak valid. Posisi harus di anatara 1 dan jumlah node." << endl;
+    return;
+  } else if (posisi == 1) {
+    insertDepan(nama, nim);
+    return;
+  } else {
+    Node *baru = new Node;
+    baru->nama = nama;
+    baru->nim = nim;
+    baru->next = NULL;
+
+    Node *bantu = head;
+    for (int i = 1; i < posisi - 1; i++) {
+      bantu = bantu->next;
+    }
+
+    baru->next = bantu->next;
+    bantu->next = baru;
+  }
+}
+
+// Delete node at the front
+void hapusDepan() {
+  if (!isEmpty()) {
+    Node *hapus = head;
+    if (head->next != NULL) {
+      head = head->next;
+    } else {
+      head = tail = NULL;
+    }
+    cout << "Data mahasiswa dengan nama " << hapus->nama << " berhasil dihapus" << endl;
+    delete hapus;
+  } else {
+    cout << "List Kosong!" << endl;
+  }
+}
+
+// Delete node at the back
+void hapusBelakang() {
+  if (!isEmpty()) {
+    Node *hapus = tail;
+    if (head != tail) {
+      Node *bantu = head;
+      while (bantu->next != tail) {
+        bantu = bantu->next;
+      }
+      tail = bantu;
+      tail->next = NULL;
+    } else {
+      head = tail = NULL;
+    }
+    cout << "Data mahasiswa dengan nama " << hapus->nama << " berhasil dihapus" << endl;
+    delete hapus;
+  } else {
+    cout << "List Kosong!" << endl;
+  }
+}
+
+// Delete node in the middle
+void hapusTengah(int posisi) {
+  if (posisi < 1 || posisi > hitungList()) {
+    cout << "Posisi tidak valid. Posisi harus di anatara 1 dan jumlah node." << endl;
+    return;
+  } else if (posisi == 1) {
+    hapusDepan();
+    return;
+  } else {
+    Node *hapus;
+    Node *bantu = head;
+    for (int i = 1; i < posisi - 1; i++) {
+      bantu = bantu->next;
+    }
+    hapus = bantu->next;
+    bantu->next = hapus->next;
+    cout << "Data mahasiswa dengan nama " << hapus->nama << " berhasil dihapus" << endl;
+    delete hapus;
+  }
+}
+
+// Update data in the front node
+void ubahDepan(string namaBaru, string nimBaru) {
+  if (!isEmpty()) {
+    
+    string namaLama = head->nama;
+    string nimLama = head->nim;
+    
+    head->nama = namaBaru;
+    head->nim = nimBaru;
+
+    if (namaLama != namaBaru && nimLama != nimBaru) {
+      cout << "Data " << namaLama << " (" << nimLama << ") telah diganti dengan data " << namaBaru << " (" << nimBaru << ")" << endl;
+    } else if (namaLama != namaBaru) {
+      cout << "Nama telah diganti dari " << namaLama << " menjadi " << namaBaru << endl;
+    } else if (nimLama != nimBaru) {
+      cout << "NIM telah diganti dari " << nimLama << " menjadi " << nimBaru << endl;
+    }
+  } else {
+    cout << "List Kosong!" << endl;
+  }
+}
+
+// Update data in the middle node
+void ubahTengah(string namaBaru, string nimBaru, int posisi) {
+  if (!isEmpty()) {
+    if (posisi < 1 || posisi > hitungList()) {
+      cout << "Posisi tidak valid. Posisi harus di antara 1 dan jumlah node." << endl;
+      return;
+    } else if (posisi == 1) {
+      ubahDepan(namaBaru, nimBaru);
+      return;
+    } else {
+      Node *bantu = head;
+      for (int i = 1; i < posisi; i++) {
+        bantu = bantu->next;
+      }
+      string namaLama = bantu->nama;
+      string nimLama = bantu->nim;
+
+      bantu->nama = namaBaru;
+      bantu->nim = nimBaru;
+
+      if (namaLama != namaBaru && nimLama != nimBaru) {
+        cout << "Data " << namaLama << " (" << nimLama << ") pada posisi " << posisi << " telah diganti dengan data " << namaBaru << " (" << nimBaru << ")" << endl;
+      } else if (namaLama != namaBaru) {
+        cout << "Nama pada posisi " << posisi << " telah diganti dari " << namaLama << " menjadi " << namaBaru << endl;
+      } else if (nimLama != nimBaru) {
+        cout << "NIM pada posisi " << posisi << " telah diganti dari " << nimLama << " menjadi " << nimBaru << endl;
+      }
+    }
+  } else {
+    cout << "List Kosong!" << endl;
+  }
+}
+
+// Update data in the back node
+void ubahBelakang(string namaBaru, string nimBaru) {
+  if (!isEmpty()) {
+
+    string namaLama = tail->nama;
+    string nimLama = tail->nim;
+    
+    tail->nama = namaBaru;
+    tail->nim = nimBaru;
+
+    if (namaLama != namaBaru && nimLama != nimBaru) {
+      cout << "Data " << namaLama << " (" << nimLama << ") telah diganti dengan data " << namaBaru << " (" << nimBaru << ")" << endl;
+    } else if (namaLama != namaBaru) {
+      cout << "Nama telah diganti dari " << namaLama << " menjadi " << namaBaru << endl;
+    } else if (nimLama != nimBaru) {
+      cout << "NIM telah diganti dari " << nimLama << " menjadi " << nimBaru << endl;
+    }
+  } else {
+    cout << "List Kosong!" << endl;
+  }
+}
+
+// Clear the linked list
+void clearList() {
+  if (isEmpty()) {
+    cout << "List Kosong!" << endl;
+    return;
+  }
+  Node *hapus;
+  while (head != NULL) {
+    hapus = head;
+    head = head->next;
+    delete hapus;
+  }
+  tail = NULL;
+  cout << "List berhasil dihapus!" << endl;
+}
+
+// Display the linked list
+void tampil() {
+  Node *bantu = head;
+  if (!isEmpty()) {
+    cout << "---------------------------------------------" << endl;
+    cout << "| No. |       Nama       |        NIM       |" << endl;
+    cout << "---------------------------------------------" << endl;
+    int i = 1;
+    while (bantu != NULL) {
+      cout << "| " << setw(3) << i << " | " << setw(16) << bantu->nama << " | " << setw(16) << bantu->nim << " |" << endl;
+      bantu = bantu->next;
+      i++;
+    }
+    cout << "---------------------------------------------" << endl;
+  } else {
+    cout << "List Kosong!" << endl;
+  }
+}
+
+// Main function
 int main() {
-    string kalimat;
+  init();
 
-    cout << "\t BINARY SEARCH " << endl;
-    cout << "\nMasukkan kalimat: ";
-    getline(cin, kalimat); // Input sebuah kalimat
+  int pilihan;
+  string nama, nim;
+  int posisi;
 
-    char cari;
-    cout << "Masukkan karakter yang ingin Anda cari dalam kalimat: ";
-    cin >> cari;
+  do {
+    cout << "\nMENU LINKED LIST MAHASISWA" << endl;
+    cout << "---------------------------" << endl;
+    cout << "1. Tambah Data Depan" << endl;
+    cout << "2. Tambah Data Belakang" << endl;
+    cout << "3. Tambah Data Tengah" << endl;
+    cout << "4. Hapus Data Depan" << endl;
+    cout << "5. Hapus Data Belakang" << endl;
+    cout << "6. Hapus Data Tengah" << endl;
+    cout << "7. Ubah Data Depan" << endl;
+    cout << "8. Ubah Data Tengah" << endl;
+    cout << "9. Ubah Data Belakang" << endl;
+    cout << "10. Tampilkan Data" << endl;
+    cout << "11. Hapus Semua Data" << endl;
+    cout << "0. Keluar" << endl;
+    cout << "\nPilihan Anda: ";
+    cin >> pilihan;
 
-    binarysearch(kalimat, cari);
+    switch (pilihan) {
+      case 1:
+        cout << "Masukkan nama: ";
+        cin >> nama;
+        cout << "Masukkan NIM: ";
+        cin >> nim;
+        insertDepan(nama, nim);
+        cout << "Data berhasil ditambahkan" << endl;
+        break;
+      case 2:
+        cout << "Masukkan nama: ";
+        cin >> nama;
+        cout << "Masukkan NIM: ";
+        cin >> nim;
+        insertBelakang(nama, nim);
+        cout << "Data berhasil ditambahkan"  << endl;;
+        break;
+      case 3:
+        tampil();
+        cout << "Masukkan nama: ";
+        cin >> nama;
+        cout << "Masukkan NIM: ";
+        cin >> nim;
+        cout << "Masukkan posisi (1-" << hitungList() << "): ";
+        cin >> posisi;
+        insertTengah(nama, nim, posisi);
+        cout << "Data berhasil ditambahkan"  << endl;;
+        break;
+      case 4:
+        hapusDepan();
+        break;
+      case 5:
+        hapusBelakang();
+        break;
+      case 6:
+        tampil();
+        cout << "Masukkan posisi (1-" << hitungList() << "): ";
+        cin >> posisi;
+        hapusTengah(posisi);
+        break;
+      case 7:
+        cout << "Masukkan nama baru: ";
+        cin >> nama;
+        cout << "Masukkan NIM baru: ";
+        cin >> nim;
+        ubahDepan(nama, nim);
+        break;
+      case 8:
+        tampil();
+        cout << "Masukkan posisi (1-" << hitungList() << "): ";
+        cin >> posisi;
+        cout << "Masukkan nama baru: ";
+        cin >> nama;
+        cout << "Masukkan NIM baru: ";
+        cin >> nim;
+        ubahTengah(nama, nim, posisi);
+        break;
+      case 9:
+        cout << "Masukkan nama baru: ";
+        cin >> nama;
+        cout << "Masukkan NIM baru: ";
+        cin >> nim;
+        ubahBelakang(nama, nim);
+        break;
+      case 10:
+        tampil();
+        break;
+      case 11:
+        clearList();
+        break;
+      case 0:
+        cout << "Keluar dari program." << endl;
+        break;
+      default:
+        cout << "Pilihan tidak valid!" << endl;
+    }
+  } while (pilihan != 0);
 
-    return 0;
+  return 0;
 }
 ```
 
 #### Output:
 
-![image](https://github.com/dkumui/Struktur-Data-Assignment/assets/91511212/3591b1b5-f3e9-4f50-8ac5-2cf9fea67d97)
+![image](https://github.com/dkumui/Struktur-Data-Assignment/assets/91511212/d4202b18-8717-472a-928a-2ab830c7ea73)
 
-## Interpretasi dan Langkah-langkah Kode Algoritma Binary Search untuk Kalimat
-
-**Interpretasi:**
-
-Kodingan di atas menunjukkan implementasi algoritma Binary Search untuk mencari karakter tertentu dalam string (kalimat). Algoritma ini bekerja dengan cara mengonversi string dan karakter yang dicari ke huruf kecil, dan kemudian membagi string menjadi dua bagian secara berulang. Algoritma ini membandingkan karakter yang dicari dengan karakter di tengah string. Jika karakter yang dicari ditemukan, maka proses pencarian dihentikan dan program akan menampilkan indeks di mana karakter tersebut ditemukan. Jika karakter yang dicari tidak ditemukan, maka program akan menampilkan pesan bahwa karakter tersebut tidak ditemukan.
-
-**Langkah-langkah:**
-
-1. **Memasukkan Kalimat:**
-    * Pengguna diminta untuk memasukkan kalimat yang ingin dicari karakternya.
-    * Kalimat disimpan dalam variabel `kalimat`.
-
-2. **Memasukkan Karakter yang Dicari:**
-    * Pengguna diminta untuk memasukkan karakter yang ingin dicarinya dalam kalimat.
-    * Karakter disimpan dalam variabel `cari`.
-
-3. **Konversi ke Huruf Kecil:**
-    * Baik variabel `kalimat` maupun `cari` dikonversi ke huruf kecil menggunakan fungsi `tolower()`.
-    * Hal ini dilakukan untuk memastikan perbandingan yang tidak peka huruf besar/kecil.
-
-4. **Inisialisasi Variabel:**
-    * Variabel `index` diinisialisasi dengan nilai -1.
-    * Variabel `length` menampung panjang kalimat.
-
-5. **Iterasi dan Perbandingan:**
-    * Loop `for` digunakan untuk mengiterasi melalui string `kalimat`.
-    * Di dalam loop, karakter di posisi `i` dikonversi ke huruf kecil menggunakan `tolower()`.
-    * Jika karakter di posisi `i` sama dengan `cari`, maka:
-        * Nilai `index` diperbarui dengan nilai `i`.
-        * Loop `for` dihentikan menggunakan `break`.
-
-6. **Tampilan Hasil:**
-    * Jika `index` tidak sama dengan -1 (karakter ditemukan), maka:
-        * Program menampilkan pesan bahwa karakter ditemukan dan indeksnya.
-    * Jika `index` sama dengan -1 (karakter tidak ditemukan), maka:
-        * Program menampilkan pesan bahwa karakter tidak ditemukan.
-
-**Kesimpulan:**
-
-Algoritma Binary Search ini memungkinkan pencarian karakter dalam string dengan efisiensi waktu O(log n), di mana n adalah panjang string. Algoritma ini bermanfaat untuk mencari karakter dalam teks, data, atau string lainnya.
-
-#### Full Code Screenshot:
-
-![image](https://github.com/dkumui/Struktur-Data-Assignment/assets/91511212/c7c6130e-780f-4c21-9c71-26df55b19990)
-
-### 2. Buatlah sebuah program yang dapat menghitung banyaknya huruf vocal dalam sebuah kalimat!
-
-```C++
-#include <iostream>
-#include <string>
-#include <cctype> // Untuk isalpha() dan tolower()
-
-using namespace std;
-
-// Fungsi untuk menghitung jumlah huruf vokal dalam sebuah kalimat
-int countVowels(const string& kalimat) {
-    int count = 0;
-    // Set huruf vokal yang ingin dihitung
-    string vowels = "aiueo";
-
-    // Iterasi melalui setiap karakter dalam kalimat
-    for (char ch : kalimat) {
-        // Ubah karakter menjadi lowercase
-        char lowercaseCh = tolower(ch);
-        // Periksa apakah karakter merupakan huruf dan merupakan huruf vokal
-        if (isalpha(lowercaseCh) && vowels.find(lowercaseCh) != string::npos) {
-            count++; // Tambahkan jumlah huruf vokal
-        }
-    }
-
-    return count;
-}
-
-int main() {
-    string kalimat;
-
-    cout << "Masukkan sebuah kalimat: ";
-    getline(cin, kalimat); // Input sebuah kalimat
-
-    // Hitung jumlah huruf vokal dalam kalimat
-    int jumlahVokal = countVowels(kalimat);
-
-    cout << "Jumlah huruf vokal dalam kalimat adalah: " << jumlahVokal << endl;
-
-    return 0;
-}
-```
-
-#### Output:
-
-![image](https://github.com/dkumui/Struktur-Data-Assignment/assets/91511212/533b67d3-02db-4a7e-a571-52f3b54508c5)
-
-## Interpretasi dan Langkah-langkah Kode Algoritma Menghitung Huruf Vokal
-
-**Interpretasi:**
-
-Kode di atas menunjukkan implementasi fungsi `countVowels()` untuk menghitung jumlah huruf vokal dalam sebuah kalimat. Fungsi ini menerima string kalimat sebagai parameter dan mengembalikan jumlah huruf vokal yang ditemukan.
-
-**Langkah-langkah:**
-
-1. **Memasukkan Kalimat:**
-    * Pengguna diminta untuk memasukkan kalimat yang ingin dihitung huruf vokalnya.
-    * Kalimat disimpan dalam variabel `kalimat`.
-
-2. **Inisialisasi Variabel:**
-    * Variabel `count` diinisialisasi dengan nilai 0 untuk menampung jumlah huruf vokal.
-    * Variabel `vowels` diinisialisasi dengan string yang berisi huruf vokal yang ingin dihitung ("aiueo").
-
-3. **Iterasi dan Perbandingan:**
-    * Loop `for` digunakan untuk mengiterasi melalui setiap karakter dalam variabel `kalimat`.
-    * Di dalam loop:
-        * Karakter diubah menjadi huruf kecil menggunakan `tolower()`.
-        * Fungsi `isalpha()` digunakan untuk memeriksa apakah karakter merupakan huruf.
-        * Jika karakter merupakan huruf:
-            * Metode `find()` digunakan untuk mencari karakter dalam string `vowels`.
-            * Jika karakter ditemukan dalam `vowels`:
-                * Nilai `count` ditambah 1 untuk menghitung jumlah huruf vokal.
-
-4. **Mengembalikan Hasil:**
-    * Fungsi `countVowels()` mengembalikan nilai `count` yang merupakan jumlah huruf vokal yang ditemukan dalam kalimat.
-
-**Kesimpulan:**
-
-Fungsi `countVowels()` ini memungkinkan penghitungan jumlah huruf vokal dalam string dengan efisien. Algoritma ini bermanfaat untuk menganalisis teks, data linguistik, atau informasi lainnya yang terkait dengan huruf vokal.
+### 3. Lakukan perintah berikut:
+* **Tambahkan data berikut diantara Farrel dan Denis: Wati 2330004**
+  
+  ![image](https://github.com/dkumui/Struktur-Data-Assignment/assets/91511212/573c77c9-222c-49a6-987c-63c91d2c9d50)
+  
+* **Hapus data Denis**
+  
+  ![image](https://github.com/dkumui/Struktur-Data-Assignment/assets/91511212/ff18c3ce-f76f-4324-b5ae-f7f2cd1f8461)
+  
+* **Tambahkan data berikut di awal: Owi 2330000**
+  
+  ![image](https://github.com/dkumui/Struktur-Data-Assignment/assets/91511212/b1192b2b-bf14-4383-972c-8f78eee65c77)
+  
+* **Tambahkan data berikut di akhir: David 23300100**
+  
+  ![image](https://github.com/dkumui/Struktur-Data-Assignment/assets/91511212/41ec337c-e7aa-41a3-8815-ece188d21ab7)
+  
+* **Ubah data Udin menjadi data berikut: Idin 23300045**
+  
+  ![image](https://github.com/dkumui/Struktur-Data-Assignment/assets/91511212/755a060d-4823-4c85-9e17-21b26262eea5)
+  
+* **Ubah data terkahir menjadi berikut: Lucy 23300101**
+  
+  ![image](https://github.com/dkumui/Struktur-Data-Assignment/assets/91511212/fdd68d06-f211-45e5-9d5a-d079ecbfaf26)
+  
+* **Hapus data awal**
+  
+  ![image](https://github.com/dkumui/Struktur-Data-Assignment/assets/91511212/394e5d24-a823-4e44-93ab-0f8ce851bfc6)
+  
+* **Ubah data awal menjadi berikut: Bagas 2330002**
+  
+  ![image](https://github.com/dkumui/Struktur-Data-Assignment/assets/91511212/35e2d53c-53ed-4812-be7f-85af81303e88)
+  
+* **Hapus data akhir**
+  
+  ![image](https://github.com/dkumui/Struktur-Data-Assignment/assets/91511212/512a987d-932e-4ff9-9431-02e1e2d0ad8d)
+  
+* **Tampilkan seluruh data**
+  
+  ![image](https://github.com/dkumui/Struktur-Data-Assignment/assets/91511212/7b1ef0fd-a44c-4d5b-b5d5-65036d62aa23)
 
 #### Full Code Screenshot:
 
-![image](https://github.com/dkumui/Struktur-Data-Assignment/assets/91511212/8a0493ae-22d2-4b5e-8d4a-412edaeba8e5)
-
-### 3. Diketahui data = 9, 4, 1, 4, 7, 10, 5, 4, 12, 4. Hitunglah berapa banyak angka 4 dengan menggunakan algoritma Sequential Search!
-
-```C++
-#include <iostream>
-
-using namespace std;
-
-// Fungsi untuk menghitung berapa banyak angka 4 dalam array data
-int countFours(const int data[], int length) {
-    int count = 0;
-
-    // Iterasi melalui setiap elemen dalam array data
-    for (int i = 0; i < length; ++i) {
-        // Periksa apakah elemen saat ini sama dengan angka 4
-        if (data[i] == 4) {
-            count++; // Tambahkan jumlah angka 4 yang ditemukan
-        }
-    }
-
-    return count;
-}
-
-int main() {
-    int data[] = {9, 4, 1, 4, 7, 10, 5, 4, 12, 4};
-    int length = sizeof(data) / sizeof(data[0]);
-
-    // Hitung berapa banyak angka 4 dalam array data
-    int jumlahAngkaEmpat = countFours(data, length);
-
-    cout << "Jumlah angka 4 dalam data adalah: " << jumlahAngkaEmpat << endl;
-
-    return 0;
-}
-```
-
-#### Output:
-
-![image](https://github.com/dkumui/Struktur-Data-Assignment/assets/91511212/f122af22-58a9-4270-8aac-dfc8ae3f1da3)
-
-## Interpretasi dan Langkah-langkah Kode Algoritma Menghitung Angka 4
-
-**Interpretasi:**
-
-Kode di atas menunjukkan implementasi fungsi `countFours()` untuk menghitung berapa banyak angka 4 dalam array data integer. Fungsi ini menerima array data dan panjang array sebagai parameter dan mengembalikan jumlah angka 4 yang ditemukan dalam array.
-
-**Langkah-langkah:**
-
-1. **Definisikan Fungsi:**
-    * Fungsi `countFours()` didefinisikan dengan parameter `data` (array data integer) dan `length` (panjang array).
-    * Fungsi ini mengembalikan nilai integer yang merupakan jumlah angka 4 yang ditemukan dalam array.
-
-2. **Inisialisasi Variabel:**
-    * Variabel `count` diinisialisasi dengan nilai 0 untuk menampung jumlah angka 4 yang ditemukan.
-
-3. **Iterasi dan Perbandingan:**
-    * Loop `for` digunakan untuk mengiterasi melalui setiap elemen dalam array `data`.
-    * Di dalam loop:
-        * Elemen array saat ini dibandingkan dengan nilai 4.
-        * Jika elemen array saat ini sama dengan 4:
-            * Nilai `count` ditambah 1 untuk menghitung jumlah angka 4 yang ditemukan.
-
-4. **Mengembalikan Hasil:**
-    * Fungsi `countFours()` mengembalikan nilai `count` yang merupakan jumlah angka 4 yang ditemukan dalam array.
-
-**Kesimpulan:**
-
-Fungsi `countFours()` ini memungkinkan penghitungan jumlah angka 4 dalam array data integer dengan efisien. Algoritma ini bermanfaat untuk analisis data, pemrosesan array, atau tugas yang melibatkan pencarian nilai tertentu dalam array.
-
-#### Full Code Screenshot:
-
-<img width="960" alt="Screenshot_408" src="https://github.com/dkumui/Struktur-Data-Assignment/assets/91511212/1a45b8a5-8073-4175-9bf9-a5459c2c05da">
+![image](https://github.com/dkumui/Struktur-Data-Assignment/assets/91511212/c9b3ffaa-f954-4acf-94f5-bc0236033c38)
 
 ## Kesimpulan
 
-Algoritma searching merupakan alat penting dalam ilmu komputer yang digunakan untuk menemukan elemen tertentu dalam sekumpulan data. Berbagai algoritma searching tersedia dengan kompleksitas waktu dan karakteristik yang berbeda. Pemilihan algoritma searching yang tepat tergantung pada beberapa faktor, seperti struktur data, ukuran data, informasi awal, dan presisi.
+Linked list merupakan salah satu jenis struktur data yang banyak digunakan dalam pengembangan aplikasi berbasis pemrograman. Terdapat beberapa jenis linked list yang memiliki karakteristik masing-masing, diantaranya:
+
+- Linked list non circular memiliki node pertama dan terakhir yang tidak saling terhubung. Pointer terakhir bernilai NULL untuk menandakan akhir list. 
+
+- Linked list circular node terakhir terhubung kembali ke node pertama sehingga membentuk lingkaran tanpa akhir yang ditandai.
+
+- Double linked list merupakan pengembangan dari single linked list dimana setiap node memiliki dua pointer yang memungkinkan pengaksesan dari kedua arah.
+
+Struktur umum dari setiap jenis linked list meliputi deklarasi struct node dan pointer penunjuk, operasi penambahan, penghapusan, dan penampilan node. 
+
+Linked list memiliki fleksibilitas ruang memori dan mudah menambah atau menghapus node. Namun pengaksesan secara acak membutuhkan waktu lebih lama dibanding array. Pemilihan jenis linked list sesuaikan dengan karakteristik dan kebutuhan aplikasi.
+
+Dengan demikian, linked list merupakan struktur data dasar yang penting untuk dipelajari dalam pengembangan algoritma dan aplikasi berbasis pemrograman.
 
 ## Referensi
 
