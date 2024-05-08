@@ -441,8 +441,6 @@ int main()
 
 ![image](https://github.com/dkumui/Struktur-Data-Assignment/assets/91511212/2c3c5669-9a56-49f9-8154-e8a2e9e1e99c)
 
-Sure, here is an explanation of the output, source code, and operations/functions of the provided program:
-
 **Program ini dirancang untuk membalikkan kalimat yang dimasukkan pengguna.**
 
 **Struktur Data:**
