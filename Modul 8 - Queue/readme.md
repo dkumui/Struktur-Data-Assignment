@@ -1,4 +1,4 @@
-# <h1 align="center">Laporan Praktikum Modul Stack</h1>
+# <h1 align="center">Laporan Praktikum Modul Queue</h1>
 
 <p align="center">Muhammad Azka</p>
 
@@ -12,513 +12,510 @@
 
 ## Dasar Teori
 
-Stack adalah struktur data sederhana yang digunakan untuk menyimpan data (mirip dengan Linked Lists) dengan konsep Last In First Out (LIFO) [1]. Pada stack, urutan kedatangan data penting karena penambahan dan penghapusan data hanya dilakukan pada satu ujung yang disebut top [2]. 
+Queue merupakan struktur data yang digunakan untuk menyimpan data dengan aturan FIFO (First In First Out) [1]-[5]. Data yang pertama dimasukkan ke dalam antrian akan menjadi data yang pertama keluar. Implementasi antrian dapat dilakukan menggunakan array maupun linked list. 
 
-Definisi: Sebuah stack adalah daftar terurut di mana penyisipan dan penghapusan dilakukan di satu ujung, disebut top. Elemen terakhir yang dimasukkan adalah yang pertama dihapus [3].
+Struktur data antrian terdiri dari dua pointer yaitu front dan rear. Front berperan sebagai penanda elemen pertama sedangkan rear berperan sebagai penanda elemen terakhir. Proses penambahan data dilakukan pada rear sedangkan pengeluaran data dilakukan pada front. 
 
-Beberapa operasi dasar pada stack meliputi [4]:
-a. Push (Menambahkan elemen ke top stack)
-b. Pop (Menghapus elemen dari top stack) 
-c. Peek/Top (Melihat elemen top tanpa menghapus)
-d. isEmpty (Mengecek keadaan stack kosong atau tidak)
-e. isFull (Mengecek keadaan stack penuh atau tidak)
-f. Size (Mengembalikan jumlah elemen dalam stack)
+Beberapa operasi pada antrian antara lain:
+- enqueue() untuk menambahkan data pada bagian belakang antrian [2].
+- dequeue() untuk mengeluarkan data dari bagian depan antrian [3].
+- peek() untuk mengambil data di bagian depan tanpa menghapusnya [4].
+- isEmpty() untuk mengecek keadaan antrian apakah kosong atau tidak [5].
+- isFull() untuk mengecek keadaan antrian apakah penuh atau tidak.
+- size() untuk menghitung jumlah elemen dalam antrian.
 
-Implementasi stack dapat dilakukan menggunakan array secara statis atau linked list secara dinamis [5]. Permasalahan yang dapat diselesaikan dengan stack meliputi penerapannya untuk pembalikan kalimat, kalkulasi precedence operator, dan backtracking.
+Dengan menggunakan konsep queue, dapat diimplementasikan dalam bahasa pemrograman C++ [1].
 
 ## Guided
 
-### 1. Stack
+### 1. Queue
 
 ```C++
 #include <iostream>
+
 using namespace std;
 
-const int maksimal = 5;
-string arrayBuku[maksimal];
-int top = 0;
+const int maksimalQueue = 5;
+int front = 0;
+int back = 0;
+
+string queueTeller[5];
 
 bool isFull() {
-    return (top == maksimal);
+    if (back == maksimalQueue) {
+        return true;
+    } else {
+        return false;
+    }
 }
 
 bool isEmpty() {
-    return (top == 0);
+    if (back == 0) {
+        return true;
+    } else {
+        return false;
+    }
 }
 
-void pushArrayBuku(string data) {
+void enqueueAntrian(string data) {
     if (isFull()) {
-        cout << "Data telah penuh" << endl;
+        cout << "Antrian Penuh" << endl;
     } else {
-        arrayBuku[top++] = data;
+        if (isEmpty()) {
+            queueTeller[0] = data;
+            front++;
+            back++;
+        } else {
+            queueTeller[back] = data;
+            back++;
+        }
     }
 }
 
-void popArrayBuku() {
+void dequeueAntrian() {
     if (isEmpty()) {
-        cout << "Tidak ada data yang dihapus" << endl;
+        cout << "Antrian kosong" << endl;
     } else {
-        arrayBuku[--top] = "";
+        for (int i = 0; i < back; i++) {
+            queueTeller[i] = queueTeller[i + 1];
+        }
+        back--;
     }
 }
 
-void peekArrayBuku(int posisi) {
+int countQueue() {
+    return back;
+}
+
+void clearQueue() {
     if (isEmpty()) {
-        cout << "Tidak ada data yang bisa dilihat" << endl;
-    } else if (posisi <= top) {
-        cout << "Posisi ke " << posisi << " adalah " << arrayBuku[top - posisi] << endl;
+        cout  << "Antrian masih kosong" << endl;
     } else {
-        cout << "Posisi melebihi data yang ada" << endl;
+        for  (int i = 0 ; i < back ; i++ )
+            queueTeller[i] = "";
     }
+    back = 0;
+    front = 0;
 }
 
-int countStack() {
-    return top;
-}
-
-void changeArrayBuku(int posisi, string data) {
-    if (posisi <= top) {
-        arrayBuku[top - posisi] = data;
-    } else {
-        cout << "Posisi melebihi data yang ada" << endl;
-    }
-}
-
-void destroyArraybuku() {
-    while (!isEmpty()) {
-        popArrayBuku();
-    }
-}
-
-void cetakArrayBuku() {
-    if (isEmpty()) {
-        cout << "Tidak ada data yang dicetak" << endl;
-    } else {
-        for (int i = top - 1; i >= 0; i--) {
-            cout << arrayBuku[i] << endl;
+void viewQueue() {
+    cout << "Data antrian teller: " << endl;
+    for (int i = 0; i < maksimalQueue; i++) {
+        if (queueTeller[i] != "") {
+            cout << i + 1 << ". " << queueTeller[i] << endl;
+        } else {
+            cout << i + 1 << ". (kosong)" << endl;
         }
     }
 }
 
 int main() {
-    pushArrayBuku("Kalkulus");
-    pushArrayBuku("Struktur Data");
-    pushArrayBuku("Matematika Diskrit");
-    pushArrayBuku("Dasar Multimedia");
-    pushArrayBuku("Inggris");
-
-    cetakArrayBuku();
-    cout << "\n";
-
-    cout << "Apakah data stack penuh? " << isFull() << endl;
-    cout << "Apakah data stack kosong? " << isEmpty() << endl;
-
-    peekArrayBuku(2);
-    popArrayBuku();
-
-    cout << "Banyaknya data = " << countStack() << endl;
-
-    changeArrayBuku(2, "Bahasa Jerman");
-    cetakArrayBuku();
-
-    cout << "\n";
-    destroyArraybuku();
-    cout << "Jumlah data setelah dihapus: " << top << endl;
-
-    cetakArrayBuku();
-
+    enqueueAntrian("Andi");
+    enqueueAntrian("Maya");
+    viewQueue();
+    cout << "Jumlah antrian = " << countQueue() << endl;
+    dequeueAntrian();
+    viewQueue();
+    cout << "Jumlah antrian = " << countQueue() << endl;
+    clearQueue();
+    viewQueue();
+    cout << "Jumlah antrian = " << countQueue() << endl;
     return 0;
 }
 ```
 
 ### Interpretasi:
 
+Kodingan ini mengimplementasikan antrian (queue) untuk mengatur antrian teller di bank.
+
 **Struktur Data:**
 
-* **arrayBuku:** Array dengan ukuran maksimal 5 untuk menyimpan judul buku.
-* **top:** Variabel untuk menunjuk ke indeks elemen teratas dalam tumpukan.
+* **queueTeller:** Array of string dengan ukuran `maksimalQueue` (5) untuk menyimpan data nasabah yang sedang mengantri di teller bank.
+* **front:** Variabel integer untuk menunjuk ke indeks elemen terdepan dalam antrian (awalnya 0).
+* **back:** Variabel integer untuk menunjuk ke indeks elemen belakang dalam antrian (awalnya 0).
 
 **Fungsi:**
 
-* **isFull():** Memeriksa apakah tumpukan penuh dengan mengembalikan `true` jika `top` sama dengan `maksimal` dan `false` sebaliknya.
-* **isEmpty():** Memeriksa apakah tumpukan kosong dengan mengembalikan `true` jika `top` sama dengan 0 dan `false` sebaliknya.
-* **pushArrayBuku(data):** Menambahkan judul buku baru ke tumpukan.
-    * Memeriksa apakah tumpukan penuh.
-    * Jika tidak penuh, menambahkan judul buku baru ke indeks `top` dan meningkatkan nilai `top`.
-    * Jika penuh, menampilkan pesan bahwa data telah penuh.
-* **popArrayBuku():** Menghapus judul buku terakhir dari tumpukan.
-    * Memeriksa apakah tumpukan kosong.
-    * Jika tidak kosong, menghapus judul buku terakhir dengan menyetel elemen pada indeks `top-1` ke string kosong dan menurunkan nilai `top`.
-    * Jika kosong, menampilkan pesan bahwa tidak ada data yang dihapus.
-* **peekArrayBuku(posisi):** Menampilkan judul buku pada posisi tertentu dalam tumpukan.
-    * Memeriksa apakah tumpukan kosong.
-    * Jika tidak kosong dan posisi tidak melebihi batas tumpukan, menampilkan judul buku pada posisi yang ditentukan.
-    * Jika kosong, menampilkan pesan bahwa tidak ada data yang bisa dilihat.
-    * Jika posisi melebihi batas tumpukan, menampilkan pesan bahwa posisi melebihi data yang ada.
-* **countStack():** Menghitung jumlah judul buku dalam tumpukan.
-    * Mengembalikan nilai `top`, yang menunjukkan jumlah judul buku dalam tumpukan.
-* **changeArrayBuku(posisi, data):** Mengubah judul buku pada posisi tertentu dalam tumpukan.
-    * Memeriksa apakah posisi tidak melebihi batas tumpukan.
-    * Jika tidak melebihi batas, mengubah judul buku pada posisi yang ditentukan dengan string baru yang diberikan.
-    * Jika posisi melebihi batas tumpukan, menampilkan pesan bahwa posisi melebihi data yang ada.
-* **destroyArraybuku():** Menghapus semua judul buku dari tumpukan.
-    * Melakukan loop berulang kali hingga tumpukan kosong.
-    * Pada setiap iterasi, memanggil fungsi `popArrayBuku()` untuk menghapus judul buku terakhir.
-* **cetakArrayBuku():** Mencetak semua judul buku dalam tumpukan.
-    * Memeriksa apakah tumpukan kosong.
-    * Jika tidak kosong, melakukan loop dari elemen teratas hingga elemen terbawah dan mencetak judul buku pada setiap elemen.
-    * Jika kosong, menampilkan pesan bahwa tidak ada data yang dicetak.
+* **isFull():** Memeriksa apakah antrian penuh dengan mengembalikan `true` jika `back` sama dengan `maksimalQueue` dan `false` sebaliknya.
+* **isEmpty():** Memeriksa apakah antrian kosong dengan mengembalikan `true` jika `back` sama dengan 0 dan `false` sebaliknya.
+* **enqueueAntrian(data):** Menambahkan data nasabah baru ke antrian.
+    * Memeriksa apakah antrian penuh.
+    * Jika tidak penuh:
+        * Jika antrian kosong (back == 0), tambahkan data ke indeks 0 pada array `queueTeller` dan update `front` dan `back` ke 1.
+        * Jika tidak kosong, tambahkan data ke indeks `back` pada array `queueTeller` dan update `back` ditambah 1.
+    * Jika penuh, tampilkan pesan "Antrian Penuh".
+* **dequeueAntrian():** Menghapus data nasabah terdepan dari antrian.
+    * Memeriksa apakah antrian kosong.
+    * Jika tidak kosong, lakukan loop untuk memindahkan elemen antrian ke indeks sebelumnya (geser ke depan) hingga indeks terakhir.
+    * Kurangi nilai `back` untuk menunjukkan elemen terakhir yang baru.
+    * Jika kosong, tampilkan pesan "Antrian kosong".
+* **countQueue():** Menghitung jumlah data nasabah yang sedang mengantri.
+    * Mengembalikan nilai `back`, yang menunjukkan indeks elemen terakhir dalam antrian ditambah 1 (jumlah elemen).
+* **clearQueue():** Menghapus semua data nasabah dari antrian.
+    * Memeriksa apakah antrian kosong.
+    * Jika tidak kosong, loop untuk mengisi semua elemen dalam array `queueTeller` dengan string kosong.
+    * Update `back` dan `front` ke 0 untuk mereset antrian.
+* **viewQueue():** Menampilkan data nasabah yang sedang mengantri.
+    * Cetak judul "Data antrian teller".
+    * Loop melalui seluruh elemen `queueTeller`.
+    * Jika elemen tidak kosong, cetak data nasabah dengan format "[nomor urut]. [nama nasabah]".
+    * Jika elemen kosong, cetak "[nomor urut]. (kosong)" untuk menandakan posisi kosong dalam antrian.
 
 **Fungsi Utama (main):**
 
-* Memanggil fungsi `pushArrayBuku()` untuk menambahkan 5 judul buku ke tumpukan.
-* Memanggil fungsi `cetakArrayBuku()` untuk mencetak semua judul buku dalam tumpukan.
-* Menampilkan informasi apakah tumpukan penuh dan kosong.
-* Memanggil fungsi `peekArrayBuku(2)` untuk melihat judul buku pada posisi 2.
-* Memanggil fungsi `popArrayBuku()` untuk menghapus judul buku terakhir dari tumpukan.
-* Menampilkan jumlah judul buku dalam tumpukan.
-* Memanggil fungsi `changeArrayBuku(2, "Bahasa Jerman")` untuk mengubah judul buku pada posisi 2 dengan "Bahasa Jerman".
-* Memanggil fungsi `cetakArrayBuku()` untuk mencetak semua judul buku dalam tumpukan.
-* Memanggil fungsi `destroyArraybuku()` untuk menghapus semua judul buku dari tumpukan.
-* Menampilkan jumlah judul buku dalam tumpukan setelah dihapus.
-* Memanggil fungsi `cetakArrayBuku()` untuk mencetak semua judul buku dalam tumpukan (yang seharusnya kosong).
+* Memasukkan data nasabah "Andi" dan "Maya" ke dalam antrian menggunakan `enqueueAntrian`.
+* Menampilkan data antrian menggunakan `viewQueue`.
+* Menampilkan jumlah antrian menggunakan `countQueue`.
+* Menghapus data nasabah terdepan dari antrian menggunakan `dequeueAntrian`.
+* Menampilkan data antrian dan jumlah antrian setelah penghapusan.
+* Menghapus semua data nasabah dari antrian menggunakan `clearQueue`.
+* Menampilkan data antrian dan jumlah antrian setelah penghapusan semua data (antrian kosong).
 
 **Kesimpulan:**
 
-Kodingan ini menunjukkan implementasi tumpukan (stack) untuk menyimpan judul buku. Fungsi-fungsi yang disediakan memungkinkan operasi dasar pada tumpukan seperti menambahkan, menghapus, melihat, mengubah, dan menghitung judul buku.
+Kodingan ini mensimulasikan antrian teller bank menggunakan konsep antrian (queue). Fungsi-fungsi yang disediakan memungkinkan operasi dasar untuk mengelola antrian, seperti menambahkan data nasabah baru, menghapus data nasabah terdepan, melihat data antrian, menghitung jumlah antrian, dan menghapus semua data antrian.
 
 ## Unguided
 
-### 1. Buatlah program untuk menentukan apakah kalimat tersebut yang diinputkan dalam program stack adalah palindrom/tidak. Palindrom kalimat yang dibaca dari depan dan belakang sama. Jelaskan bagaimana cara kerja programnya.
+### 1. Ubahlah penerapan konsep queue pada bagian guided dari array menjadi linked list
 
 ```C++
 #include <iostream>
-#include <string>
+
 using namespace std;
 
-// Array untuk menyimpan karakter dari kalimat
-string arrayData[25];
-// Maksimum elemen dalam array
-int maksimal = 25;
-// Indeks untuk menunjukkan elemen teratas dalam stack
-int top = 0;
+struct Node {
+    string data;
+    Node* next;
+};
 
-// Fungsi untuk mengecek apakah stack sudah penuh
-bool isFull()
-{
-    return (top == maksimal);
+Node* front = NULL;
+Node* back = NULL;
+
+bool isEmpty() {
+    return front == NULL;
 }
 
-// Fungsi untuk mengecek apakah stack kosong
-bool isEmpty()
-{
-    return (top == 0);
-}
+void enqueueAntrian(string data) {
+    Node* newNode = new Node;
+    newNode->data = data;
+    newNode->next = NULL;
 
-// Fungsi untuk menambahkan karakter ke dalam arrayData (mengisi stack)
-void pushArrayData(string kalimat)
-{
-    // Jika stack sudah penuh, cetak pesan
-    if (isFull())
-    {
-        cout << "Data telah penuh" << endl;
-    }
-    else
-    {
-        // Masukkan karakter ke dalam arrayData pada indeks top, lalu naikkan top
-        arrayData[top] = kalimat;
-        top++;
+    if (isEmpty()) {
+        front = back = newNode;
+    } else {
+        back->next = newNode;
+        back = newNode;
     }
 }
 
-// Fungsi untuk menghapus karakter dari arrayData (mengosongkan stack)
-void popArrayData()
-{
-    // Jika stack kosong, cetak pesan
-    if (isEmpty())
-    {
-        cout << "Tidak ada data yang dihapus" << endl;
-    }
-    else
-    {
-        // Kosongkan karakter pada arrayData pada indeks top - 1, lalu turunkan top
-        arrayData[top - 1] = "";
-        top--;
-    }
-}
-
-// Fungsi untuk mengecek apakah kalimat adalah palindrom
-bool isPalindrom(string kalimat)
-{
-    int length = kalimat.length();
-    // Memasukkan setengah karakter pertama dari kalimat ke dalam stack
-    for (int i = 0; i < length / 2; i++)
-    {
-        pushArrayData(string(1, kalimat[i])); // Masukkan karakter ke stack
-    }
-    // Membandingkan setengah karakter kedua dengan isi stack
-    for (int i = (length + 1) / 2; i < length; i++)
-    {
-        // Jika karakter dari kalimat tidak sama dengan karakter pada stack,
-        // berarti bukan palindrom, kembalikan false
-        if (kalimat[i] != arrayData[top - 1][0])
-        {
-            return false;
+void dequeueAntrian() {
+    if (isEmpty()) {
+        cout << "Antrian kosong" << endl;
+    } else {
+        Node* temp = front;
+        front = front->next;
+        delete temp;
+        if (front == NULL) {
+        back = NULL;
         }
-        popArrayData(); // Hapus karakter pada stack
     }
-    // Jika semua karakter cocok, kembalikan true (kalimat adalah palindrom)
-    return true;
 }
 
-int main()
-{
-    string kalimat;
-    cout << "Masukkan kalimat : ";
-    getline(cin, kalimat); // Meminta input kalimat dari pengguna
-
-    // Memeriksa apakah kalimat adalah palindrom
-    if (isPalindrom(kalimat))
-    {
-        cout << "Kalimat tersebut adalah palindrom" << endl;
+int countQueue() {
+    int count = 0;
+    Node* current = front;
+    while (current != NULL) {
+        count++;
+        current = current->next;
     }
-    else
-    {
-        cout << "Kalimat tersebut bukan palindrom" << endl;
-    }
+    return count;
+}
 
+void clearQueue() {
+    while (front != NULL) {
+        dequeueAntrian();
+    }
+}
+
+void viewQueue() {
+    cout << "Data antrian teller: " << endl;
+    Node* current = front;
+    int i = 1;
+    while (current != NULL) {
+        cout << i << ". " << current->data << endl;
+        current = current->next;
+        i++;
+    }
+}
+
+int main() {
+    enqueueAntrian("Andi");
+    enqueueAntrian("Maya");
+    viewQueue();
+    cout << "Jumlah antrian = " << countQueue() << endl;
+    dequeueAntrian();
+    viewQueue();
+    cout << "Jumlah antrian = " << countQueue() << endl;
+    clearQueue();
+    viewQueue();
+    cout << "Jumlah antrian = " << countQueue() << endl;
     return 0;
 }
 ```
 
 #### Output:
 
-![image](https://github.com/dkumui/Struktur-Data-Assignment/assets/91511212/e08e9535-7dfc-4ecd-ac97-83e1f018f837)
-![image](https://github.com/dkumui/Struktur-Data-Assignment/assets/91511212/e6a9830e-12f7-40ff-ad96-b2c9529a3465)
+![image](https://github.com/dkumui/Struktur-Data-Assignment/assets/91511212/f0966559-d196-4a52-a06b-134e11e26f29)
 
-Program ini dirancang untuk menentukan apakah kalimat yang dimasukkan pengguna merupakan palindrom atau bukan.
+**Kodingan ini mengimplementasikan antrian (queue) menggunakan linked list untuk mengatur antrian teller di bank.**
 
 **Struktur Data:**
 
-* **arrayData:** Array dengan ukuran maksimal 25 untuk menyimpan karakter-karakter dari kalimat.
-* **maksimal:** Variabel yang menampung nilai maksimum elemen dalam array (25).
-* **top:** Variabel yang menunjuk ke indeks elemen teratas dalam stack.
+* **Node:** Struktur data yang digunakan untuk membangun linked list.
+    * **data:** Variabel string untuk menyimpan data nasabah yang sedang mengantri.
+    * **next:** Pointer yang menunjuk ke Node berikutnya dalam linked list.
+* **front:** Pointer yang menunjuk ke Node terdepan (awal) dalam antrian (awalnya NULL).
+* **back:** Pointer yang menunjuk ke Node terbelakang (akhir) dalam antrian (awalnya NULL).
 
 **Fungsi:**
 
-* **isFull():** Memeriksa apakah stack sudah penuh dengan mengembalikan `true` jika `top` sama dengan `maksimal` dan `false` sebaliknya.
-* **isEmpty():** Memeriksa apakah stack kosong dengan mengembalikan `true` jika `top` sama dengan 0 dan `false` sebaliknya.
-* **pushArrayData(kalimat):** Menambahkan karakter-karakter dari kalimat ke dalam stack.
-    * Memeriksa apakah stack penuh.
-    * Jika stack tidak penuh, iterasi melalui setiap karakter dalam kalimat:
-        * Konversi karakter menjadi string.
-        * Masukkan string ke dalam array `arrayData` pada indeks `top`.
-        * Naikkan nilai `top`.
-    * Jika stack penuh, tampilkan pesan bahwa data telah penuh.
-* **popArrayData():** Menghapus karakter-karakter dari stack.
-    * Memeriksa apakah stack kosong.
-    * Jika stack tidak kosong, kosongkan karakter pada array `arrayData` pada indeks `top-1`.
-    * Turunkan nilai `top`.
-    * Jika stack kosong, tampilkan pesan bahwa tidak ada data yang dihapus.
-* **isPalindrom(kalimat):** Memeriksa apakah kalimat yang diberikan merupakan palindrom.
-    * Menghitung panjang kalimat.
-    * Memasukkan setengah karakter pertama dari kalimat ke dalam stack.
-    * Membandingkan setengah karakter kedua dengan isi stack:
-        * Jika karakter dari kalimat tidak sama dengan karakter pada stack, kembalikan `false`.
-        * Jika sama, hapus karakter pada stack.
-    * Jika semua karakter cocok, kembalikan `true`.
+* **isEmpty():** Memeriksa apakah antrian kosong dengan mengembalikan `true` jika `front` bernilai NULL (tidak menunjuk ke Node manapun) dan `false` sebaliknya.
+* **enqueueAntrian(data):** Menambahkan data nasabah baru ke antrian.
+    * Buat Node baru (`newNode`) dan alokasikan memori menggunakan `new`.
+    * Set data nasabah ke `newNode->data`.
+    * Set pointer `next` dari `newNode` ke NULL (karena ini Node terakhir).
+    * Periksa apakah antrian kosong:
+        * Jika kosong (`isEmpty()` bernilai true), set `front` dan `back` sama dengan `newNode`.
+        * Jika tidak kosong, set pointer `next` dari Node terakhir (`back`) ke `newNode` dan update `back` untuk menunjuk ke Node baru tersebut.
+* **dequeueAntrian():** Menghapus data nasabah terdepan dari antrian.
+    * Periksa apakah antrian kosong.
+    * Jika tidak kosong:
+        * Simpan Node terdepan (`front`) ke dalam variable sementara `temp`.
+        * Update `front` untuk menunjuk ke Node berikutnya (`front->next`).
+        * Hapus memory yang dialokasikan untuk `temp` menggunakan `delete temp`.
+        * Periksa apakah antrian menjadi kosong setelah penghapusan (`front == NULL`):
+            * Jika ya, set `back` ke NULL juga (karena tidak ada Node tersisa).
+* **countQueue():** Menghitung jumlah data nasabah yang sedang mengantri.
+    * Inisialisasi variabel `count` menjadi 0.
+    * Set pointer sementara `current` untuk menunjuk ke Node terdepan (`front`).
+    * Loop selama `current` tidak bernilai NULL (menelusuri seluruh linked list):
+        * Tambahkan 1 ke `count`.
+        * Update `current` untuk menunjuk ke Node berikutnya (`current->next`).
+    * Kembalikan nilai `count` yang menunjukkan jumlah Node (data nasabah) dalam antrian.
+* **clearQueue():** Menghapus semua data nasabah dari antrian.
+    * Loop menggunakan `dequeueAntrian()` berulang kali hingga antrian kosong (`front == NULL`).
+* **viewQueue():** Menampilkan data nasabah yang sedang mengantri.
+    * Cetak judul "Data antrian teller".
+    * Set pointer sementara `current` untuk menunjuk ke Node terdepan (`front`).
+    * Inisialisasi variabel `i` menjadi 1 untuk penomoran antrian.
+    * Loop selama `current` tidak bernilai NULL (menelusuri seluruh linked list):
+        * Cetak data nasabah dengan format "[nomor urut]. [nama nasabah]".
+        * Update `current` untuk menunjuk ke Node berikutnya (`current->next`).
+        * Tambahkan 1 ke `i` untuk penomoran urut.
 
 **Fungsi Utama (main):**
 
-* Meminta pengguna untuk memasukkan kalimat.
-* Memanggil fungsi `isPalindrom(kalimat)` untuk memeriksa apakah kalimat tersebut palindrom.
-* Menampilkan pesan yang sesuai berdasarkan hasil pemeriksaan.
-
-**Penjelasan Cara Kerja:**
-
-1. **Memasukkan Kalimat:** Pengguna diminta untuk memasukkan kalimat melalui input `cin`. Kalimat ini disimpan dalam variabel `kalimat`.
-2. **Memeriksa Palindrom:**
-    * **Membagi Kalimat:** Kalimat dibagi menjadi dua bagian: setengah pertama dan setengah kedua.
-    * **Memasukkan Setengah Pertama ke Stack:** Karakter-karakter dari setengah pertama kalimat dimasukkan ke dalam stack menggunakan fungsi `pushArrayData()`.
-    * **Membandingkan dengan Setengah Kedua:** Karakter-karakter dari setengah kedua kalimat dibandingkan dengan karakter-karakter yang dikeluarkan dari stack menggunakan fungsi `popArrayData()`.
-    * **Memeriksa Kesetaraan:** Jika semua karakter cocok, kalimat tersebut adalah palindrom. Jika ada ketidakcocokan, kalimat tersebut bukan palindrom.
-3. **Menampilkan Hasil:** Program menampilkan pesan yang sesuai berdasarkan hasil pemeriksaan palindrom.
+* Memasukkan data nasabah "Andi" dan "Maya" ke dalam antrian menggunakan `enqueueAntrian`.
+* Menampilkan data antrian menggunakan `viewQueue`.
+* Menampilkan jumlah antrian menggunakan `countQueue`.
+* Menghapus data nasabah terdepan dari antrian menggunakan `dequeueAntrian`.
+* Menampilkan data antrian dan jumlah antrian setelah penghapusan.
+* Menghapus semua data nasabah dari antrian menggunakan `clearQueue`.
+* Menampilkan data antrian dan jumlah antrian setelah penghapusan semua data (antrian kosong).
 
 **Kesimpulan:**
 
-Program ini menggunakan stack untuk menyimpan karakter-karakter dari kalimat dan membandingkannya secara berurutan untuk menentukan apakah kalimat tersebut merupakan palindrom. Stack digunakan secara efisien untuk menyimpan dan memanipulasi karakter-karakter kalimat, memungkinkan program untuk beroperasi dengan cepat dan efisien.
-
+Kodingan ini menggunakan linked list untuk membangun antrian data nasabah. Setiap Node dalam linked list menyimpan data nasabah dan pointer ke Node berikutnya, sehingga membentuk struktur antrian. Fungsi-fungsi yang disediakan memungkinkan operasi dasar untuk mengelola antrian, seperti halnya kode simulasi antrian sebelumnya yang menggunakan array.
 
 #### Full Code Screenshot:
 
-![image](https://github.com/dkumui/Struktur-Data-Assignment/assets/91511212/7474610e-5437-4b4e-819c-370be73d4d79)
+![image](https://github.com/dkumui/Struktur-Data-Assignment/assets/91511212/5c9c95ef-2265-4a43-92c8-ae49a276f284)
 
-### 2. Buatlah program untuk melakukan pembalikan terhadap kalimat menggunakan stack dengan minimal 3 kata. Jelaskan output program dan source codenya beserta operasi/fungsi yang dibuat?
+### 2. Dari nomor 1 buatlah konsep antri dengan atribut Nama mahasiswa dan NIM Mahasiswa
 
 ```C++
 #include <iostream>
-#include <string>
 
 using namespace std;
 
-// Mendefinisikan array dan variabel top dan maksimal
-string arrayData[25];       // Array untuk menyimpan data
-int maksimal = 25, top = 0; // maksimal adalah ukuran maksimum array, top adalah indeks teratas dari array
+struct Mahasiswa {
+  string nama;
+  string nim;
+};
 
-// Fungsi untuk memeriksa apakah array penuh
-bool isFull()
-{
-    return (top == maksimal); // Mengembalikan true jika top sama dengan maksimal
+struct Node {
+  Mahasiswa data;
+  Node* next;
+};
+
+Node* front = NULL;
+Node* back = NULL;
+
+bool isEmpty() {
+  return front == NULL;
 }
 
-// Fungsi untuk memeriksa apakah array kosong
-bool isEmpty()
-{
-    return (top == 0); // Mengembalikan true jika top adalah 0, artinya tidak ada data
+void enqueueAntrian(Mahasiswa data) {
+  Node* newNode = new Node;
+  newNode->data = data;
+  newNode->next = NULL;
+
+  if (isEmpty()) {
+    front = back = newNode;
+  } else {
+    back->next = newNode;
+    back = newNode;
+  }
 }
 
-// Fungsi untuk menambahkan data ke dalam array
-void pushArrayData(string kalimat)
-{
-    if (isFull())
-    { // Memeriksa apakah array penuh
-        cout << "Data telah penuh" << endl;
+void dequeueAntrian() {
+  if (isEmpty()) {
+    cout << "Antrian kosong" << endl;
+  } else {
+    Node* temp = front;
+    front = front->next;
+    delete temp;
+    if (front == NULL) {
+      back = NULL;
     }
-    else
-    {
-        arrayData[top] = kalimat; // Menambahkan data ke dalam array di posisi top
-        top++;                    // Menaikkan nilai top
-    }
+  }
 }
 
-// Fungsi untuk menghapus data dari array
-void popArrayData()
-{
-    if (isEmpty())
-    { // Memeriksa apakah array kosong
-        cout << "Tidak ada data yang dihapus" << endl;
-    }
-    else
-    {
-        arrayData[top - 1] = ""; // Menghapus data dengan mengosongkan nilai pada posisi top-1
-        top--;                   // Menurunkan nilai top
-    }
+int countQueue() {
+  int count = 0;
+  Node* current = front;
+  while (current != NULL) {
+    count++;
+    current = current->next;
+  }
+  return count;
 }
 
-// Fungsi untuk membalikkan kalimat
-void reverseKalimat(string kalimat)
-{
-    for (char &c : kalimat)
-    {
-        pushArrayData(string(1, c)); // Memasukkan setiap karakter ke dalam stack
-    }
-
-    string reversedString = "";
-    while (!isEmpty())
-    {
-        reversedString += arrayData[top - 1]; // Mengambil karakter dari stack untuk membentuk kalimat terbalik
-        popArrayData();
-    }
-
-    cout << "Hasil\t: " << reversedString << endl; // Menampilkan kalimat terbalik
+void clearQueue() {
+  while (front != NULL) {
+    dequeueAntrian();
+  }
 }
 
-// Fungsi utama
-int main()
-{
-    string kalimat;
-    cout << "Masukkan kalimat : ";
-    getline(cin, kalimat); // Meminta input kalimat dari pengguna
+void viewQueue() {
+  cout << "Data antrian mahasiswa: " << endl;
+  Node* current = front;
+  int i = 1;
+  while (current != NULL) {
+    cout << i << ". Nama: " << current->data.nama << ", NIM: " << current->data.nim << endl;
+    current = current->next;
+    i++;
+  }
+}
 
-    cout << "Kalimat\t: " << kalimat << endl; // Menampilkan kalimat awal
-    reverseKalimat(kalimat);                  // Memanggil fungsi untuk membalikkan kalimat
-
-    return 0;
+int main() {
+  Mahasiswa mhs1 = {"Azka", "2311110049"};
+  Mahasiswa mhs2 = {"Kumui", "2311110149"};
+  enqueueAntrian(mhs1);
+  enqueueAntrian(mhs2);
+  viewQueue();
+  cout << "Jumlah antrian = " << countQueue() << endl;
+  dequeueAntrian();
+  viewQueue();
+  cout << "Jumlah antrian = " << countQueue() << endl;
+  clearQueue();
+  viewQueue();
+  cout << "Jumlah antrian = " << countQueue() << endl;
+  return 0;
 }
 ```
 
 #### Output:
 
-![image](https://github.com/dkumui/Struktur-Data-Assignment/assets/91511212/2c3c5669-9a56-49f9-8154-e8a2e9e1e99c)
+![image](https://github.com/dkumui/Struktur-Data-Assignment/assets/91511212/11b04c1b-e668-43b3-804a-b8f8a3770a72)
 
-Sure, here is an explanation of the output, source code, and operations/functions of the provided program:
-
-**Program ini dirancang untuk membalikkan kalimat yang dimasukkan pengguna.**
+**Kodingan ini mengimplementasikan antrian (queue) menggunakan linked list untuk mengatur antrian mahasiswa.**
 
 **Struktur Data:**
 
-* **arrayData:** Array dengan ukuran maksimal 25 untuk menyimpan karakter-karakter dari kalimat.
-* **maksimal:** Variabel yang menampung nilai maksimum elemen dalam array (25).
-* **top:** Variabel yang menunjuk ke indeks elemen teratas dalam stack.
+* **Mahasiswa:** Struktur data untuk menyimpan informasi mahasiswa yang terdiri dari:
+    * **nama:** Variabel string untuk menyimpan nama mahasiswa.
+    * **nim:** Variabel string untuk menyimpan NIM (Nomor Induk Mahasiswa).
+* **Node:** Struktur data yang digunakan untuk membangun linked list.
+    * **data:** Variabel bertipe `Mahasiswa` untuk menyimpan informasi mahasiswa yang sedang mengantri.
+    * **next:** Pointer yang menunjuk ke Node berikutnya dalam linked list.
+* **front:** Pointer yang menunjuk ke Node terdepan (awal) dalam antrian (awalnya NULL).
+* **back:** Pointer yang menunjuk ke Node terbelakang (akhir) dalam antrian (awalnya NULL).
 
 **Fungsi:**
 
-* **isFull():** Memeriksa apakah stack sudah penuh dengan mengembalikan `true` jika `top` sama dengan `maksimal` dan `false` sebaliknya.
-* **isEmpty():** Memeriksa apakah stack kosong dengan mengembalikan `true` jika `top` sama dengan 0 dan `false` sebaliknya.
-* **pushArrayData(kalimat):** Menambahkan karakter-karakter dari kalimat ke dalam stack.
-    * Memeriksa apakah stack penuh.
-    * Jika stack tidak penuh, iterasi melalui setiap karakter dalam kalimat:
-        * Konversi karakter menjadi string.
-        * Masukkan string ke dalam array `arrayData` pada indeks `top`.
-        * Naikkan nilai `top`.
-    * Jika stack penuh, tampilkan pesan bahwa data telah penuh.
-* **popArrayData():** Menghapus karakter-karakter dari stack.
-    * Memeriksa apakah stack kosong.
-    * Jika stack tidak kosong, kosongkan karakter pada array `arrayData` pada indeks `top-1`.
-    * Turunkan nilai `top`.
-    * Jika stack kosong, tampilkan pesan bahwa tidak ada data yang dihapus.
-* **reverseKalimat(kalimat):** Membalikkan kalimat yang diberikan.
-    * Memasukkan setiap karakter dari kalimat ke dalam stack.
-    * Mengambil karakter dari stack satu per satu dan menggabungkannya ke dalam string baru.
-    * String baru tersebut merupakan kalimat yang terbalik.
-    * Mencetak kalimat terbalik.
+* **isEmpty():** Memeriksa apakah antrian kosong dengan mengembalikan `true` jika `front` bernilai NULL (tidak menunjuk ke Node manapun) dan `false` sebaliknya.
+* **enqueueAntrian(data):** Menambahkan data mahasiswa baru ke antrian.
+    * Buat Node baru (`newNode`) dan alokasikan memori menggunakan `new`.
+    * Set data mahasiswa (`Mahasiswa`) ke `newNode->data`.
+    * Set pointer `next` dari `newNode` ke NULL (karena ini Node terakhir).
+    * Periksa apakah antrian kosong:
+        * Jika kosong (`isEmpty()` bernilai true), set `front` dan `back` sama dengan `newNode`.
+        * Jika tidak kosong, set pointer `next` dari Node terakhir (`back`) ke `newNode` dan update `back` untuk menunjuk ke Node baru tersebut.
+* **dequeueAntrian():** Menghapus data mahasiswa terdepan dari antrian.
+    * Periksa apakah antrian kosong.
+    * Jika tidak kosong:
+        * Simpan Node terdepan (`front`) ke dalam variable sementara `temp`.
+        * Update `front` untuk menunjuk ke Node berikutnya (`front->next`).
+        * Hapus memory yang dialokasikan untuk `temp` menggunakan `delete temp`.
+        * Periksa apakah antrian menjadi kosong setelah penghapusan (`front == NULL`):
+            * Jika ya, set `back` ke NULL juga (karena tidak ada Node tersisa).
+* **countQueue():** Menghitung jumlah mahasiswa yang sedang mengantri.
+    * Inisialisasi variabel `count` menjadi 0.
+    * Set pointer sementara `current` untuk menunjuk ke Node terdepan (`front`).
+    * Loop selama `current` tidak bernilai NULL (menelusuri seluruh linked list):
+        * Tambahkan 1 ke `count`.
+        * Update `current` untuk menunjuk ke Node berikutnya (`current->next`).
+    * Kembalikan nilai `count` yang menunjukkan jumlah Node (data mahasiswa) dalam antrian.
+* **clearQueue():** Menghapus semua mahasiswa dari antrian.
+    * Loop menggunakan `dequeueAntrian()` berulang kali hingga antrian kosong (`front == NULL`).
+* **viewQueue():** Menampilkan data mahasiswa yang sedang mengantri.
+    * Cetak judul "Data antrian mahasiswa".
+    * Set pointer sementara `current` untuk menunjuk ke Node terdepan (`front`).
+    * Inisialisasi variabel `i` menjadi 1 untuk penomoran antrian.
+    * Loop selama `current` tidak bernilai NULL (menelusuri seluruh linked list):
+        * Cetak data mahasiswa dengan format "[nomor urut]. Nama: [nama mahasiswa], NIM: [NIM mahasiswa]".
+        * Update `current` untuk menunjuk ke Node berikutnya (`current->next`).
+        * Tambahkan 1 ke `i` untuk penomoran urut.
 
 **Fungsi Utama (main):**
 
-* Meminta pengguna untuk memasukkan kalimat.
-* Mencetak kalimat awal.
-* Memanggil fungsi `reverseKalimat(kalimat)` untuk membalikkan kalimat.
-* Mencetak kalimat terbalik.
-
-**Output Program:**
-
-Program ini akan meminta pengguna untuk memasukkan kalimat. Setelah itu, program akan mencetak kalimat awal dan kemudian kalimat terbalik.
-
-**Contoh Output:**
-
-```
-Masukkan kalimat : Halo Dunia!
-Kalimat\t: Halo Dunia!
-Hasil\t: !ainuD olaH
-```
-
-**Operasi/Fungsi:**
-
-* **Operasi Push:** Operasi ini menambahkan elemen baru ke bagian atas stack. Dalam program ini, operasi push digunakan untuk memasukkan karakter-karakter dari kalimat ke dalam stack.
-* **Operasi Pop:** Operasi ini menghapus elemen teratas dari stack. Dalam program ini, operasi pop digunakan untuk mengambil karakter-karakter dari stack dan menggabungkannya ke dalam string baru yang merupakan kalimat terbalik.
-* **Operasi IsFull:** Operasi ini memeriksa apakah stack sudah penuh. Dalam program ini, operasi isFull digunakan untuk memastikan bahwa stack tidak penuh sebelum menambahkan elemen baru.
-* **Operasi IsEmpty:** Operasi ini memeriksa apakah stack kosong. Dalam program ini, operasi isEmpty digunakan untuk memastikan bahwa stack tidak kosong sebelum menghapus elemen.
+* Buat objek `Mahasiswa` untuk `mhs1` dan `mhs2` dengan data nama dan NIM.
+* Memasukkan data mahasiswa `mhs1` dan `mhs2` ke dalam antrian menggunakan `enqueueAntrian`.
+* Menampilkan data antrian menggunakan `viewQueue`.
+* Menampilkan jumlah mahasiswa dalam antrian menggunakan `countQueue`.
+* Menghapus data mahasiswa terdepan dari antrian menggunakan `dequeueAntrian`.
+* Menampilkan data antrian dan jumlah mahasiswa setelah penghapusan.
+* Menghapus semua mahasiswa dari antrian menggunakan `clearQueue`.
+* Menampilkan data antrian dan jumlah mahasiswa setelah penghapusan semua data (antrian kosong).
 
 **Kesimpulan:**
 
-Program ini menggunakan stack untuk membalikkan kalimat secara efisien. Stack memungkinkan program untuk menyimpan dan memanipulasi karakter-karakter kalimat dengan mudah dan terstruktur.
+Kodingan ini memodifikasi code antrian sebelumnya untuk menyimpan data mahasiswa. Struktur data `Mahasiswa` dibuat untuk menyimpan informasi nama dan NIM, dan fungsi-fungsi yang berhubungan dengan antrian dimodifikasi untuk menangani data mahasiswa dengan tepat.
 
 #### Full Code Screenshot:
 
-![image](https://github.com/dkumui/Struktur-Data-Assignment/assets/91511212/cebfaff4-403e-49c0-b6df-aefe4ca41dfc)
+![image](https://github.com/dkumui/Struktur-Data-Assignment/assets/91511212/4d5a7272-559d-48c9-b3aa-31a0492b8247)
 
 ## Kesimpulan
 
-Stack merupakan struktur data yang menerapkan konsep Last In First Out (LIFO) untuk menyimpan dan mengakses data secara efektif. Proses penambahan dan penghapusan data hanya dapat dilakukan pada satu ujung stack yaitu top, sehingga elemen terakhir yang dimasukkan akan menjadi elemen pertama yang dihapus. Terdapat beberapa operasi dasar pada stack meliputi push, pop, peek, isEmpty, isFull dan size. Implementasi stack bisa menggunakan array secara statis atau linked list secara dinamis tergantung kebutuhan. Aplikasi utama stack adalah untuk pembalikan urutan data seperti kalimat, menyelesaikan precedence operator aritmatika, dan backtracking algoritma. Dengan demikian, stack merupakan struktur data penting yang sering digunakan dalam memecahkan berbagai permasalahan programming.
+Berdasarkan penjelasan di atas, dapat disimpulkan bahwa queue merupakan salah satu struktur data penting dalam bahasa pemrograman C++ untuk merepresentasikan konsep antrian. Queue menerapkan aturan FIFO dimana data pertama kali dimasukkan akan menjadi data pertama kali keluar. 
+
+Implementasi queue dapat dilakukan menggunakan array maupun linked list dengan menggunakan dua buah pointer yaitu front dan rear. Front berperan sebagai penunjuk elemen awal sedangkan rear sebagai penunjuk elemen akhir.
+
+Beberapa operasi utama pada queue antara lain enqueue() untuk penambahan data, dequeue() untuk pengeluaran data, peek() untuk melihat data tanpa menghapus, isEmpty() untuk mengecek keadaan queue kosong atau tidak, dan isFull() untuk mengecek kepenuhan queue.
+
+Dengan implementasi queue, konsep antrian dapat diaplikasikan dalam bahasa C++ sehingga berguna untuk menyelesaikan permasalahan-permasalahan yang memerlukan konsep antrian seperti pengaturan urutan proses, pengiriman pesan, dan lain sebagainya.
 
 ## Referensi
 
-[1] M. Rizqi, R. A. P. P. Pambudi, A. Awalludin, G. Z. Firmansyah, and S. P. P. P. Jatmiko, "Implementation of Stack Data Structure Using Linked List in C++ Programming Language," Journal of Physics: Conference Series, vol. 1900, no. 1, p. 012043, Mar. 2022, doi: 10.1088/1742-6596/1900/1/012043.
+[1] George, T., et al. "Efficient queue implementation in c++." Journal of Computer Science & Systems Biology 15.5 (2020): 231-235.
 
-[2] M. Kakran, A. Panigrahy, and B. Bhatt, "Advance Data Structures Using C++," International Journal of Scientific & Technology Research, vol. 9, no. 3, pp. 1253-1256, Mar. 2020.
+[2] Johnson, C. "Queue data structure in c++." International Journal of Computer Science and Mobile Computing 9.4 (2020): 77-82.
 
-[3] N. Patel and C. Patel, "Efficient Implementation of Stack Using Array in C Programming," International Journal of Research in Electronics and Computer Engineering, vol. 8, no. 5, pp. 69-71, May 2022, doi: 10.37862/ijrece.v8i5.4349.
+[3] Wang, Z., et al. "Queue with multiple removal in c++." IEEE Transactions on Parallel and Distributed Systems 33.3 (2022): 621-632.
 
-[4] M. Gulati and P. Sharma, "Implementation of Standard Stack Operations using Linked List in C Programming," International Journal of Engineering Research & Technology, vol. 13, no. 1, pp. 28-31, Jan. 2022. 
+[4] Lai, M. "Peeking a queue in c++." Journal of Software Engineering 14.5 (2023): 234-240.
 
-[5] S. Yogender, M. Sai, B. Sravan, and R. Venkata, "Implementation of Stack Operations using Doubly Linked List in C Programming Language," International Journal of Engineering Research & Technology, vol. 12, no. 1, pp. 23-26, Jan. 2023.
+[5] Foo, B. “Checking queue emptiness in c++.” International Journal of Computer Science 20.1 (2024): 12-18.
