@@ -1,4 +1,4 @@
-# <h1 align="center">Laporan Praktikum Modul Linked List</h1>
+# <h1 align="center">Laporan Praktikum Modul Stack</h1>
 
 <p align="center">Muhammad Azka</p>
 
@@ -28,7 +28,7 @@ Implementasi stack dapat dilakukan menggunakan array secara statis atau linked l
 
 ## Guided
 
-### 1. Linked List Non-Circular
+### 1. Stack
 
 ```C++
 #include <iostream>
@@ -185,7 +185,7 @@ int main() {
 
 **Kesimpulan:**
 
-Kode ini menunjukkan implementasi tumpukan (stack) untuk menyimpan judul buku. Fungsi-fungsi yang disediakan memungkinkan operasi dasar pada tumpukan seperti menambahkan, menghapus, melihat, mengubah, dan menghitung judul buku.
+Kodingan ini menunjukkan implementasi tumpukan (stack) untuk menyimpan judul buku. Fungsi-fungsi yang disediakan memungkinkan operasi dasar pada tumpukan seperti menambahkan, menghapus, melihat, mengubah, dan menghitung judul buku.
 
 ## Unguided
 
@@ -293,10 +293,10 @@ int main()
 
 #### Output:
 
-![image](https://github.com/dkumui/Struktur-Data-Assignment/assets/91511212/d4202b18-8717-472a-928a-2ab830c7ea73)
+![image](https://github.com/dkumui/Struktur-Data-Assignment/assets/91511212/e08e9535-7dfc-4ecd-ac97-83e1f018f837)
+![image](https://github.com/dkumui/Struktur-Data-Assignment/assets/91511212/e6a9830e-12f7-40ff-ad96-b2c9529a3465)
 
-
-**Program ini dirancang untuk menentukan apakah kalimat yang dimasukkan pengguna merupakan palindrom atau bukan.**
+Program ini dirancang untuk menentukan apakah kalimat yang dimasukkan pengguna merupakan palindrom atau bukan.
 
 **Struktur Data:**
 
@@ -351,8 +351,7 @@ Program ini menggunakan stack untuk menyimpan karakter-karakter dari kalimat dan
 
 #### Full Code Screenshot:
 
-![image](https://github.com/dkumui/Struktur-Data-Assignment/assets/91511212/c9b3ffaa-f954-4acf-94f5-bc0236033c38)
-
+![image](https://github.com/dkumui/Struktur-Data-Assignment/assets/91511212/7474610e-5437-4b4e-819c-370be73d4d79)
 
 ### 2. Buatlah program untuk melakukan pembalikan terhadap kalimat menggunakan stack dengan minimal 3 kata. Jelaskan output program dan source codenya beserta operasi/fungsi yang dibuat?
 
@@ -440,7 +439,7 @@ int main()
 
 #### Output:
 
-![image](https://github.com/dkumui/Struktur-Data-Assignment/assets/91511212/d4202b18-8717-472a-928a-2ab830c7ea73)
+![image](https://github.com/dkumui/Struktur-Data-Assignment/assets/91511212/2c3c5669-9a56-49f9-8154-e8a2e9e1e99c)
 
 Sure, here is an explanation of the output, source code, and operations/functions of the provided program:
 
@@ -490,7 +489,7 @@ Program ini akan meminta pengguna untuk memasukkan kalimat. Setelah itu, program
 ```
 Masukkan kalimat : Halo Dunia!
 Kalimat\t: Halo Dunia!
-Hasil\t: !aulnID oH
+Hasil\t: !ainuD olaH
 ```
 
 **Operasi/Fungsi:**
@@ -506,7 +505,7 @@ Program ini menggunakan stack untuk membalikkan kalimat secara efisien. Stack me
 
 #### Full Code Screenshot:
 
-![image](https://github.com/dkumui/Struktur-Data-Assignment/assets/91511212/c9b3ffaa-f954-4acf-94f5-bc0236033c38)
+![image](https://github.com/dkumui/Struktur-Data-Assignment/assets/91511212/cebfaff4-403e-49c0-b6df-aefe4ca41dfc)
 
 ## Kesimpulan
 
