@@ -73,8 +73,8 @@ void viewQueue() {
 }
 
 int main() {
-  Mahasiswa mhs1 = {"Andi", "123456"};
-  Mahasiswa mhs2 = {"Maya", "654321"};
+  Mahasiswa mhs1 = {"Azka", "2311110049"};
+  Mahasiswa mhs2 = {"Kumui", "2311110149"};
   enqueueAntrian(mhs1);
   enqueueAntrian(mhs2);
   viewQueue();
