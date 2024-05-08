@@ -17,12 +17,12 @@ Stack adalah struktur data sederhana yang digunakan untuk menyimpan data (mirip 
 Definisi: Sebuah stack adalah daftar terurut di mana penyisipan dan penghapusan dilakukan di satu ujung, disebut top. Elemen terakhir yang dimasukkan adalah yang pertama dihapus [3].
 
 Beberapa operasi dasar pada stack meliputi [4]:
-a. Push (Menambahkan elemen ke top stack)
-b. Pop (Menghapus elemen dari top stack) 
-c. Peek/Top (Melihat elemen top tanpa menghapus)
-d. isEmpty (Mengecek keadaan stack kosong atau tidak)
-e. isFull (Mengecek keadaan stack penuh atau tidak)
-f. Size (Mengembalikan jumlah elemen dalam stack)
+- Push (Menambahkan elemen ke top stack)
+- Pop (Menghapus elemen dari top stack)
+- Peek/Top (Melihat elemen top tanpa menghapus)
+- isEmpty (Mengecek keadaan stack kosong atau tidak)
+- isFull (Mengecek keadaan stack penuh atau tidak)
+- Size (Mengembalikan jumlah elemen dalam stack)
 
 Implementasi stack dapat dilakukan menggunakan array secara statis atau linked list secara dinamis [5]. Permasalahan yang dapat diselesaikan dengan stack meliputi penerapannya untuk pembalikan kalimat, kalkulasi precedence operator, dan backtracking.
 
