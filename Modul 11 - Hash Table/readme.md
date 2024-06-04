@@ -172,11 +172,34 @@ int main()
 }
 ```
 
-Program ini menggunakan fungsi hash sederhana untuk menentukan indeks penyimpanan setiap elemen berdasarkan kunci yang diberikan. Setiap elemen disimpan dalam bentuk linked list di dalam array, di mana setiap elemen di linked list memiliki pasangan kunci-nilai dan pointer ke elemen berikutnya.
+### Interpretasi
 
-Kelas `HashTable` memiliki beberapa fungsi utama, termasuk `insert`, `get`, `remove`, dan `traverse`. Fungsi `insert` digunakan untuk menambahkan pasangan kunci-nilai ke dalam hash table. Fungsi `get` digunakan untuk mencari nilai yang terkait dengan kunci tertentu. Fungsi `remove` digunakan untuk menghapus pasangan kunci-nilai berdasarkan kunci yang diberikan. Dan fungsi `traverse` digunakan untuk mencetak semua pasangan kunci-nilai yang tersimpan dalam hash table.
+Kodingan ini mengimplementasikan tabel hash sederhana untuk menyimpan data key-value.
 
-Di dalam fungsi `main`, beberapa contoh operasi dilakukan untuk menguji fungsi-fungsi tersebut, seperti penambahan data, pencarian nilai berdasarkan kunci, penghapusan data, dan pencetakan seluruh isi hash table.
+**Fitur utama:**
+
+* Menyimpan data dalam pasangan key-value.
+* Mencari value berdasarkan key.
+* Menambahkan pasangan key-value baru.
+* Menghapus pasangan key-value.
+* Mencetak semua key-value.
+
+**Struktur:**
+
+* Struktur `Node` menyimpan key, value, dan pointer ke node berikutnya.
+* Kelas `HashTable` mengelola tabel hash dan operasi terkait.
+* Fungsi `hash_func` memetakan key ke indeks.
+
+**Contoh penggunaan:**
+
+* Menyimpan data key-value (key 1 dengan value 10, key 2 dengan value 20, dll.).
+* Mencari value berdasarkan key (misal, key 1 menghasilkan value 10).
+* Menghapus pasangan key-value (misal, key 4 dihapus).
+* Mencetak semua key-value yang tersimpan.
+
+**Kesimpulan:**
+
+Kodingan ini menunjukkan dasar tabel hash untuk menyimpan data key-value.Kodingan ini dapat dikembangkan dengan fitur tambahan seperti resize otomatis, fungsi hash yang lebih baik, dan persistensi data.
 
 ### 2. Guided kedua
 
@@ -302,14 +325,34 @@ int main()
     return 0;
 }
 ```
+### Interpretasi
 
-Program ini menggunakan hash table untuk menyimpan data nama dan nomor telepon karyawan.
+Kodingan ini mengimplementasikan tabel hash untuk menyimpan nomor telepon karyawan berdasarkan nama mereka.
 
-Kelas `HashNode` digunakan untuk merepresentasikan node dalam hash table yang berisi pasangan nama dan nomor telepon. Kelas `HashMap` mengelola hash table itu sendiri dan menyediakan operasi-operasi seperti penyisipan (`insert`), pencarian berdasarkan nama (`searchByName`), dan penghapusan (`remove`). Implementasi ini menggunakan teknik chaining, di mana setiap slot dalam tabel hash memiliki linked list dari node-node yang mungkin memiliki nilai hash yang sama.
+**Fitur Utama:**
 
-Fungsi hash yang digunakan adalah fungsi sederhana yang menghitung jumlah karakter dalam kunci (nama) dan kemudian melakukan modulo dengan ukuran tabel hash untuk menentukan indeks penyimpanan. Operasi pencarian dan penghapusan dilakukan dengan mencari node dalam linked list yang sesuai dengan kunci yang diberikan.
+* **Penyimpanan Data:**
+    - Nama karyawan disimpan sebagai string.
+    - Nomor telepon disimpan sebagai string.
+    - Tabel hash digunakan untuk menyimpan dan mengambil data ini dengan efisien.
+* **Operasi Tabel Hash:**
+    - `hashFunc`: Fungsi ini menghitung nilai hash dari string nama. Nilai ini digunakan untuk menentukan bucket (indeks) dalam tabel hash di mana informasi karyawan harus disimpan.
+    - `insert`: Fungsi ini menambahkan karyawan baru (nama dan nomor telepon) ke tabel hash.
+    - `remove`: Fungsi ini menghapus karyawan (berdasarkan nama) dari tabel hash.
+    - `searchByName`: Fungsi ini mencari nomor telepon karyawan berdasarkan namanya.
+    - `print`: Fungsi ini mencetak isi seluruh tabel hash, menunjukkan setiap bucket dan informasi karyawan yang disimpannya (jika ada).
+* **Contoh Penggunaan:**
+    - Kodingan ini membuat tabel hash bernama `employee_map`.
+    - Tiga karyawan ("Mistah", "Pastah", "Ghana") ditambahkan dengan nomor telepon yang sesuai.
+    - Nomor telepon untuk "Mistah" dan "Pastah" diambil dan dicetak.
+    - "Mistah" dihapus dari tabel hash.
+    - Nomor telepon untuk "Mistah" dicari lagi (menunjukkan tidak ditemukan setelah penghapusan).
+    - Akhirnya, seluruh isi tabel hash dicetak.
 
-Di dalam `main`, beberapa contoh operasi dilakukan untuk menguji fungsi-fungsi tersebut, seperti penambahan data, pencarian berdasarkan nama, penghapusan data, dan pencetakan seluruh isi hash table.
+**Kesimpulan:**
+
+Kodingan ini menunjukkan bagaimana tabel hash dapat digunakan untuk mengatur dan mengelola data dengan akses cepat berdasarkan kunci (nama karyawan dalam kasus ini).
+
 
 ## Unguided
 
@@ -563,44 +606,59 @@ int main()
 
 ```
 
-#### Output menu 1:
+### Output menu 1:
 
 ![image](https://github.com/kepin7/Struktur-Data-Assignment/assets/91511212/fe11bfdc-4336-4ef9-a341-f9946a49f9e9)
 
-#### Output menu 2:
+### Output menu 2:
 
 ![image](https://github.com/kepin7/Struktur-Data-Assignment/assets/91511212/9ac9a5f7-77af-48b0-aeab-f84e1755bbfb)
 
-#### Output menu 3:
+### Output menu 3:
 
 ![image](https://github.com/kepin7/Struktur-Data-Assignment/assets/91511212/f9d647d0-f5a5-41bb-9104-ebfd73b43ff7)
 
-#### Output menu 4:
+### Output menu 4:
 
 ![image](https://github.com/kepin7/Struktur-Data-Assignment/assets/91511212/5023369d-4272-4a20-b50e-a44911596fb0)
 
-#### Output menu 5:
+### Output menu 5:
 
 ![image](https://github.com/kepin7/Struktur-Data-Assignment/assets/91511212/8a0134a9-9be7-4923-9123-d34a1896a6d3)
 
-#### Output menu 6:
+### Output menu 6:
 
 ![image](https://github.com/kepin7/Struktur-Data-Assignment/assets/91511212/7b481089-98bc-4547-a48c-6a58d9e705fe)
 
-Program hash table yang diberikan adalah untuk menyimpan dan mengelola data mahasiswa. Hash table digunakan untuk memetakan NIM mahasiswa ke informasi lainnya seperti nama dan nilai. 
+### Interpretasi
 
-Setiap mahasiswa direpresentasikan oleh sebuah struktur data (`mahasiswa`) yang memiliki tiga atribut: nama, NIM, dan nilai. Selain itu, terdapat sebuah kelas `HashTable` yang bertanggung jawab untuk mengelola tabel hash. Tabel hash ini diimplementasikan sebagai array dari pointer ke elemen-elemen `mahasiswa`. Penanganan collision dilakukan dengan menggunakan linked list di setiap slot tabel hash.
-Program menyediakan beberapa operasi, seperti:
+**Fitur utama tabel hash ini:**
 
-1. `insert`: Menambahkan data mahasiswa baru ke hash table.
-2. `remove`: Menghapus data mahasiswa berdasarkan NIM.
-3. `cari_NIM`: Mencari mahasiswa berdasarkan NIM.
-4. `cari_nilai`: Mencari mahasiswa berdasarkan rentang nilai.
-5. `traverse`: Menampilkan semua data mahasiswa yang tersimpan dalam hash table.
+* **Penyimpanan data mahasiswa:** Setiap node dalam tabel hash menyimpan informasi mahasiswa seperti nama, NIM, dan nilai.
+* **Pencarian berdasarkan NIM:** Metode `cari_NIM` memungkinkan pencarian mahasiswa berdasarkan NIM mereka.
+* **Pencarian berdasarkan rentang nilai:** Metode `cari_nilai` memungkinkan pencarian mahasiswa berdasarkan rentang nilai mereka.
+* **Penambahan data mahasiswa:** Metode `insert` memungkinkan penambahan data mahasiswa baru ke tabel hash.
+* **Penghapusan data mahasiswa:** Metode `remove` memungkinkan penghapusan data mahasiswa berdasarkan NIM mereka.
+* **Traversal:** Metode `traverse` memungkinkan pencetakan semua data mahasiswa dalam tabel hash.
 
-Di dalam fungsi `main`, terdapat sebuah loop menu yang memberikan pilihan kepada pengguna untuk melakukan operasi seperti menambah, menghapus, mencari, dan menampilkan data mahasiswa. Pengguna dapat memilih menu hingga memilih untuk keluar dari program.
+**Struktur kode:**
 
-#### Full Code Screenshot:
+* **Struktur data mahasiswa:** Struktur `mahasiswa` mendefinisikan node dalam tabel hash, yang menyimpan informasi nama, NIM, nilai, dan pointer ke node berikutnya dalam daftar berantai (collision handling).
+* **Kelas HashTable:** Kelas `HashTable` mendefinisikan tabel hash dan operasi terkait seperti penyisipan, penghapusan, pencarian, dan traversal.
+* **Fungsi hash:** Fungsi `hash_func` digunakan untuk memetakan NIM ke indeks dalam tabel hash.
+* **Fungsi main:** Fungsi `main` adalah titik masuk program. Ini menampilkan menu utama, menerima input pengguna, dan melakukan operasi yang sesuai.
+
+**Penjelasan lebih lanjut:**
+
+* Tabel hash menggunakan teknik **collision handling** untuk menangani tabrakan saat memetakan NIM ke indeks yang sama. Dalam kodingan ini, collision handling menggunakan daftar berantai.
+* Nilai default untuk ukuran maksimum tabel hash adalah `10`. Anda dapat mengubah nilai ini jika diperlukan.
+* Fungsi hash dalam kodingan ini adalah fungsi hash sederhana yang menggunakan modulus untuk mendapatkan indeks. Anda dapat menggunakan fungsi hash yang lebih kompleks jika diperlukan.
+
+**Kesimpulan:**
+
+Kodingan ini menunjukkan implementasi tabel hash sederhana untuk menyimpan data mahasiswa. Kodingan ini menyediakan fungsionalitas dasar untuk menambah, menghapus, mencari, dan menampilkan data mahasiswa. Kodingan dapat diperluas lagi dengan menambahkan fitur lain seperti pengurutan, statistik, dan persistensi data.
+
+### Full Code Screenshot:
 
 ![image](https://github.com/dkumui/Struktur-Data-Assignment/assets/91511212/d8aa83cd-f7ea-4180-9dc6-ca094500023b)
 
