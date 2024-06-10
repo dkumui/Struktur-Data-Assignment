@@ -7,6 +7,7 @@ struct TNode
     int data;
     TNode *left;
     TNode *right;
+    string Muhammad_Azka_2311110049;
 
     TNode(int value)
     {
@@ -181,6 +182,7 @@ int main()
             displayDescendants(findNode(root, nodeValue));
             break;
         case 7:
+            cout << "Matur Tengkyu. Code by Azka";
             return 0;
         default:
             cout << "Invalid choice. Please try again." << endl;

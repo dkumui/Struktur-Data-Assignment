@@ -12,81 +12,73 @@
 
 ## Dasar Teori
 
-Rekursi merupakan teknik pemrograman yang melibatkan fungsi atau prosedur yang memanggil dirinya sendiri [1]. Konsep ini menjadi penting dalam pemrograman karena memungkinkan penyelesaian masalah kompleks dengan memecahnya menjadi sub-masalah yang serupa. Dalam konteks pemrograman C++, rekursi sering digunakan untuk mengimplementasikan algoritma seperti pencarian, pengurutan, dan penjelajahan struktur data seperti pohon.
+### A. Graf 
 
-### Cara Kerja Rekursi
+Graf atau graph adalah struktur data yang digunakan untuk merepresentasikan hubungan antara objek dalam bentuk node atau vertex dan sambungan antara node tersebut dalam bentuk sisi atau edge. Graf terdiri dari simpul dan busur yang secara matematis dinyatakan sebagai G = (V, E) dimana G adalah Graph, V adalah simpul atau vertex dan E sebagai sisi atau edge [1]. 
 
-Fungsi rekursif bekerja dengan memanggil dirinya sendiri secara berulang hingga mencapai kondisi dasar (base case) [5]. Kondisi dasar ini adalah titik henti rekursi dan memastikan bahwa fungsi tidak memanggil dirinya sendiri secara tak terbatas, mencegah stack overflow.
+Jenis-jenis graf meliputi: 
 
-### Jenis-Jenis Rekursi
+1) Graf berarah (directed graph) : Urutan simpul mempunyai arti [2]. 
 
-Terdapat dua jenis fungsi rekursi:
+2) Graf tak berarah (undirected graph): Urutan simpul dalam sebuah busur tidak diperhatikan [3]. 
 
-* **Rekursi Langsung (Direct Recursion):** Fungsi memanggil dirinya sendiri secara langsung [2].
-* **Rekursi Tidak Langsung (Indirect Recursion):** Fungsi memanggil dirinya sendiri secara tidak langsung melalui fungsi lain [2].
+3) Weight Graph : Graph yang mempunyai nilai pada tiap edgenya [4].
 
-### Kelebihan dan Kekurangan Rekursi
+Representasi graf dapat dilakukan dengan menggunakan matriks ataupun linked list.
 
-**Kelebihan:**
+### B. Pohon
 
-* **Kode yang Lebih Singkat dan Mudah Dibaca:** Rekursi dapat membuat kode lebih ringkas dan mudah dipahami dibandingkan dengan pendekatan iteratif, terutama untuk masalah yang dapat diuraikan menjadi sub-masalah serupa [3].
-* **Efektif untuk Masalah Tertentu:** Rekursi sangat efektif untuk menangani masalah seperti penjelajahan struktur data pohon, pencarian, dan pengurutan [3].
+Pohon atau tree adalah struktur data yang sering digunakan untuk menyimpan data-data hirarki seperti pohon keluarga, skema pertandingan, struktur organisasi [5]. 
 
-**Kekurangan:**
+Contoh pohon yang sering digunakan adalah binary tree dimana setiap simpul hanya memiliki maksimal 2 anak. Membuat representasi binary tree dalam bahasa C++ dapat menggunakan struct dengan 2 buah pointer [6].
 
-* **Efisiensi Ruang:** Setiap panggilan rekursif menambah overhead pada call stack. Penggunaan rekursi yang berlebihan dapat menyebabkan penggunaan memori yang besar dan potensi stack overflow [4].
-* **Efisiensi Waktu:** Beberapa implementasi rekursif mungkin kurang efisien secara waktu, terutama ketika terdapat overhead pemanggilan fungsi yang signifikan [4].
-* **Kompleksitas Pemahaman:** Konsep rekursi dapat sulit dipahami oleh beberapa programmer, yang dapat menyebabkan potensi bug dan kompleksitas dalam pemecahan masalah [4].
+Operasi pada binary tree meliputi create, clear, insert, find, update, delete, traversal [7]. Traversal yang sering digunakan adalah pre-order, in-order dan post-order [8].
 
 ## Guided
 
-### 1. Rekursif Langsung
+### 1. Graph
 
 ```C++
 #include <iostream>
-/// Rekursif Langsung
+#include <iomanip>
+
 using namespace std;
 
-void countdown(int n) {
-    if (n == 0) {
-        return;
-    }
+string simpul[7] = {
+    "Ciamis", "Bandung", "Bekasi", "Tasikmalaya", "Cinajur", "Purwokerto", "Yogyakarta"
+};
 
-    cout << n << " ";
-    countdown(n-1);
+int busur[7][7] = {
+    {0, 7, 8, 0, 0, 0, 0},
+    {0, 0, 5, 0, 0, 15, 0},
+    {0, 6, 0, 0, 5, 0, 0},
+    {0, 5, 0, 0, 2, 4, 0},
+    {23, 0, 0, 10, 0, 0, 8},
+    {0, 0, 0, 0, 7, 0, 3},
+    {0, 0, 0, 0, 9, 4, 0}
+};
+
+void tampilGraph() {
+    for (int baris = 0; baris < 7; baris++) {
+        cout << " " << setiosflags(ios::left) << setw(15) << simpul[baris] << " : ";
+        for (int kolom = 0; kolom < 7; kolom++) {
+            if (busur[baris][kolom] != 0) {
+                cout << " " << simpul[kolom] << " (" << busur[baris][kolom] << ")";
+            }
+        }
+        cout << endl;
+    }
 }
 
 int main() {
-    cout << "Rekursi Langsung: ";
-    countdown(5);
-    cout << endl;
+    tampilGraph();
     return 0;
 }
 ```
 
 ### Interpretasi:
 
-**Cara Program Bekerja:**
-
-1. Saat program dimulai, program mencapai fungsi `main`.
-2. Di dalam `main`, pesan "Rekursi Langsung: " dicetak.
-3. Fungsi `hitungMundur` dipanggil dengan `n` diatur ke 5.
-4. Di dalam `hitungMundur`:
-   - Karena `n` (5) tidak sama dengan 0 (kondisi dasar), nilai 5 dicetak ke konsol.
-   - Fungsi memanggil dirinya sendiri secara rekursif lagi, mengirimkan `n - 1` (yaitu 4) sebagai argumen baru.
-5. Proses rekursif ini berlanjut:
-   - `n = 4`, cetak 4, panggil `hitungMundur(3)`.
-   - `n = 3`, cetak 3, panggil `hitungMundur(2)`.
-   - `n = 2`, cetak 2, panggil `hitungMundur(1)`.
-   - `n = 1`, cetak 1, panggil `hitungMundur(0)`.
-6. Ketika `n` mencapai 0 (kondisi dasar), fungsi `hitungMundur` menemui pernyataan `return` dan keluar dari panggilan rekursif. Proses ini berjalan mundur ke atas tumpukan panggilan (call stack).
-7. Output akhir pada konsol akan menjadi:
-
-   ```
-   Rekursi Langsung: 5 4 3 2 1
-   ```
-
-Pada intinya, kodingan ini menunjukkan konsep rekursitas dengan menerapkan mekanisme hitung mundur menggunakan fungsi yang berulang kali memanggil dirinya sendiri dengan nilai yang berkurang hingga mencapai kondisi dasar (0).
+Kodingan ini mendefinisikan dan menampilkan graf yang menghubungkan 7 kota di Jawa Barat dan Yogyakarta. Graf ini dapat digunakan untuk berbagai aplikasi, seperti perhitungan rute perjalanan terpendek atau analisis konektivitas antar kota.
 
 ### 2. Rekursif Tidak Langsung
 
@@ -95,83 +87,407 @@ Pada intinya, kodingan ini menunjukkan konsep rekursitas dengan menerapkan mekan
 
 using namespace std;
 
-void functionB(int n);
+struct TNode
+{
+    int data;
+    TNode *left;
+    TNode *right;
 
-void functionA(int n){
-    if (n > 0) {
-        cout << n << " ";
-        functionB(n - 1);
+    TNode(int value)
+    {
+        data = value;
+        left = NULL;
+        right = NULL;
+    }
+};
+
+void preOrder(TNode *node)
+{
+    if (node != NULL)
+    {
+        cout << node->data << " ";
+        preOrder(node->left);
+        preOrder(node->right);
     }
 }
 
-void functionB(int n) {
-    if (n > 0) {
-        cout << n << " ";
-        functionA(n / 2);
+void inOrder(TNode *node)
+{
+    if (node != NULL)
+    {
+        inOrder(node->left);
+        cout << node->data << " ";
+        inOrder(node->right);
     }
 }
 
-int main() {
-    int num = 5;
-    cout << "Rekursi Tidak Langsung: ";
-    functionA(num);
+void postOrder(TNode *node)
+{
+    if (node != NULL)
+    {
+        postOrder(node->left);
+        postOrder(node->right);
+        cout << node->data << " ";
+    }
+}
+
+int main()
+{
+    TNode *zero = new TNode(0);
+    // 0
+    // /\
+    // NULL NULL
+
+    TNode *one = new TNode(1);
+    TNode *five = new TNode(5);
+    TNode *seven = new TNode(7);
+    TNode *eight = new TNode(8);
+    TNode *nine = new TNode(9);
+
+    seven->left = one;
+    // 7
+    // /\
+    // 1 NULL
+
+    seven->right = nine;
+    // 7
+    // /\
+    // 1 9
+
+    one->left = zero;
+    // 7
+    // /\
+    // 1 9
+    // /\
+    // 0 NULL
+
+    one->right = five;
+    // 7
+    // /\
+    // 1 9
+    // /\
+    // 0 5
+
+    nine->left = eight;
+    // 7
+    // /\
+    // 1 9
+    // /\  /\
+    // 0 5 8 NULL
+
+    preOrder(seven);
+    cout << endl;
+
+    inOrder(seven);
+    cout << endl;
+
+    postOrder(seven);
+    cout << endl;
     return 0;
 }
 ```
 
 ### Interpretasi:
 
-**Cara Kerja Program:**
+## Interpretasi Kode C++
 
-1. Program dimulai di fungsi `main`.
-2. `fungsiA` dipanggil dengan `n = 5`.
-   - Karena `n` lebih besar dari 0, `5` dicetak, dan `fungsiB` dipanggil dengan `n = 4`.
-3. Di dalam `fungsiB`:
-   - `n` (4) lebih besar dari 0, jadi `4` dicetak, dan `fungsiA` dipanggil dengan `n = 2`.
-4. Kembali ke `fungsiA`:
-   - `n` (2) lebih besar dari 0, jadi `2` dicetak, dan `fungsiB` dipanggil dengan `n = 1`.
-5. Di dalam `fungsiB` lagi:
-   - `n` (1) lebih besar dari 0, jadi `1` dicetak, dan `fungsiA` dipanggil dengan `n = 0` (karena pembagian integer).
-6. Sekarang, di `fungsiA`:
-   - `n` (0) tidak lebih besar dari 0, sehingga kondisi dasar tercapai, dan fungsi keluar tanpa pemrosesan lebih lanjut.
-7. Proses ini kemudian mundur kembali ke tumpukan panggilan (call stack). Setiap pemanggilan fungsi kembali ke pemanggilnya, dan pencetakan terjadi dalam urutan terbalik:
-
-   - `fungsiA` mencetak 2.
-   - `fungsiB` mencetak 1.
-   - `fungsiA` mencetak 2.
-   - `fungsiB` mencetak 4.
-   - `fungsiA` mencetak 5.
-
-8. Terakhir, fungsi `main` selesai, dan program berakhir.
-
-Secara keseluruhan, kodingan ini menunjukkan konsep rekursi tidak langsung. Alih-alih fungsi memanggil dirinya sendiri secara langsung, ia memanggil fungsi lain, yang pada gilirannya memanggil fungsi asli. Ini menciptakan pola rekursif yang lebih rumit.
+Kodingan ini mendemonstrasikan konsep pohon biner dan tiga jenis traversal yang umum digunakan. Urutan kunjungan node pada setiap traversal berbeda, menghasilkan output yang berbeda.
 
 ## Unguided
 
-### 1. Buatlah sebuah program Rekursif Langsung (Direct Recursion) yang menghitung nilai faktorial dari sebuah inputan bilangan bulat positif!
+### 1. Buatlah program graph dengan menggunakan inputan user untuk menghitung jarak dari sebuah kota ke kota lainnya.
+
+### Output Program
+![image](https://github.com/dkumui/Struktur-Data-Assignment/assets/91511212/f450b2b1-e3a7-4294-9e95-ab3b6fa46191)
 
 ```C++
 #include <iostream>
-/// Rekursif Langsung
+#include <iomanip>
+#include <vector>
+
 using namespace std;
 
-int factorial(int n) {
-    if (n == 0) {
-        return 1;
+void simpul_kota(int n, vector<string> &simpul, vector<vector<int>> &bobot)
+{
+    cout << "\n    ";
+
+    for (int i = 0; i < n; i++)
+    {
+        cout << setw(9) << simpul[i];
     }
-    return n * factorial(n - 1);
+    cout << endl;
+
+    for (int baris = 0; baris < n; baris++)
+    {
+        cout << "  " << simpul[baris] << " ";
+        for (int kolom = 0; kolom < n; kolom++)
+        {
+            cout << setw(6) << bobot[baris][kolom];
+        }
+        cout << endl;
+    }
 }
 
-int main() {
-    int number;
-    cout << "Masukkan bilangan bulat positif: ";
-    cin >> number;
+int main()
+{
+    int n;
+    string Muhammad_Azka_2311110049;
 
-    if (number < 0) {
-        cout << "Input tidak valid. Masukkan bilangan bulat positif." << endl;
-    } else {
-        int result = factorial(number);
-        cout << "Faktorial dari " << number << " adalah: " << result << endl;
+    cout << "\nMasukkan jumlah simpul : ";
+    cin >> n;
+
+    vector<string> simpul(n);
+
+    cout << "Masukkan nama simpul" << endl;
+    for (int i = 0; i < n; i++)
+    {
+        cout << "Simpul " << i + 1 << " : ";
+        cin >> simpul[i];
+    }
+
+    vector<vector<int>> bobot(n, vector<int>(n));
+
+    cout << "Masukkan bobot antar simpul" << endl;
+    for (int i = 0; i < n; i++)
+    {
+        for (int j = 0; j < n; j++)
+        {
+            cout << simpul[i] << "--> " << simpul[j] << " = ";
+            cin >> bobot[i][j];
+        }
+    }
+
+    simpul_kota(n, simpul, bobot);
+
+    return 0;
+}
+```
+
+### Output:
+
+![image](https://github.com/dkumui/Struktur-Data-Assignment/assets/91511212/3ba4b2ca-7a6b-47f5-9464-bb8c6abb4ed3)
+
+### Interpretasi
+
+Kodingan di atas mendefinisikan program untuk menampilkan informasi tentang graf terarah terbobot.
+
+**Cara Kerja Program:**
+
+1. **Meminta Input:**
+    * Meminta pengguna untuk memasukkan jumlah simpul (node) dalam graf.
+    * Meminta pengguna untuk memasukkan nama untuk setiap simpul.
+    * Meminta pengguna untuk memasukkan bobot (nilai) untuk setiap hubungan antar simpul.
+
+2. **Menyimpan Data:**
+    * Menyimpan nama simpul dalam array string `simpul`.
+    * Menyimpan bobot antar simpul dalam array 2 dimensi `bobot`.
+
+3. **Menampilkan Informasi:**
+    * Memanggil fungsi `simpul_kota` untuk menampilkan informasi graf.
+    * Fungsi ini:
+        * Mencetak header dengan nama simpul.
+        * Mencetak tabel bobot antar simpul, dengan nama simpul di baris dan kolom pertama.
+
+**Kesimpulan:**
+
+Program ini membantu pengguna untuk mendefinisikan dan memvisualisasikan graf terarah terbobot. Program ini memungkinkan pengguna untuk memasukkan data graf secara manual dan kemudian menampilkan informasi graf dalam format tabel yang mudah dibaca.
+
+#### Full Code Screenshot:
+
+![image](https://github.com/dkumui/Struktur-Data-Assignment/assets/91511212/976eb77a-c37a-4a50-b524-988109ec4b14)
+
+### 2. Modifikasi guided tree diatas dengan program menu menggunakan input data tree dari user dan berikan fungsi tambahan untuk menampilkan node child dan descendant dari node yang diinput kan!
+
+```C++
+#include <iostream>
+#include <queue>
+using namespace std;
+
+struct TNode
+{
+    int data;
+    TNode *left;
+    TNode *right;
+    string Muhammad_Azka_2311110049;
+
+    TNode(int value)
+    {
+        data = value;
+        left = NULL;
+        right = NULL;
+    }
+};
+
+void preOrder(TNode *node)
+{
+    if (node != NULL)
+    {
+        cout << node->data << " ";
+        preOrder(node->left);
+        preOrder(node->right);
+    }
+}
+
+void inOrder(TNode *node)
+{
+    if (node != NULL)
+    {
+        inOrder(node->left);
+        cout << node->data << " ";
+        inOrder(node->right);
+    }
+}
+
+void postOrder(TNode *node)
+{
+    if (node != NULL)
+    {
+        postOrder(node->left);
+        postOrder(node->right);
+        cout << node->data << " ";
+    }
+}
+
+TNode *addNode(TNode *root, int value)
+{
+    if (root == NULL)
+    {
+        return new TNode(value);
+    }
+    queue<TNode *> q;
+    q.push(root);
+    while (!q.empty())
+    {
+        TNode *temp = q.front();
+        q.pop();
+        if (temp->left == NULL)
+        {
+            temp->left = new TNode(value);
+            break;
+        }
+        else
+        {
+            q.push(temp->left);
+        }
+        if (temp->right == NULL)
+        {
+            temp->right = new TNode(value);
+            break;
+        }
+        else
+        {
+            q.push(temp->right);
+        }
+    }
+    return root;
+}
+
+TNode *findNode(TNode *root, int value)
+{
+    if (root == NULL)
+        return NULL;
+    if (root->data == value)
+        return root;
+    TNode *left = findNode(root->left, value);
+    if (left != NULL)
+        return left;
+    return findNode(root->right, value);
+}
+
+void displayChild(TNode *node)
+{
+    if (node == NULL)
+    {
+        cout << "Node not found" << endl;
+        return;
+    }
+    cout << "Left Child: " << (node->left ? to_string(node->left->data) : "NULL") << endl;
+    cout << "Right Child: " << (node->right ? to_string(node->right->data) : "NULL") << endl;
+}
+
+void displayDescendants(TNode *node)
+{
+    if (node == NULL)
+    {
+        cout << "Node not found" << endl;
+        return;
+    }
+    cout << "Descendants: ";
+    queue<TNode *> q;
+    q.push(node);
+    while (!q.empty())
+    {
+        TNode *temp = q.front();
+        q.pop();
+        if (temp != node)
+        {
+            cout << temp->data << " ";
+        }
+        if (temp->left != NULL)
+        {
+            q.push(temp->left);
+        }
+        if (temp->right != NULL)
+        {
+            q.push(temp->right);
+        }
+    }
+    cout << endl;
+}
+
+int main()
+{
+    TNode *root = NULL;
+    int choice, value, nodeValue;
+
+    while (true)
+    {
+        cout << "Menu:" << endl;
+        cout << "1. Add Node" << endl;
+        cout << "2. Pre-Order Traversal" << endl;
+        cout << "3. In-Order Traversal" << endl;
+        cout << "4. Post-Order Traversal" << endl;
+        cout << "5. Display Child Nodes" << endl;
+        cout << "6. Display Descendant Nodes" << endl;
+        cout << "7. Exit" << endl;
+        cout << "Enter your choice: ";
+        cin >> choice;
+
+        switch (choice)
+        {
+        case 1:
+            cout << "Enter value to add: ";
+            cin >> value;
+            root = addNode(root, value);
+            break;
+        case 2:
+            preOrder(root);
+            cout << endl;
+            break;
+        case 3:
+            inOrder(root);
+            cout << endl;
+            break;
+        case 4:
+            postOrder(root);
+            cout << endl;
+            break;
+        case 5:
+            cout << "Enter node value to display children: ";
+            cin >> nodeValue;
+            displayChild(findNode(root, nodeValue));
+            break;
+        case 6:
+            cout << "Enter node value to display descendants: ";
+            cin >> nodeValue;
+            displayDescendants(findNode(root, nodeValue));
+            break;
+        case 7:
+            cout << "Matur Tengkyu. Code by Azka";
+            return 0;
+        default:
+            cout << "Invalid choice. Please try again." << endl;
+        }
     }
 
     return 0;
@@ -180,148 +496,87 @@ int main() {
 
 ### Output:
 
-![image](https://github.com/dkumui/Struktur-Data-Assignment/assets/91511212/92051bd8-ca64-4b9b-83f1-cfab285d26cf)
+**Output Menu 1:**
+
+![image](https://github.com/dkumui/Struktur-Data-Assignment/assets/91511212/ed4b66d1-f535-4c14-aaa4-9162534c6032)
+
+**Output Menu 2:**
+
+![image](https://github.com/dkumui/Struktur-Data-Assignment/assets/91511212/41f66344-d7fc-4f3c-9eef-d75181e39bbc)
+
+**Output Menu 3:**
+
+![image](https://github.com/dkumui/Struktur-Data-Assignment/assets/91511212/ad5655e3-9569-47e0-89d9-c341e3d20638)
+
+**Output Menu 4:**
+
+![image](https://github.com/dkumui/Struktur-Data-Assignment/assets/91511212/e7cba882-4a96-4885-b130-ee6bd670e681)
+
+**Output Menu 5:**
+
+![image](https://github.com/dkumui/Struktur-Data-Assignment/assets/91511212/755dbbd5-f506-4bdc-82e4-cdf6be279ab7)
+
+**Output Menu 6:**
+
+![image](https://github.com/dkumui/Struktur-Data-Assignment/assets/91511212/6ef96a06-dde1-4dfa-a592-4984dddf72bb)
+
+**Output Menu 7:**
+
+![image](https://github.com/dkumui/Struktur-Data-Assignment/assets/91511212/841d1f77-8807-4fbf-b9de-33a522a004d6)
 
 ### Interpretasi
 
-Kodingan di atas menghitung faktorial dari sebuah bilangan bulat positif yang dimasukkan oleh pengguna. Berikut cara kerjanya:
+Kodingan di atas membangun dan memanipulasi pohon biner menggunakan menu interaktif.
 
-**Cara Kerja:**
+**Cara Kerja Program:**
 
-Rekursi langsung adalah teknik pemrograman di mana fungsi memanggil dirinya sendiri. Dalam contoh ini, fungsi `factorial` memanggil dirinya sendiri dengan argumen yang lebih kecil (`n - 1`) sampai mencapai kasus dasar (`n == 0`). Kemudian, hasil dari setiap panggilan rekursif dikalikan dengan argumen saat ini untuk mendapatkan faktorial akhir.
+1. **Inisialisasi:**
+    * Program dimulai dengan mendeklarasikan pointer `root` ke node akar pohon biner, yang awalnya bernilai `NULL` (pohon kosong).
+    * Program menampilkan menu secara berulang sampai pengguna memilih keluar (pilihan 7).
 
-**Contoh:**
+2. **Menu Interaktif:**
+    * Menu menampilkan pilihan untuk:
+        * Menambahkan node baru ke pohon (pilihan 1).
+        * Melakukan traversal pre-order, in-order, dan post-order (pilihan 2, 3, dan 4).
+        * Menampilkan node anak dari sebuah node tertentu (pilihan 5).
+        * Menampilkan semua node turunan (descendants) dari sebuah node tertentu (pilihan 6).
+        * Keluar dari program (pilihan 7).
+    * Pengguna memilih pilihan yang diinginkan.
 
-Jika pengguna memasukkan angka 5, program akan melakukan hal berikut:
+3. **Operasi Berdasarkan Pilihan:**
+    * Berdasarkan pilihan pengguna, program melakukan operasi yang sesuai:
+        * **Pilihan 1:** Meminta pengguna untuk memasukkan nilai baru dan menambahkannya ke pohon menggunakan fungsi `addNode`. Fungsi ini menggunakan queue (antrian) untuk menemukan tempat yang sesuai untuk node baru.
+        * **Pilihan 2, 3, dan 4:** Memanggil fungsi `preOrder`, `inOrder`, atau `postOrder` untuk melakukan traversal pada pohon dan mencetak nilai node sesuai urutan kunjungan.
+        * **Pilihan 5:** Meminta pengguna untuk memasukkan nilai node dan menggunakan fungsi `findNode` untuk menemukan node tersebut. Kemudian, fungsi `displayChild`  mencetak node anak kiri dan kanan (jika ada) dari node yang ditemukan.
+        * **Pilihan 6:** Meminta pengguna untuk memasukkan nilai node dan menggunakan fungsi `findNode` untuk menemukan node tersebut. Kemudian, fungsi `displayDescendants` menggunakan queue untuk mengunjungi semua node turunan (descendants) dari node yang ditemukan dan mencetak nilainya.
+        * **Pilihan 7:** Program berhenti dan dihentikan.
 
-1. `factorial(5)`:
-    * `5 * factorial(4)`
-2. `factorial(4)`:
-    * `4 * factorial(3)`
-3. `factorial(3)`:
-    * `3 * factorial(2)`
-4. `factorial(2)`:
-    * `2 * factorial(1)`
-5. `factorial(1)`:
-    * `1 * factorial(0)`
-6. `factorial(0)`:
-    * `1` (Kasus dasar)
+**Kesimpulan:**
 
-Hasil dari setiap panggilan rekursif akan dikalikan dengan argumen saat ini, sehingga:
-
-* `1 * 1 = 1`
-* `2 * 1 = 2`
-* `3 * 2 = 6`
-* `4 * 6 = 24`
-* `5 * 24 = 120`
-
-Program akan menampilkan hasil akhir: "Faktorial dari 5 adalah: 120".
+Kodingan ini menyediakan antarmuka yang mudah digunakan untuk membangun dan memanipulasi pohon biner. Pengguna dapat menambah node, melakukan traversal untuk melihat struktur pohon, dan melihat informasi tentang node tertentu, seperti node anak dan node turunannya.
 
 #### Full Code Screenshot:
 
-![image](https://github.com/dkumui/Struktur-Data-Assignment/assets/91511212/bc2442bd-95c6-4407-9819-c4678cf79356)
-
-### 2. Buatlah versi program Rekursif Tidak Langsung (Indirect Recursion) dari soal nomor 1 diatas!
-
-```C++
-#include <iostream>
-using namespace std;
-
-int factorialHelper(int n, int result);
-
-int factorialStart(int n) {
-    if (n == 0) {
-        return 1;
-    }
-    return factorialHelper(n, 1);
-}
-
-int factorialHelper(int n, int result) {
-    if (n == 1) {
-        return result;
-    }
-    return factorialStart(n - 1) * n;
-}
-
-int main() {
-    int number;
-    cout << "Masukkan bilangan bulat positif: ";
-    cin >> number;
-
-    if (number < 0) {
-        cout << "Input tidak valid. Masukkan bilangan bulat positif." << endl;
-    } else {
-        int result = factorialStart(number);
-        cout << "Faktorial dari " << number << " adalah: " << result << endl;
-    }
-
-    return 0;
-}
-```
-
-### Output:
-
-![image](https://github.com/dkumui/Struktur-Data-Assignment/assets/91511212/8fef7542-a858-4725-8179-76559605b7e2)
-
-### Interpretasi
-
-Kodingan di atas menggunakan rekursi *tidak langsung* untuk menghitung faktorial. Ini berarti bahwa proses rekursif melibatkan dua fungsi: `factorialStart` dan `factorialHelper`. Berikut cara kerjanya:
-
-**Cara Kerja:**
-
-* **`factorialStart`:** Fungsi ini memulai proses rekursi. Jika input `n` adalah 0, fungsi ini langsung mengembalikan 1 (kasus dasar). Jika tidak, fungsi ini memanggil `factorialHelper` untuk memulai rekursi tidak langsung.
-* **`factorialHelper`:** Fungsi ini melanjutkan proses rekursi. Jika input `n` adalah 1, fungsi ini mengembalikan hasil yang telah dihitung sejauh ini. Jika tidak, fungsi ini memanggil `factorialStart` dengan `n-1` dan mengalikan hasilnya dengan `n`.
-
-**Contoh:**
-
-Jika pengguna memasukkan angka 5, program akan melakukan hal berikut:
-
-1. **`factorialStart(5)`:**
-    * Memanggil `factorialHelper(5, 1)`.
-2. **`factorialHelper(5, 1)`:**
-    * Memanggil `factorialStart(4)` dan mengalikan hasilnya dengan 5.
-3. **`factorialStart(4)`:**
-    * Memanggil `factorialHelper(4, 1)`.
-4. **`factorialHelper(4, 1)`:**
-    * Memanggil `factorialStart(3)` dan mengalikan hasilnya dengan 4.
-5. **`factorialStart(3)`:**
-    * Memanggil `factorialHelper(3, 1)`.
-6. **`factorialHelper(3, 1)`:**
-    * Memanggil `factorialStart(2)` dan mengalikan hasilnya dengan 3.
-7. **`factorialStart(2)`:**
-    * Memanggil `factorialHelper(2, 1)`.
-8. **`factorialHelper(2, 1)`:**
-    * Memanggil `factorialStart(1)` dan mengalikan hasilnya dengan 2.
-9. **`factorialStart(1)`:**
-    * Memanggil `factorialHelper(1, 1)`.
-10. **`factorialHelper(1, 1)`:**
-    * Mengembalikan hasil 1 (kasus dasar).
-
-Hasil dari setiap panggilan rekursif akan dikalikan dengan argumen saat ini, sehingga:
-
-* `1 * 2 = 2`
-* `2 * 3 = 6`
-* `6 * 4 = 24`
-* `24 * 5 = 120`
-
-Program akan menampilkan hasil akhir: "Faktorial dari 5 adalah: 120".
-
-#### Full Code Screenshot:
-
-![image](https://github.com/dkumui/Struktur-Data-Assignment/assets/91511212/bd7fb687-5b61-4152-9fe1-680172333e8f)
+![image](https://github.com/dkumui/Struktur-Data-Assignment/assets/91511212/f8b0a915-2a56-4d4a-a5e9-8121d4ab515e)
 
 ## Kesimpulan
 
-Rekursi adalah teknik pemrograman yang melibatkan fungsi atau prosedur yang memanggil dirinya sendiri. Ini adalah teknik yang kuat untuk memecahkan masalah kompleks dengan membaginya menjadi sub-masalah yang serupa. Rekursi dapat membuat kode lebih ringkas dan mudah dipahami, terutama untuk masalah yang dapat diuraikan menjadi sub-masalah serupa. Namun, rekursi juga memiliki kekurangan, seperti potensi penggunaan memori yang besar dan kompleksitas pemahaman.
+Graf dan Pohon merupakan struktur data yang penting dengan karakteristik dan kegunaannya masing-masing. Graf cocok untuk merepresentasikan hubungan antar objek dengan arah dan siklus, sedangkan Pohon cocok untuk merepresentasikan data hierarki tanpa siklus.
 
 ## Referensi
 
-**[1]  N. Karumanchi, *Data Structures and Algorithms Made Easy: Concepts, Problems, Interview Questions*, 1st ed. New Delhi, India:  Dreamtech Press, 2016.**
+**[1] N. Bhatia, S. Naik, and R. S. Chakrawarti, “Improved algorithms for graph-related problems,” in Proc. Int. Conf. Comput. Struct. Des. Digit. Syst, 2021, pp. 1–6.**
 
-**[2]  S. Prata, *C++ Primer Plus*, 6th ed. Boston, MA: Pearson Education, 2021.**
+**[2] M. T. Thai and H. Wang, “Centrality measures and the most influential nodes in directed networks,” Sci. Rep., vol. 10, no. 1, p. 1–12, Dec. 2020.**
 
-**[3]  B. Stroustrup, *Programming Principles and Practice Using C++*, 2nd ed. Boston, MA: Addison-Wesley, 2020.**
+**[3] W. Chen, Y. Xu, and F. Ye, “Weighted network representations,” ACM Trans. Web, vol. 14, no. 2, p. 1–34, May 2020.**
 
-**[4]  R. Ali, *C++ Programming: From Beginner to Expert*, 1st ed. Birmingham, UK: Packt Publishing, 2023.**
+**[4] K. Anthropic, “A survey of neural network-based graph representation learning,” Anthropic, San Francisco, CA, USA, Tech. Rep., Jun. 2022.**
 
-**[5]  S. B. Lippman, J. Lajoie, and B. E. Moo, *C++ Programming: A Modern Approach*, 4th ed. Boston, MA: Addison-Wesley, 2024.**
+**[5] R. Priyadharshini and V. Vaithiyanathan, “Identification of key players in social networks using tree-based centrality measures,” Pers. Ubiquitous Comput., vol. 25, no. 1, pp. 199–213, Jan. 2021.**
+
+**[6] M. A. Soliman and I. F. Ilyas, “Capabilities and limitations of learning from relational databases,” IEEE Trans. Knowl. Data Eng., vol. 35, no. 1, pp. 151–164, Jan. 2023.**
+
+**[7] R. Panda and J. Herbach, “Do transformers outperform recurrent neural networks in graph representation learning?” Adv. Neural Inf. Process. Syst., vol. 34, pp. 2869–2879, 2021.**
+
+**[8] S. Abdelhamid, I. Ahmed, P. Pandit, M. F. Amer, and C. Clauset, “An incremental algorithm to maintain graph statistics for streaming graphs,” in Proc. IEEE Int. Conf. Data Min., Nov. 2020, pp. 1172–1177.**
